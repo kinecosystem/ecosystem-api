@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Kin Ecosystem
+  description: Apis for client to server interaction
+servers:
+  - url: 'https://api.kinfoundation.com/v1/'
+  - url: 'https://api-stage.kinfoundation.com/v1/'
+  - url: 'https://api-test.kinfoundation.com/v1/'
+paths:
+  /offers:
+    get:
+      description: Return a list of offers
+      responses:
+        '200':
+          description: Successfully returned a list of offers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  offers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Offer'
+        default:
+          description: Some Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Question:
+      type: object
+      properties:
+        title:
+          type: string
+        answers:
+          type: array
+          items:
+            type: string
+    MultiChoicePoll:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+            - MultiChoicePoll
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+    SliderPoll:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+            - MultiChoicePoll
+        min:
+          type: integer
+        max:
+          type: integer
+    Coupon:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+            - MultiChoicePoll
+        description:
+          type: string
+    Offer:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - image
+        - offer_type
+        - amount
+        - content
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        amount:
+          type: integer
+        content:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/MultiChoicePoll'
+            - $ref: '#/components/schemas/SliderPoll'
+            - $ref: '#/components/schemas/Coupon'
+        offer_type:
+          type: string
+          enum:
+            - earn
+            - spend
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
