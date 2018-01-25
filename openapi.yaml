@@ -3,64 +3,130 @@ info:
   version: 1.0.0
   title: Kin Ecosystem
   description: Apis for client to server interaction
-
 servers:
-  - url: https://api.kinfoundation.com/v1/
-  - url: https://api-stage.kinfoundation.com/v1/
-  - url: https://api-test.kinfoundation.com/v1/
-
-paths: 
+  - url: 'https://api.kinfoundation.com/v1/'
+  - url: 'https://api-stage.kinfoundation.com/v1/'
+  - url: 'https://api-test.kinfoundation.com/v1/'
+paths:
   /offers:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
     get:
-     parameters:
-        - $ref: '#/components/parameters/RequestId'
-     description: Return a list of offers
-     operationId: getOffers
-     responses:
-        200:
+      description: Return a list of offers
+      operationId: getOffers
+      responses:
+        '200':
           description: Successfully returned a list of offers
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  offers:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Offer'
+                $ref: '#/components/schemas/OfferList'
         default:
-          description: Some Error
+          description: Generic Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
-  /offers/{offer_id}/order:
+  '/offers/{offer_id}/order':
+    parameters:
+      - in: path
+        name: offer_id
+        required: true
+        schema:
+          type: string
+        description: The offer id
+      - $ref: '#/components/parameters/RequestId'
     post:
       description: create an order for an offer
       operationId: createOrder
-      parameters: 
-        - in: path
-          name: offer_id
-          required: true
-          schema:
-            type:
-              string
-          description: The offer id
-        - $ref: '#/components/parameters/RequestId'
       responses:
-        200:
-          description: Successfully returned a list of offers
+        '200':
+          description: Successfully created an order for an offer
           content:
             application/json:
               schema:
-                type: object
-          
+                $ref: '#/components/schemas/Order'
+        '404':
+          description: Offer ended
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/orders/{order_id}':
+    parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: The order id
+      - $ref: '#/components/parameters/RequestId'
+    delete:
+      description: cancel an order
+      operationId: cancelOrder
+      responses:
+        '204':
+          description: Canceled order
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      description: submit an order
+      operationId: submitOrder
+      requestBody:
+        description: submission of an order
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              oneOf:
+                - $ref: '#/components/schemas/SpendSubmission'
+                - $ref: '#/components/schemas/EarnSubmission'
+      responses:
+        '200':
+          description: Submission result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionResult'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /transactions:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+    get:
+      description: get user history
+      operationId: getHistory
+      responses:
+        '200':
+          description: History result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionHistoryList'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 security:
-  - ApiKeyAuth: []  
-  
+  - ApiKeyAuth: []
 components:
-
   parameters:
     RequestId:
       in: header
@@ -68,15 +134,35 @@ components:
       required: true
       schema:
         type: string
-      description: A unique id for the request. A retransmitted request will have the same id
-    
+      description: >-
+        A unique id for the request. A retransmitted request will have the same
+        id
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
       in: header
       name: X-API-KEY
-      
   schemas:
+    TransactionHistoryItem:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - pending
+            - completed
+            - failed
+        order_id:
+          type: string
+        order:
+          $ref: '#/components/schemas/SubmissionResult'
+    TransactionHistoryList:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionHistoryItem'
     Question:
       type: object
       properties:
@@ -86,38 +172,57 @@ components:
           type: array
           items:
             type: string
-            
     MultiChoicePoll:
       type: object
       properties:
-        content_type: 
+        content_type:
           type: string
-          enum: [MultiChoicePoll]
+          enum:
+            - MultiChoicePoll
         questions:
           type: array
           items:
             $ref: '#/components/schemas/Question'
-            
+    MultiChoicePollAnswer:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+            - MultiChoicePollAnswer
+        answers:
+          type: array
+          items:
+            type: integer
     SliderPoll:
       type: object
       properties:
-        content_type: 
+        content_type:
           type: string
-          enum: [SliderPoll]
+          enum:
+            - SliderPoll
         min:
           type: integer
         max:
           type: integer
-          
+    SliderPollAnswer:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+            - SliderPollAnswer
+        value:
+          type: number
     Coupon:
       type: object
       properties:
-        content_type: 
+        content_type:
           type: string
-          enum: [Coupon]
+          enum:
+            - Coupon
         description:
           type: string
-          
     Offer:
       type: object
       required:
@@ -128,7 +233,6 @@ components:
         - offer_type
         - amount
         - content
-
       properties:
         id:
           type: string
@@ -152,17 +256,24 @@ components:
             propertyName: content_type
         offer_type:
           type: string
-          enum: [earn, spend]
-          
+          enum:
+            - earn
+            - spend
+    OfferList:
+      type: object
+      properties:
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
     Limits:
       type: object
       properties:
         supply:
           type: integer
-        exipration:
+        expiration:
           type: string
           format: date-time
-          
     Order:
       type: object
       required:
@@ -172,11 +283,86 @@ components:
           type: string
         recipient_address:
           type: string
-        
+    SpendSubmission:
+      type: object
+      required:
+        - transaction_id
+      properties:
+        transaction_id:
+          type: string
+        sender_address:
+          type: string
+    EarnSubmission:
+      type: object
+      required:
+        - recipient_address
+      properties:
+        recipient_address:
+          type: string
+        completed_form:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/MultiChoicePollAnswer'
+            - $ref: '#/components/schemas/SliderPollAnswer'
+          discriminator:
+            propertyName: content_type
+    EarnResult:
+      type: object
+      required:
+        - transaction_id
+        - offer_type
+      properties:
+        offer_type:
+          type: string
+          enum:
+            - EarnResult
+        transaction_id:
+          type: string
+        sender_address:
+          type: string
+    SpendResult:
+      type: object
+      required:
+        - asset
+        - offer_type
+      properties:
+        offer_type:
+          type: string
+          enum:
+            - EarnResult
+        asset:
+          type: object
+          properties:
+            coupon_code:
+              type: string
+            asset_type:
+              type: string
+              enum:
+                - coupon_code
+    SubmissionResult:
+      type: object
+      required:
+        - order_id
+        - content
+      properties:
+        order_id:
+          type: string
+        content:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/SpendResult'
+            - $ref: '#/components/schemas/EarnResult'
+          discriminator:
+            propertyName: offer_type
     Error:
       type: object
+      required:
+        - error
+        - code
       properties:
         error:
+          type: string
+        message:
           type: string
         code:
           type: integer
