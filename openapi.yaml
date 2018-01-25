@@ -3,16 +3,21 @@ info:
   version: 1.0.0
   title: Kin Ecosystem
   description: Apis for client to server interaction
+
 servers:
-  - url: 'https://api.kinfoundation.com/v1/'
-  - url: 'https://api-stage.kinfoundation.com/v1/'
-  - url: 'https://api-test.kinfoundation.com/v1/'
-paths:
+  - url: https://api.kinfoundation.com/v1/
+  - url: https://api-stage.kinfoundation.com/v1/
+  - url: https://api-test.kinfoundation.com/v1/
+
+paths: 
   /offers:
     get:
-      description: Return a list of offers
-      responses:
-        '200':
+     parameters:
+        - $ref: '#/components/parameters/RequestId'
+     description: Return a list of offers
+     operationId: getOffers
+     responses:
+        200:
           description: Successfully returned a list of offers
           content:
             application/json:
@@ -29,7 +34,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  
+  /offers/{offer_id}/order:
+    post:
+      description: create an order for an offer
+      operationId: createOrder
+      parameters: 
+        - in: path
+          name: offer_id
+          required: true
+          schema:
+            type:
+              string
+          description: The offer id
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        200:
+          description: Successfully returned a list of offers
+          content:
+            application/json:
+              schema:
+                type: object
+          
+security:
+  - ApiKeyAuth: []  
+  
 components:
+
+  parameters:
+    RequestId:
+      in: header
+      name: X-REQUEST-ID
+      required: true
+      schema:
+        type: string
+      description: A unique id for the request. A retransmitted request will have the same id
+    
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      
   schemas:
     Question:
       type: object
@@ -40,37 +86,38 @@ components:
           type: array
           items:
             type: string
+            
     MultiChoicePoll:
       type: object
       properties:
-        content_type:
+        content_type: 
           type: string
-          enum:
-            - MultiChoicePoll
+          enum: [MultiChoicePoll]
         questions:
           type: array
           items:
             $ref: '#/components/schemas/Question'
+            
     SliderPoll:
       type: object
       properties:
-        content_type:
+        content_type: 
           type: string
-          enum:
-            - MultiChoicePoll
+          enum: [SliderPoll]
         min:
           type: integer
         max:
           type: integer
+          
     Coupon:
       type: object
       properties:
-        content_type:
+        content_type: 
           type: string
-          enum:
-            - MultiChoicePoll
+          enum: [Coupon]
         description:
           type: string
+          
     Offer:
       type: object
       required:
@@ -81,6 +128,7 @@ components:
         - offer_type
         - amount
         - content
+
       properties:
         id:
           type: string
@@ -90,6 +138,8 @@ components:
           type: string
         image:
           type: string
+        limits:
+          $ref: '#/components/schemas/Limits'
         amount:
           type: integer
         content:
@@ -98,11 +148,31 @@ components:
             - $ref: '#/components/schemas/MultiChoicePoll'
             - $ref: '#/components/schemas/SliderPoll'
             - $ref: '#/components/schemas/Coupon'
+          discriminator:
+            propertyName: content_type
         offer_type:
           type: string
-          enum:
-            - earn
-            - spend
+          enum: [earn, spend]
+          
+    Limits:
+      type: object
+      properties:
+        supply:
+          type: integer
+        exipration:
+          type: string
+          format: date-time
+          
+    Order:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        recipient_address:
+          type: string
+        
     Error:
       type: object
       properties:
