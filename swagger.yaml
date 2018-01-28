@@ -8,8 +8,8 @@ basePath: "/v2"
 schemes:
 - "https"
 paths:
-  /offers:
-    parameters: 
+  '/offers':
+    parameters:
     - $ref: '#/parameters/RequestId'
     get:
       security:
@@ -27,7 +27,8 @@ paths:
           description: "Generic Error"
           schema:
             $ref: '#/definitions/Error'
-            
+      tags:
+        - Ecosystem
   '/offers/{offer_id}/order':
     parameters:
     - in: path
@@ -57,8 +58,9 @@ paths:
         default:
           description: "Generic Error"
           schema:
-            $ref: '#/definitions/Error'   
-
+            $ref: '#/definitions/Error'
+      tags:
+        - Ecosystem
   '/orders/{order_id}':
     parameters:
       - in: path
@@ -80,8 +82,9 @@ paths:
         default:
           description: "Generic Error"
           schema:
-            $ref: '#/definitions/Error' 
-      
+            $ref: '#/definitions/Error'
+      tags:
+        - Ecosystem
     post:
       security:
       - ApiKeyAuth: []
@@ -108,7 +111,9 @@ paths:
         default:
           description: "Generic Error"
           schema:
-            $ref: '#/definitions/Error'  
+            $ref: '#/definitions/Error'
+      tags:
+        - Ecosystem
 
   /transactions:
     parameters:
@@ -126,14 +131,16 @@ paths:
         default:
           description: "Generic Error"
           schema:
-            $ref: '#/definitions/Error'  
+            $ref: '#/definitions/Error'
+      tags:
+        - Ecosystem
 
 securityDefinitions:
   ApiKeyAuth:
     type: "apiKey"
     name: "api_key"
     in: "header"
-    
+
 parameters:
   RequestId:
     in: "header"
@@ -355,7 +362,7 @@ definitions:
         type: string
       content:
         type: object
-        allOf: 
+        allOf:
         - $ref: '#/definitions/SpendResult'
         - $ref: '#/definitions/EarnResult'
         - type: object
