@@ -328,7 +328,7 @@ components:
         offer_type:
           type: string
           enum:
-            - EarnResult
+            - SpendResult
         asset:
           type: object
           properties:
