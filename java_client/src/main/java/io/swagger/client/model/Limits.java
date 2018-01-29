@@ -22,17 +22,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
 
 /**
  * Limits
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-28T15:32:32.821+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
 public class Limits {
 @SerializedName("supply")
   private Integer supply = null;
   @SerializedName("expiration")
-  private OffsetDateTime expiration = null;
+  private String expiration = null;
   
   public Limits supply(Integer supply) {
     this.supply = supply;
@@ -52,7 +51,7 @@ public class Limits {
     this.supply = supply;
   }
   
-  public Limits expiration(OffsetDateTime expiration) {
+  public Limits expiration(String expiration) {
     this.expiration = expiration;
     return this;
   }
@@ -63,10 +62,10 @@ public class Limits {
   * @return expiration
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getExpiration() {
+  public String getExpiration() {
     return expiration;
   }
-  public void setExpiration(OffsetDateTime expiration) {
+  public void setExpiration(String expiration) {
     this.expiration = expiration;
   }
   
