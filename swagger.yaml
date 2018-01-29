@@ -100,9 +100,7 @@ paths:
         description: submission of an order
         required: true
         schema:
-          allOf:
-          - $ref: '#/definitions/SpendSubmission'
-          - $ref: '#/definitions/EarnSubmission'
+          $ref: '#/definitions/Submission'
       responses:
         '200':
           description: Submission result
@@ -318,6 +316,12 @@ definitions:
           properties:
             content_type:
               type: string
+  Submission:
+    type: object
+    allOf:
+    - $ref: '#/definitions/SpendSubmission'
+    - $ref: '#/definitions/EarnSubmission'
+
   EarnResult:
     type: object
     required:
