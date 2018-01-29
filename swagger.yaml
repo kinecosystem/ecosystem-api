@@ -321,6 +321,13 @@ definitions:
     allOf:
     - $ref: '#/definitions/SpendSubmission'
     - $ref: '#/definitions/EarnSubmission'
+    - type: object
+      properties:
+        offer_type:
+          type: string
+          enum:
+            - EarnSubmission
+            - SpendSubmission
 
   EarnResult:
     type: object

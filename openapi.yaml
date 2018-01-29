@@ -88,10 +88,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              oneOf:
-                - $ref: '#/components/schemas/SpendSubmission'
-                - $ref: '#/components/schemas/EarnSubmission'
+              $ref: '#/definitions/Submission'
       responses:
         '200':
           description: Submission result
@@ -287,6 +284,10 @@ components:
       required:
         - transaction_id
       properties:
+        offer_type:
+          type: string
+          enum:
+            - SpendSubmission
         transaction_id:
           type: string
         sender_address:
@@ -296,6 +297,10 @@ components:
       required:
         - recipient_address
       properties:
+        offer_type:
+          type: string
+          enum:
+            - EarnSubmission
         recipient_address:
           type: string
         completed_form:
@@ -305,6 +310,13 @@ components:
             - $ref: '#/components/schemas/SliderPollAnswer'
           discriminator:
             propertyName: content_type
+    Submission:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/SpendSubmission'
+        - $ref: '#/components/schemas/EarnSubmission'
+      discriminator:
+        propertyName: offer_type
     EarnResult:
       type: object
       required:
