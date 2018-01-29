@@ -272,8 +272,7 @@ components:
         supply:
           type: integer
         expiration:
-          type: string
-          format: date-time
+          type: string  # formatted in iso 8601 in UTC (2018-01-29T10:47:46)
     Order:
       type: object
       required:
