@@ -175,22 +175,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TransactionHistoryItem'
-    HTTPPoll:
+    HTMLPoll:
       type: object
       properties:
         content_type:
           type: string
           enum:
-            - HTTPPoll
+            - HTMLPoll
         content:
           type: string
-    HTTPPollAnswer:
+    HTMLPollAnswer:
       type: object
       properties:
         content_type:
           type: string
           enum:
-            - HTTPPollAnswer
+            - HTMLPollAnswer
         answers:
           type: object
           additionalProperties:
@@ -233,7 +233,7 @@ components:
         content:
           type: object
           oneOf:
-            - $ref: '#/components/schemas/HTTPPoll'
+            - $ref: '#/components/schemas/HTMLPoll'
             - $ref: '#/components/schemas/Coupon'
           discriminator:
             propertyName: content_type
@@ -290,7 +290,7 @@ components:
         completed_form:
           type: object
           oneOf:
-            - $ref: '#/components/schemas/HTTPPollAnswer'
+            - $ref: '#/components/schemas/HTMLPollAnswer'
           discriminator:
             propertyName: content_type
     Submission:
