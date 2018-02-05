@@ -1,0 +1,187 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Payment Ecosystem
+  description: Internal API that supplies abstraction over blockchain
+servers:
+  - url: 'https://api.kinmarketplace.internal/v1/'
+paths:
+  /transactions/{transaction_id}:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - $ref: '#/components/parameters/BlockingTime'
+      - in: path
+        name: transaction_id
+        schema:
+          type: string
+        required: true
+        description: blockchain transaction id
+    get:
+      tags:
+        - Transactions
+      description: get transaction info
+      operationId: getTransaction
+      responses:
+        '200':
+          description: Successfully returned transaction info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '404':
+          description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /wallets/{public_address}:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - $ref: '#/components/parameters/BlockingTime'
+      - in: path
+        name: public_address
+        schema:
+          type: string
+        required: true
+        description: public address of wallet to create/ fund in native currency
+    post:
+      tags:
+        - Transactions
+
+      description: get transaction info
+      operationId: createWallet
+      responses:
+        '204':
+          description: Successfully created wallet
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /wallets/{public_address}/transactions:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - $ref: '#/components/parameters/BlockingTime'
+      - in: path
+        name: public_address
+        schema:
+          type: string
+        required: true
+        description: public address of wallet
+    post:
+      tags:
+        - Transactions
+      description: pay a user some KIN
+      operationId: payTo
+      requestBody:
+        description: amount
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer  # in microKIN
+                meta:
+                  type: string
+                  example: "order:1234"
+      responses:
+        '200':
+          description: Successfully returned transaction info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '204':
+          description: blocking time was timed out before the transaction was fully submitted. We return the transaction_id, so it can be polled on later.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transaction_id:
+                    type: string  # in microKIN
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  parameters:
+    RequestId:
+      in: header
+      name: X-REQUEST-ID
+      required: true
+      schema:
+        type: string
+      description: >-
+        A unique id for the request. A retransmitted request will have the same
+        id
+        
+    BlockingTime:
+      in: header
+      name: X-BLOCKING-TIME
+      required: true
+      schema:
+        type: integer
+        default: 0
+        description: |
+          time in milliseconds to block on before returning
+
+  schemas:
+   
+    Transaction:
+      type: object
+      required:
+        - transaction_id
+        - meta
+        - timestamp
+        - sender_address
+        - recipient_address
+        - amount
+      properties:
+        transaction_id:
+          type: string
+          description: |
+            identifies this specific exchange of value between 2
+            entities. can be stellar's operation_id for example, or
+            both as in tranaction_id/operation_id
+        meta:
+          type: string
+        timestamp:
+          type: string
+        sender_address:
+          type: string
+        recipient_address:
+          type: string
+        amount:
+          type: integer
+          description: amount in microKIN
+    
+    Error:
+      type: object
+      required:
+        - error
+        - code
+      properties:
+        error:
+          type: string
+          example: "Invalid Transaction"
+        message:
+          type: string
+          example: "no such transaction"
+        code:
+          type: integer
+          example: 4041
