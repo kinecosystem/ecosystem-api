@@ -12,7 +12,10 @@ paths:
     parameters:
       - $ref: '#/components/parameters/RequestId'
     get:
-      description: Return a list of offers
+      tags: 
+        - Offers
+      summary: Return a list of offers
+      description: Return a **list** of offers
       operationId: getOffers
       responses:
         '200':
@@ -37,6 +40,9 @@ paths:
         description: The offer id
       - $ref: '#/components/parameters/RequestId'
     post:
+      tags: 
+        - Orders
+      summary: create an order for an offer
       description: create an order for an offer
       operationId: createOrder
       responses:
@@ -68,6 +74,9 @@ paths:
         description: The order id
       - $ref: '#/components/parameters/RequestId'
     delete:
+      tags: 
+        - Orders
+      summary: cancel an order
       description: cancel an order
       operationId: cancelOrder
       responses:
@@ -80,6 +89,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
+      tags: 
+        - Orders
+      summary: submit an order
       description: submit an order
       operationId: submitOrder
       requestBody:
@@ -88,7 +100,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/definitions/Submission'
+              $ref: '#/components/schemas/Submission'
       responses:
         '200':
           description: Submission result
@@ -106,6 +118,9 @@ paths:
     parameters:
       - $ref: '#/components/parameters/RequestId'
     get:
+      tags: 
+        - Transaction History
+      summary: get user history
       description: get user history
       operationId: getHistory
       responses:
@@ -160,57 +175,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TransactionHistoryItem'
-    Question:
+    HTMLPoll:
       type: object
       properties:
-        title:
+        content_type:
           type: string
+          enum:
+            - HTMLPoll
+        content:
+          type: string
+    HTMLPollAnswer:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+            - HTMLPollAnswer
         answers:
-          type: array
-          items:
+          type: object
+          additionalProperties:
             type: string
-    MultiChoicePoll:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-            - MultiChoicePoll
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Question'
-    MultiChoicePollAnswer:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-            - MultiChoicePollAnswer
-        answers:
-          type: array
-          items:
-            type: integer
-    SliderPoll:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-            - SliderPoll
-        min:
-          type: integer
-        max:
-          type: integer
-    SliderPollAnswer:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-            - SliderPollAnswer
-        value:
-          type: number
     Coupon:
       type: object
       properties:
@@ -233,21 +217,23 @@ components:
       properties:
         id:
           type: string
+          example: "1231321"
         title:
           type: string
+          example: "Spotify Subscription"
         description:
           type: string
+          example: "Get 30 days"
         image:
           type: string
-        limits:
-          $ref: '#/components/schemas/Limits'
+          example: "http://xxx.www.zzz/image.jpg"
         amount:
           type: integer
+          example: 300
         content:
           type: object
           oneOf:
-            - $ref: '#/components/schemas/MultiChoicePoll'
-            - $ref: '#/components/schemas/SliderPoll'
+            - $ref: '#/components/schemas/HTMLPoll'
             - $ref: '#/components/schemas/Coupon'
           discriminator:
             propertyName: content_type
@@ -263,13 +249,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Offer'
-    Limits:
-      type: object
-      properties:
-        supply:
-          type: integer
-        expiration:
-          type: string  # formatted in iso 8601 in UTC (2018-01-29T10:47:46)
     Order:
       type: object
       required:
@@ -277,8 +256,10 @@ components:
       properties:
         id:
           type: string
+          example: "sdfsdfsdfsd"
         recipient_address:
           type: string
+          example: "0x123123123123"
     SpendSubmission:
       type: object
       required:
@@ -290,8 +271,10 @@ components:
             - SpendSubmission
         transaction_id:
           type: string
+          example: "0x123123123123"
         sender_address:
           type: string
+          example: "0x123123123123"
     EarnSubmission:
       type: object
       required:
@@ -303,11 +286,11 @@ components:
             - EarnSubmission
         recipient_address:
           type: string
+          example: "0x123123123123"
         completed_form:
           type: object
           oneOf:
-            - $ref: '#/components/schemas/MultiChoicePollAnswer'
-            - $ref: '#/components/schemas/SliderPollAnswer'
+            - $ref: '#/components/schemas/HTMLPollAnswer'
           discriminator:
             propertyName: content_type
     Submission:
@@ -317,6 +300,10 @@ components:
         - $ref: '#/components/schemas/EarnSubmission'
       discriminator:
         propertyName: offer_type
+      example:
+        offer_type: earn
+        recipient_address: "0x123123123123"
+        completed_form: {}
     EarnResult:
       type: object
       required:
@@ -329,8 +316,10 @@ components:
             - EarnResult
         transaction_id:
           type: string
+          example: "0x123123123123"
         sender_address:
           type: string
+          example: "0x123123123123"
     SpendResult:
       type: object
       required:
@@ -346,6 +335,7 @@ components:
           properties:
             coupon_code:
               type: string
+              example: "aaa-bbb-ccc-ddd"
             asset_type:
               type: string
               enum:
@@ -358,6 +348,7 @@ components:
       properties:
         order_id:
           type: string
+          example: "sdfsdfssdf"
         content:
           type: object
           oneOf:
@@ -373,7 +364,10 @@ components:
       properties:
         error:
           type: string
+          example: "Invalid Form"
         message:
           type: string
+          example: "Form given is not in the right format"
         code:
           type: integer
+          example: 4001
