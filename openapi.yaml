@@ -62,7 +62,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/RequestId'
     get:
-      tags: 
+      tags:
         - Offers
       summary: Return a list of offers
       description: Return a **list** of offers
@@ -90,7 +90,7 @@ paths:
         description: The offer id
       - $ref: '#/components/parameters/RequestId'
     post:
-      tags: 
+      tags:
         - Orders
       summary: create an order for an offer
       description: create an order for an offer
@@ -123,23 +123,8 @@ paths:
           type: string
         description: The order id
       - $ref: '#/components/parameters/RequestId'
-    delete:
-      tags: 
-        - Orders
-      summary: cancel an order
-      description: cancel an order
-      operationId: cancelOrder
-      responses:
-        '204':
-          description: Canceled order
-        default:
-          description: Generic Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
     post:
-      tags: 
+      tags:
         - Orders
       summary: submit an order
       description: submit an order
@@ -164,11 +149,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - Orders
+      summary: cancel an order
+      description: cancel an order
+      operationId: cancelOrder
+      responses:
+        '204':
+          description: Canceled order
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /transactions:
     parameters:
       - $ref: '#/components/parameters/RequestId'
     get:
-      tags: 
+      tags:
         - Transaction History
       summary: get user history
       description: get user history
