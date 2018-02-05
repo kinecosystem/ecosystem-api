@@ -67,6 +67,10 @@ paths:
       summary: Return a list of offers
       description: Return a **list** of offers
       operationId: getOffers
+      parameters:
+        - $ref: '#/components/parameters/QueryLimit'
+        - $ref: '#/components/parameters/QueryAfter'
+        - $ref: '#/components/parameters/QueryBefore'
       responses:
         '200':
           description: Successfully returned a list of offers
@@ -173,6 +177,10 @@ paths:
       summary: get user history
       description: get user history
       operationId: getHistory
+      parameters:
+        - $ref: '#/components/parameters/QueryLimit'
+        - $ref: '#/components/parameters/QueryAfter'
+        - $ref: '#/components/parameters/QueryBefore'
       responses:
         '200':
           description: History result
@@ -201,6 +209,28 @@ components:
       description: >-
         A unique id for the request. A retransmitted request will have the same
         id
+    QueryLimit:
+      in: query
+      name: limit
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+      description: maximum number of items in a list
+    QueryBefore:
+      in: query
+      name: before 
+      schema:
+        type: string
+      description: cursor that points to the start of the page of data that has been returned
+    QueryAfter:
+      in: query
+      name: after
+      schema:
+        type: string
+      description: cursor that points to the end of the page of data that has been returned
+
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
@@ -232,6 +262,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TransactionHistoryItem'
+        paging:
+          type: object
+          $ref: '#/components/schemas/Paging'
     HTMLPoll:
       type: object
       properties:
@@ -306,6 +339,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Offer'
+        paging:
+          type: object
+          $ref: '#/components/schemas/Paging'
     Order:
       type: object
       required:
@@ -431,6 +467,25 @@ components:
           example: AAAAA-RRRRRR-DDDDD-BBBBBB
         activated:  # did approve terms of service?
           type: boolean
+
+    Paging:
+      type: object
+      properties:
+        cursors:
+          type: object
+          properties:
+            after:
+              type: string
+              example: MTAxNTExOTQ1MjAwNzI5NDE
+            before:
+              type: string
+              example: NDMyNzQyODI3OTQw
+        previous:
+          type: string
+          example: https://graph.facebook.com/me/albums?limit=25&before=NDMyNzQyODI3OTQw
+        next:
+          type: string
+          example: https://graph.facebook.com/me/albums?limit=25&after=MTAxNTExOTQ1MjAwNzI5NDE=
 
     Error:
       type: object
