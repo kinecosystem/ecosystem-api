@@ -8,6 +8,56 @@ servers:
   - url: 'https://api-stage.kinfoundation.com/v1/'
   - url: 'https://api-test.kinfoundation.com/v1/'
 paths:
+  /users:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+    post:
+      tags:
+        - Auth
+      summary: Sign in/ Log in
+      security:
+        - ApiKeyAuth: []
+      description: Sign a user into kin marketplace
+      operationId: signIn
+      requestBody:
+        description: sign in data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInData'
+      responses:
+        '200':
+          description: Successfully created a user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /users/me/activate:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+    post:
+      tags:
+        - Auth
+      summary: Activate account
+      description: Activate account by accepting TOS
+      operationId: activateAcount
+      responses:
+        '204':
+          description: Successfully activated
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /offers:
     parameters:
       - $ref: '#/components/parameters/RequestId'
@@ -138,6 +188,8 @@ paths:
                 $ref: '#/components/schemas/Error'
 security:
   - ApiKeyAuth: []
+    BearerAuth: []
+
 components:
   parameters:
     RequestId:
@@ -154,6 +206,11 @@ components:
       type: apiKey
       in: header
       name: X-API-KEY
+
+    BearerAuth:  # api requires the header Authorization: Bearer <token>
+      type: http
+      scheme: bearer
+
   schemas:
     TransactionHistoryItem:
       type: object
@@ -356,6 +413,25 @@ components:
             - $ref: '#/components/schemas/EarnResult'
           discriminator:
             propertyName: offer_type
+
+    SignInData:
+      type: object
+      properties:
+        jwt:
+          type: string
+          example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0
+          description: >
+            jwt should contain "user_id", "app_id" and "timestamp"
+
+    AuthToken:
+      type: object
+      properties:
+        token:
+          type: string
+          example: AAAAA-RRRRRR-DDDDD-BBBBBB
+        activated:  # did approve terms of service?
+          type: boolean
+
     Error:
       type: object
       required:
