@@ -4,9 +4,9 @@ info:
   title: Kin Ecosystem
   description: Apis for client to server interaction
 servers:
-  - url: 'https://api.kinfoundation.com/v1/'
-  - url: 'https://api-stage.kinfoundation.com/v1/'
-  - url: 'https://api-test.kinfoundation.com/v1/'
+  - url: 'https://api.kinmarketplace.com/v1/'
+  - url: 'https://api-stage.kinmarketplace.com/v1/'
+  - url: 'https://api-test.kinmarketplace.com/v1/'
 paths:
   /users:
     parameters:
