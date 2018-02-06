@@ -83,7 +83,7 @@ paths:
       description: pay a user some KIN
       operationId: payTo
       requestBody:
-        description: amount
+        description: payment description
         required: true
         content:
           application/json:
@@ -92,6 +92,11 @@ paths:
               properties:
                 amount:
                   type: integer  # in microKIN
+                order_id:
+                  type: string
+                  description: | 
+                    a unique identifier for this value transfer.
+                    The payment service should use this identifer to prevent duplicate payments.
                 meta:
                   type: string
                   example: "order:1234"
