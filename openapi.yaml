@@ -50,8 +50,12 @@ paths:
       description: Activate account by accepting TOS
       operationId: activateAcount
       responses:
-        '204':
-          description: Successfully activated
+        '200':
+          description: Successfully activated. New token is returned and should be used from now on.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
         default:
           description: Generic Error
           content:
@@ -179,8 +183,8 @@ paths:
       operationId: getHistory
       parameters:
         - $ref: '#/components/parameters/QueryLimit'
-        - $ref: '#/components/parameters/QueryAfter'
-        - $ref: '#/components/parameters/QueryBefore'
+        - $ref: '#/components/parameters/QuerySince'
+        - $ref: '#/components/parameters/QueryUntil'
       responses:
         '200':
           description: History result
@@ -220,7 +224,7 @@ components:
       description: maximum number of items in a list
     QueryBefore:
       in: query
-      name: before 
+      name: before
       schema:
         type: string
       description: cursor that points to the start of the page of data that has been returned
@@ -230,6 +234,22 @@ components:
       schema:
         type: string
       description: cursor that points to the end of the page of data that has been returned
+    QuerySince:
+      in: query
+      name: since
+      schema:
+        type: string
+        example: "2018-09-13T14:33:33"
+        description: UTC ISO
+      description: time based pagination
+    QueryUntil:
+      in: query
+      name: until
+      schema:
+        type: string
+        example: "2018-09-13T14:33:33"
+        description: UTC ISO
+      description: time based pagination
 
   securitySchemes:
     ApiKeyAuth:
@@ -242,9 +262,45 @@ components:
       scheme: bearer
 
   schemas:
-    TransactionHistoryItem:
+
+    coupon_code:
+      type: string
+      example: aaaa-bbbb-cccc
+
+    failure_message:
+      type: string
+      example: failed to find transaction in blockchain
+
+    BlockchainData:
       type: object
       properties:
+        transaction_id:
+          type: string
+        sender_address:
+          type: string
+        recipient_address:
+          type: string
+
+    TransactionHistoryItem:
+      type: object
+      required:
+        - status
+        - order_id
+        - completion_date
+        - offer_type
+        - title
+        - description
+        - amount
+      properties:
+        result:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/failure_message'
+          - $ref: '#/components/schemas/coupon_code'
+          description: |
+            * empty when no result (pending status, completed earn)
+            * failure_message when status is failed
+            * coupon_code when completed spend
         status:
           type: string
           enum:
@@ -253,8 +309,36 @@ components:
             - failed
         order_id:
           type: string
-        order:
-          $ref: '#/components/schemas/SubmissionResult'
+          description: unique identifier of this item
+        completion_date: # taken from blockchain
+          type: string
+          example: "2018-09-13T14:33:33"
+          description: UTC ISO
+        # filled by payment service
+        blockchain_data:
+          type: object
+          $ref: "#/components/schemas/BlockchainData"
+        # meta fields - filled by offer owner
+        offer_type:
+          type: string
+          enum:
+            - earn
+            - spend
+        title:
+          type: string
+          example: Spotify
+          description: usually a brand name
+        description:
+          type: string
+          example: completed poll
+        call_to_action:
+          type: string
+          example: tap to reveil coupon
+        amount:
+          type: integer
+          example: 4000 (KIN)
+          description: kin amount
+
     TransactionHistoryList:
       type: object
       properties:
@@ -265,6 +349,7 @@ components:
         paging:
           type: object
           $ref: '#/components/schemas/Paging'
+
     HTMLPoll:
       type: object
       properties:
@@ -274,6 +359,7 @@ components:
             - HTMLPoll
         content:
           type: string
+
     HTMLPollAnswer:
       type: object
       properties:
@@ -285,6 +371,7 @@ components:
           type: object
           additionalProperties:
             type: string
+
     Coupon:
       type: object
       properties:
@@ -294,6 +381,7 @@ components:
             - Coupon
         description:
           type: string
+
     Offer:
       type: object
       required:
@@ -332,6 +420,7 @@ components:
           enum:
             - earn
             - spend
+
     OfferList:
       type: object
       properties:
@@ -342,6 +431,7 @@ components:
         paging:
           type: object
           $ref: '#/components/schemas/Paging'
+
     Order:
       type: object
       required:
@@ -350,42 +440,36 @@ components:
         id:
           type: string
           example: "sdfsdfsdfsd"
-        recipient_address:
-          type: string
-          example: "0x123123123123"
+        blockchain_data:
+          type: object
+          $ref: "#/components/schemas/BlockchainData"
+          description: recipient_address - relevant in case of spend
+
     SpendSubmission:
       type: object
-      required:
-        - transaction_id
       properties:
         offer_type:
           type: string
           enum:
             - SpendSubmission
-        transaction_id:
-          type: string
-          example: "0x123123123123"
-        sender_address:
-          type: string
-          example: "0x123123123123"
+        blockchain_data:
+          type: object
+          $ref: "#/components/schemas/BlockchainData"
+
     EarnSubmission:
       type: object
-      required:
-        - recipient_address
       properties:
         offer_type:
           type: string
           enum:
             - EarnSubmission
-        recipient_address:
-          type: string
-          example: "0x123123123123"
         completed_form:
           type: object
           oneOf:
             - $ref: '#/components/schemas/HTMLPollAnswer'
           discriminator:
             propertyName: content_type
+
     Submission:
       type: object
       oneOf:
@@ -395,24 +479,21 @@ components:
         propertyName: offer_type
       example:
         offer_type: earn
-        recipient_address: "0x123123123123"
-        completed_form: {}
+        completed_form: {content_type: "HTMLPollAnswer", answers: {"a": 3, "b": "blah"}}
+
     EarnResult:
       type: object
       required:
-        - transaction_id
         - offer_type
       properties:
         offer_type:
           type: string
           enum:
             - EarnResult
-        transaction_id:
-          type: string
-          example: "0x123123123123"
-        sender_address:
-          type: string
-          example: "0x123123123123"
+        blockchain_data:
+          type: object
+          $ref: "#/components/schemas/BlockchainData"
+
     SpendResult:
       type: object
       required:
@@ -429,10 +510,7 @@ components:
             coupon_code:
               type: string
               example: "aaa-bbb-ccc-ddd"
-            asset_type:
-              type: string
-              enum:
-                - coupon_code
+
     SubmissionResult:
       type: object
       required:
