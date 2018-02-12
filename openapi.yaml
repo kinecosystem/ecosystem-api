@@ -472,14 +472,21 @@ components:
 
     Submission:
       type: object
-      oneOf:
-        - $ref: '#/components/schemas/SpendSubmission'
-        - $ref: '#/components/schemas/EarnSubmission'
-      discriminator:
-        propertyName: offer_type
+      # XXX should be oneOf EarnSubmission/ SpendSubmission but there is an
+      # issue with compilation
+      properties:
+        offer_type:
+          type: string
+        completed_form:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/HTMLPollAnswer'
+        blockchain_data:
+          type: object
+          $ref: "#/components/schemas/BlockchainData"
       example:
         offer_type: earn
-        completed_form: {content_type: "HTMLPollAnswer", answers: {"a": 3, "b": "blah"}}
+        completed_form: '{content_type: "HTMLPollAnswer", answers: {"a": 3, "b": "blah"}}'
 
     EarnResult:
       type: object
