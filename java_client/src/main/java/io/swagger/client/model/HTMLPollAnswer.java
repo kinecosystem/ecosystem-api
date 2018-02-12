@@ -22,14 +22,15 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
- * MultiChoicePollAnswer
+ * HTMLPollAnswer
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
-public class MultiChoicePollAnswer {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
+public class HTMLPollAnswer {
 
     /**
    * Gets or Sets contentType
@@ -37,7 +38,7 @@ public class MultiChoicePollAnswer {
   @JsonAdapter(ContentTypeEnum.Adapter.class)
   public enum ContentTypeEnum {
     
-    MULTICHOICEPOLLANSWER("MultiChoicePollAnswer");
+    HTMLPOLLANSWER("HTMLPollAnswer");
 
     private String value;
 
@@ -80,9 +81,9 @@ public class MultiChoicePollAnswer {
   @SerializedName("content_type")
   private ContentTypeEnum contentType = null;
   @SerializedName("answers")
-  private List<Integer> answers = null;
+  private Map<String, String> answers = null;
   
-  public MultiChoicePollAnswer contentType(ContentTypeEnum contentType) {
+  public HTMLPollAnswer contentType(ContentTypeEnum contentType) {
     this.contentType = contentType;
     return this;
   }
@@ -100,30 +101,29 @@ public class MultiChoicePollAnswer {
     this.contentType = contentType;
   }
   
-  public MultiChoicePollAnswer answers(List<Integer> answers) {
+  public HTMLPollAnswer answers(Map<String, String> answers) {
     this.answers = answers;
     return this;
   }
 
-  public MultiChoicePollAnswer addAnswersItem(Integer answersItem) {
+  public HTMLPollAnswer putAnswersItem(String key, String answersItem) {
     
     if (this.answers == null) {
-      this.answers = new ArrayList<Integer>();
+      this.answers = null;
     }
     
-    this.answers.add(answersItem);
+    this.answers.put(key, answersItem);
     return this;
   }
-  
   /**
   * Get answers
   * @return answers
   **/
   @ApiModelProperty(value = "")
-  public List<Integer> getAnswers() {
+  public Map<String, String> getAnswers() {
     return answers;
   }
-  public void setAnswers(List<Integer> answers) {
+  public void setAnswers(Map<String, String> answers) {
     this.answers = answers;
   }
   
@@ -135,9 +135,9 @@ public class MultiChoicePollAnswer {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MultiChoicePollAnswer multiChoicePollAnswer = (MultiChoicePollAnswer) o;
-    return Objects.equals(this.contentType, multiChoicePollAnswer.contentType) &&
-        Objects.equals(this.answers, multiChoicePollAnswer.answers);
+    HTMLPollAnswer htMLPollAnswer = (HTMLPollAnswer) o;
+    return Objects.equals(this.contentType, htMLPollAnswer.contentType) &&
+        Objects.equals(this.answers, htMLPollAnswer.answers);
   }
 
   @Override
@@ -148,7 +148,7 @@ public class MultiChoicePollAnswer {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MultiChoicePollAnswer {\n");
+    sb.append("class HTMLPollAnswer {\n");
     
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    answers: ").append(toIndentedString(answers)).append("\n");

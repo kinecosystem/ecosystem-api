@@ -21,15 +21,17 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.SubmissionResult;
+import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
  * TransactionHistoryItem
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class TransactionHistoryItem {
-
+@SerializedName("result")
+  private Object result = null;
+  
     /**
    * Gets or Sets status
    */
@@ -82,8 +84,86 @@ public class TransactionHistoryItem {
   private StatusEnum status = null;
   @SerializedName("order_id")
   private String orderId = null;
-  @SerializedName("order")
-  private SubmissionResult order = null;
+  @SerializedName("completion_date")
+  private String completionDate = null;
+  @SerializedName("blockchain_data")
+  private BlockchainData blockchainData = null;
+  
+    /**
+   * Gets or Sets offerType
+   */
+  @JsonAdapter(OfferTypeEnum.Adapter.class)
+  public enum OfferTypeEnum {
+    
+    EARN("earn"),
+    SPEND("spend");
+
+    private String value;
+
+    OfferTypeEnum(String value) {
+      this.value = value;
+    }
+    
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    
+    public static OfferTypeEnum fromValue(String text) {
+      for (OfferTypeEnum b : OfferTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    
+    public static class Adapter extends TypeAdapter<OfferTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OfferTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OfferTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OfferTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+  
+  @SerializedName("offer_type")
+  private OfferTypeEnum offerType = null;
+  @SerializedName("title")
+  private String title = null;
+  @SerializedName("description")
+  private String description = null;
+  @SerializedName("call_to_action")
+  private String callToAction = null;
+  @SerializedName("amount")
+  private Integer amount = null;
+  
+  public TransactionHistoryItem result(Object result) {
+    this.result = result;
+    return this;
+  }
+
+  
+  /**
+  * * empty when no result (pending status, completed earn) * failure_message when status is failed * coupon_code when completed spend 
+  * @return result
+  **/
+  @ApiModelProperty(value = "* empty when no result (pending status, completed earn) * failure_message when status is failed * coupon_code when completed spend ")
+  public Object getResult() {
+    return result;
+  }
+  public void setResult(Object result) {
+    this.result = result;
+  }
   
   public TransactionHistoryItem status(StatusEnum status) {
     this.status = status;
@@ -95,7 +175,7 @@ public class TransactionHistoryItem {
   * Get status
   * @return status
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public StatusEnum getStatus() {
     return status;
   }
@@ -110,10 +190,10 @@ public class TransactionHistoryItem {
 
   
   /**
-  * Get orderId
+  * unique identifier of this item
   * @return orderId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "unique identifier of this item")
   public String getOrderId() {
     return orderId;
   }
@@ -121,22 +201,130 @@ public class TransactionHistoryItem {
     this.orderId = orderId;
   }
   
-  public TransactionHistoryItem order(SubmissionResult order) {
-    this.order = order;
+  public TransactionHistoryItem completionDate(String completionDate) {
+    this.completionDate = completionDate;
     return this;
   }
 
   
   /**
-  * Get order
-  * @return order
+  * UTC ISO
+  * @return completionDate
+  **/
+  @ApiModelProperty(example = "2018-09-13T14:33:33", required = true, value = "UTC ISO")
+  public String getCompletionDate() {
+    return completionDate;
+  }
+  public void setCompletionDate(String completionDate) {
+    this.completionDate = completionDate;
+  }
+  
+  public TransactionHistoryItem blockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
+    return this;
+  }
+
+  
+  /**
+  * Get blockchainData
+  * @return blockchainData
   **/
   @ApiModelProperty(value = "")
-  public SubmissionResult getOrder() {
-    return order;
+  public BlockchainData getBlockchainData() {
+    return blockchainData;
   }
-  public void setOrder(SubmissionResult order) {
-    this.order = order;
+  public void setBlockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
+  }
+  
+  public TransactionHistoryItem offerType(OfferTypeEnum offerType) {
+    this.offerType = offerType;
+    return this;
+  }
+
+  
+  /**
+  * Get offerType
+  * @return offerType
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public OfferTypeEnum getOfferType() {
+    return offerType;
+  }
+  public void setOfferType(OfferTypeEnum offerType) {
+    this.offerType = offerType;
+  }
+  
+  public TransactionHistoryItem title(String title) {
+    this.title = title;
+    return this;
+  }
+
+  
+  /**
+  * usually a brand name
+  * @return title
+  **/
+  @ApiModelProperty(example = "Spotify", required = true, value = "usually a brand name")
+  public String getTitle() {
+    return title;
+  }
+  public void setTitle(String title) {
+    this.title = title;
+  }
+  
+  public TransactionHistoryItem description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  
+  /**
+  * Get description
+  * @return description
+  **/
+  @ApiModelProperty(example = "completed poll", required = true, value = "")
+  public String getDescription() {
+    return description;
+  }
+  public void setDescription(String description) {
+    this.description = description;
+  }
+  
+  public TransactionHistoryItem callToAction(String callToAction) {
+    this.callToAction = callToAction;
+    return this;
+  }
+
+  
+  /**
+  * Get callToAction
+  * @return callToAction
+  **/
+  @ApiModelProperty(example = "tap to reveil coupon", value = "")
+  public String getCallToAction() {
+    return callToAction;
+  }
+  public void setCallToAction(String callToAction) {
+    this.callToAction = callToAction;
+  }
+  
+  public TransactionHistoryItem amount(Integer amount) {
+    this.amount = amount;
+    return this;
+  }
+
+  
+  /**
+  * kin amount
+  * @return amount
+  **/
+  @ApiModelProperty(required = true, value = "kin amount")
+  public Integer getAmount() {
+    return amount;
+  }
+  public void setAmount(Integer amount) {
+    this.amount = amount;
   }
   
   @Override
@@ -148,14 +336,21 @@ public class TransactionHistoryItem {
       return false;
     }
     TransactionHistoryItem transactionHistoryItem = (TransactionHistoryItem) o;
-    return Objects.equals(this.status, transactionHistoryItem.status) &&
+    return Objects.equals(this.result, transactionHistoryItem.result) &&
+        Objects.equals(this.status, transactionHistoryItem.status) &&
         Objects.equals(this.orderId, transactionHistoryItem.orderId) &&
-        Objects.equals(this.order, transactionHistoryItem.order);
+        Objects.equals(this.completionDate, transactionHistoryItem.completionDate) &&
+        Objects.equals(this.blockchainData, transactionHistoryItem.blockchainData) &&
+        Objects.equals(this.offerType, transactionHistoryItem.offerType) &&
+        Objects.equals(this.title, transactionHistoryItem.title) &&
+        Objects.equals(this.description, transactionHistoryItem.description) &&
+        Objects.equals(this.callToAction, transactionHistoryItem.callToAction) &&
+        Objects.equals(this.amount, transactionHistoryItem.amount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, orderId, order);
+    return Objects.hash(result, status, orderId, completionDate, blockchainData, offerType, title, description, callToAction, amount);
   }
   
   @Override
@@ -163,9 +358,16 @@ public class TransactionHistoryItem {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionHistoryItem {\n");
     
+    sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
+    sb.append("    completionDate: ").append(toIndentedString(completionDate)).append("\n");
+    sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
+    sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

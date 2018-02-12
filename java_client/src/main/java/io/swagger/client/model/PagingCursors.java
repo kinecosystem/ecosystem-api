@@ -24,49 +24,49 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Limits
+ * PagingCursors
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
-public class Limits {
-@SerializedName("supply")
-  private Integer supply = null;
-  @SerializedName("expiration")
-  private String expiration = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
+public class PagingCursors {
+@SerializedName("after")
+  private String after = null;
+  @SerializedName("before")
+  private String before = null;
   
-  public Limits supply(Integer supply) {
-    this.supply = supply;
+  public PagingCursors after(String after) {
+    this.after = after;
     return this;
   }
 
   
   /**
-  * Get supply
-  * @return supply
+  * Get after
+  * @return after
   **/
-  @ApiModelProperty(value = "")
-  public Integer getSupply() {
-    return supply;
+  @ApiModelProperty(example = "MTAxNTExOTQ1MjAwNzI5NDE", value = "")
+  public String getAfter() {
+    return after;
   }
-  public void setSupply(Integer supply) {
-    this.supply = supply;
+  public void setAfter(String after) {
+    this.after = after;
   }
   
-  public Limits expiration(String expiration) {
-    this.expiration = expiration;
+  public PagingCursors before(String before) {
+    this.before = before;
     return this;
   }
 
   
   /**
-  * Get expiration
-  * @return expiration
+  * Get before
+  * @return before
   **/
-  @ApiModelProperty(value = "")
-  public String getExpiration() {
-    return expiration;
+  @ApiModelProperty(example = "NDMyNzQyODI3OTQw", value = "")
+  public String getBefore() {
+    return before;
   }
-  public void setExpiration(String expiration) {
-    this.expiration = expiration;
+  public void setBefore(String before) {
+    this.before = before;
   }
   
   @Override
@@ -77,23 +77,23 @@ public class Limits {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Limits limits = (Limits) o;
-    return Objects.equals(this.supply, limits.supply) &&
-        Objects.equals(this.expiration, limits.expiration);
+    PagingCursors pagingCursors = (PagingCursors) o;
+    return Objects.equals(this.after, pagingCursors.after) &&
+        Objects.equals(this.before, pagingCursors.before);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(supply, expiration);
+    return Objects.hash(after, before);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Limits {\n");
+    sb.append("class PagingCursors {\n");
     
-    sb.append("    supply: ").append(toIndentedString(supply)).append("\n");
-    sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
+    sb.append("    after: ").append(toIndentedString(after)).append("\n");
+    sb.append("    before: ").append(toIndentedString(before)).append("\n");
     sb.append("}");
     return sb.toString();
   }

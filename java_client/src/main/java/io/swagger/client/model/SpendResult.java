@@ -21,12 +21,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.SpendResultAsset;
 import java.io.IOException;
 
 /**
  * SpendResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class SpendResult {
 
     /**
@@ -35,7 +36,7 @@ public class SpendResult {
   @JsonAdapter(OfferTypeEnum.Adapter.class)
   public enum OfferTypeEnum {
     
-    EARNRESULT("EarnResult");
+    SPENDRESULT("SpendResult");
 
     private String value;
 
@@ -78,7 +79,7 @@ public class SpendResult {
   @SerializedName("offer_type")
   private OfferTypeEnum offerType = null;
   @SerializedName("asset")
-  private Object asset = null;
+  private SpendResultAsset asset = null;
   
   public SpendResult offerType(OfferTypeEnum offerType) {
     this.offerType = offerType;
@@ -98,7 +99,7 @@ public class SpendResult {
     this.offerType = offerType;
   }
   
-  public SpendResult asset(Object asset) {
+  public SpendResult asset(SpendResultAsset asset) {
     this.asset = asset;
     return this;
   }
@@ -109,10 +110,10 @@ public class SpendResult {
   * @return asset
   **/
   @ApiModelProperty(required = true, value = "")
-  public Object getAsset() {
+  public SpendResultAsset getAsset() {
     return asset;
   }
-  public void setAsset(Object asset) {
+  public void setAsset(SpendResultAsset asset) {
     this.asset = asset;
   }
   

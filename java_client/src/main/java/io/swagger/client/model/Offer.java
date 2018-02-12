@@ -21,13 +21,12 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Limits;
 import java.io.IOException;
 
 /**
  * Offer
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class Offer {
 @SerializedName("id")
   private String id = null;
@@ -37,8 +36,6 @@ public class Offer {
   private String description = null;
   @SerializedName("image")
   private String image = null;
-  @SerializedName("limits")
-  private Limits limits = null;
   @SerializedName("amount")
   private Integer amount = null;
   @SerializedName("content")
@@ -104,7 +101,7 @@ public class Offer {
   * Get id
   * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "1231321", required = true, value = "")
   public String getId() {
     return id;
   }
@@ -122,7 +119,7 @@ public class Offer {
   * Get title
   * @return title
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Spotify Subscription", required = true, value = "")
   public String getTitle() {
     return title;
   }
@@ -140,7 +137,7 @@ public class Offer {
   * Get description
   * @return description
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Get 30 days", required = true, value = "")
   public String getDescription() {
     return description;
   }
@@ -158,30 +155,12 @@ public class Offer {
   * Get image
   * @return image
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "http://xxx.www.zzz/image.jpg", required = true, value = "")
   public String getImage() {
     return image;
   }
   public void setImage(String image) {
     this.image = image;
-  }
-  
-  public Offer limits(Limits limits) {
-    this.limits = limits;
-    return this;
-  }
-
-  
-  /**
-  * Get limits
-  * @return limits
-  **/
-  @ApiModelProperty(value = "")
-  public Limits getLimits() {
-    return limits;
-  }
-  public void setLimits(Limits limits) {
-    this.limits = limits;
   }
   
   public Offer amount(Integer amount) {
@@ -194,7 +173,7 @@ public class Offer {
   * Get amount
   * @return amount
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "300", required = true, value = "")
   public Integer getAmount() {
     return amount;
   }
@@ -251,7 +230,6 @@ public class Offer {
         Objects.equals(this.title, offer.title) &&
         Objects.equals(this.description, offer.description) &&
         Objects.equals(this.image, offer.image) &&
-        Objects.equals(this.limits, offer.limits) &&
         Objects.equals(this.amount, offer.amount) &&
         Objects.equals(this.content, offer.content) &&
         Objects.equals(this.offerType, offer.offerType);
@@ -259,7 +237,7 @@ public class Offer {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, image, limits, amount, content, offerType);
+    return Objects.hash(id, title, description, image, amount, content, offerType);
   }
   
   @Override
@@ -271,7 +249,6 @@ public class Offer {
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    limits: ").append(toIndentedString(limits)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");

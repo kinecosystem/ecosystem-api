@@ -61,12 +61,12 @@ Please follow the [installation](#installation) instruction and execute the foll
 import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+import io.swagger.client.api.AuthApi;
 
 import java.io.File;
 import java.util.*;
 
-public class DefaultApiExample {
+public class AuthApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -77,14 +77,22 @@ public class DefaultApiExample {
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //ApiKeyAuth.setApiKeyPrefix("Token");
         
+        // Configure HTTP basic authorization: BearerAuth
+        HttpBasicAuth BearerAuth = (HttpBasicAuth) defaultClient.getAuthentication("BearerAuth");
+        BearerAuth.setUsername("YOUR USERNAME");
+        BearerAuth.setPassword("YOUR PASSWORD");
+        
         
 
-        DefaultApi apiInstance = new DefaultApi();
+        AuthApi apiInstance = new AuthApi();
+        
+        String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id
         
         try {
-            apiInstance.cancelOrder();
+            AuthToken result = apiInstance.activateAcount(X_REQUEST_ID);
+            System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#cancelOrder");
+            System.err.println("Exception when calling AuthApi#activateAcount");
             e.printStackTrace();
         }
     }
@@ -94,34 +102,39 @@ public class DefaultApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.kinfoundation.com/v1/*
+All URIs are relative to *https://api.kinmarketplace.com/v1/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**cancelOrder**](docs/DefaultApi.md#cancelOrder) | **DELETE** /orders/{order_id} | 
-*DefaultApi* | [**createOrder**](docs/DefaultApi.md#createOrder) | **POST** /offers/{offer_id}/order | 
-*DefaultApi* | [**getHistory**](docs/DefaultApi.md#getHistory) | **GET** /transactions | 
-*DefaultApi* | [**getOffers**](docs/DefaultApi.md#getOffers) | **GET** /offers | 
-*DefaultApi* | [**submitOrder**](docs/DefaultApi.md#submitOrder) | **POST** /orders/{order_id} | 
+*AuthApi* | [**activateAcount**](docs/AuthApi.md#activateAcount) | **POST** /users/me/activate | Activate account
+*AuthApi* | [**signIn**](docs/AuthApi.md#signIn) | **POST** /users | Sign in/ Log in
+*OffersApi* | [**getOffers**](docs/OffersApi.md#getOffers) | **GET** /offers | Return a list of offers
+*OrdersApi* | [**cancelOrder**](docs/OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
+*OrdersApi* | [**createOrder**](docs/OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/order | create an order for an offer
+*OrdersApi* | [**submitOrder**](docs/OrdersApi.md#submitOrder) | **POST** /orders/{order_id} | submit an order
+*TransactionHistoryApi* | [**getHistory**](docs/TransactionHistoryApi.md#getHistory) | **GET** /transactions | get user history
 
 
 ## Documentation for Models
 
+ - [AuthToken](docs/AuthToken.md)
+ - [BlockchainData](docs/BlockchainData.md)
  - [Coupon](docs/Coupon.md)
  - [EarnResult](docs/EarnResult.md)
  - [EarnSubmission](docs/EarnSubmission.md)
  - [Error](docs/Error.md)
- - [Limits](docs/Limits.md)
- - [MultiChoicePoll](docs/MultiChoicePoll.md)
- - [MultiChoicePollAnswer](docs/MultiChoicePollAnswer.md)
+ - [HTMLPoll](docs/HTMLPoll.md)
+ - [HTMLPollAnswer](docs/HTMLPollAnswer.md)
  - [Offer](docs/Offer.md)
  - [OfferList](docs/OfferList.md)
  - [Order](docs/Order.md)
- - [Question](docs/Question.md)
- - [SliderPoll](docs/SliderPoll.md)
- - [SliderPollAnswer](docs/SliderPollAnswer.md)
+ - [Paging](docs/Paging.md)
+ - [PagingCursors](docs/PagingCursors.md)
+ - [SignInData](docs/SignInData.md)
  - [SpendResult](docs/SpendResult.md)
+ - [SpendResultAsset](docs/SpendResultAsset.md)
  - [SpendSubmission](docs/SpendSubmission.md)
+ - [Submission](docs/Submission.md)
  - [SubmissionResult](docs/SubmissionResult.md)
  - [TransactionHistoryItem](docs/TransactionHistoryItem.md)
  - [TransactionHistoryList](docs/TransactionHistoryList.md)
@@ -136,6 +149,13 @@ Authentication schemes defined for the API:
 - **API key parameter name**: X-API-KEY
 - **Location**: HTTP header
 
+
+
+
+### BearerAuth
+
+
+- **Type**: HTTP basic authentication
 
 
 

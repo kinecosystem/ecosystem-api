@@ -1,11 +1,11 @@
 
-# Question
+# AuthToken
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **String** |  |  [optional]
-**answers** | **List&lt;String&gt;** |  |  [optional]
+**token** | **String** |  |  [optional]
+**activated** | **Boolean** |  |  [optional]
 
 
 

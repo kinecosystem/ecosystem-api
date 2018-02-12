@@ -25,34 +25,54 @@ import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
- * Order
+ * Submission
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
-public class Order {
-@SerializedName("id")
-  private String id = null;
+public class Submission {
+@SerializedName("offer_type")
+  private String offerType = null;
+  @SerializedName("completed_form")
+  private Object completedForm = null;
   @SerializedName("blockchain_data")
   private BlockchainData blockchainData = null;
   
-  public Order id(String id) {
-    this.id = id;
+  public Submission offerType(String offerType) {
+    this.offerType = offerType;
     return this;
   }
 
   
   /**
-  * Get id
-  * @return id
+  * Get offerType
+  * @return offerType
   **/
-  @ApiModelProperty(example = "sdfsdfsdfsd", required = true, value = "")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "")
+  public String getOfferType() {
+    return offerType;
   }
-  public void setId(String id) {
-    this.id = id;
+  public void setOfferType(String offerType) {
+    this.offerType = offerType;
   }
   
-  public Order blockchainData(BlockchainData blockchainData) {
+  public Submission completedForm(Object completedForm) {
+    this.completedForm = completedForm;
+    return this;
+  }
+
+  
+  /**
+  * Get completedForm
+  * @return completedForm
+  **/
+  @ApiModelProperty(value = "")
+  public Object getCompletedForm() {
+    return completedForm;
+  }
+  public void setCompletedForm(Object completedForm) {
+    this.completedForm = completedForm;
+  }
+  
+  public Submission blockchainData(BlockchainData blockchainData) {
     this.blockchainData = blockchainData;
     return this;
   }
@@ -78,22 +98,24 @@ public class Order {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Order order = (Order) o;
-    return Objects.equals(this.id, order.id) &&
-        Objects.equals(this.blockchainData, order.blockchainData);
+    Submission submission = (Submission) o;
+    return Objects.equals(this.offerType, submission.offerType) &&
+        Objects.equals(this.completedForm, submission.completedForm) &&
+        Objects.equals(this.blockchainData, submission.blockchainData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, blockchainData);
+    return Objects.hash(offerType, completedForm, blockchainData);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Order {\n");
+    sb.append("class Submission {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
+    sb.append("    completedForm: ").append(toIndentedString(completedForm)).append("\n");
     sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("}");
     return sb.toString();

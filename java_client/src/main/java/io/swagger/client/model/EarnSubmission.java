@@ -26,29 +26,76 @@ import java.io.IOException;
 /**
  * EarnSubmission
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class EarnSubmission {
-@SerializedName("recipient_address")
-  private String recipientAddress = null;
+
+    /**
+   * Gets or Sets offerType
+   */
+  @JsonAdapter(OfferTypeEnum.Adapter.class)
+  public enum OfferTypeEnum {
+    
+    EARNSUBMISSION("EarnSubmission");
+
+    private String value;
+
+    OfferTypeEnum(String value) {
+      this.value = value;
+    }
+    
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    
+    public static OfferTypeEnum fromValue(String text) {
+      for (OfferTypeEnum b : OfferTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    
+    public static class Adapter extends TypeAdapter<OfferTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OfferTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OfferTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OfferTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+  
+  @SerializedName("offer_type")
+  private OfferTypeEnum offerType = null;
   @SerializedName("completed_form")
   private Object completedForm = null;
   
-  public EarnSubmission recipientAddress(String recipientAddress) {
-    this.recipientAddress = recipientAddress;
+  public EarnSubmission offerType(OfferTypeEnum offerType) {
+    this.offerType = offerType;
     return this;
   }
 
   
   /**
-  * Get recipientAddress
-  * @return recipientAddress
+  * Get offerType
+  * @return offerType
   **/
-  @ApiModelProperty(required = true, value = "")
-  public String getRecipientAddress() {
-    return recipientAddress;
+  @ApiModelProperty(value = "")
+  public OfferTypeEnum getOfferType() {
+    return offerType;
   }
-  public void setRecipientAddress(String recipientAddress) {
-    this.recipientAddress = recipientAddress;
+  public void setOfferType(OfferTypeEnum offerType) {
+    this.offerType = offerType;
   }
   
   public EarnSubmission completedForm(Object completedForm) {
@@ -78,13 +125,13 @@ public class EarnSubmission {
       return false;
     }
     EarnSubmission earnSubmission = (EarnSubmission) o;
-    return Objects.equals(this.recipientAddress, earnSubmission.recipientAddress) &&
+    return Objects.equals(this.offerType, earnSubmission.offerType) &&
         Objects.equals(this.completedForm, earnSubmission.completedForm);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(recipientAddress, completedForm);
+    return Objects.hash(offerType, completedForm);
   }
   
   @Override
@@ -92,7 +139,7 @@ public class EarnSubmission {
     StringBuilder sb = new StringBuilder();
     sb.append("class EarnSubmission {\n");
     
-    sb.append("    recipientAddress: ").append(toIndentedString(recipientAddress)).append("\n");
+    sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
     sb.append("    completedForm: ").append(toIndentedString(completedForm)).append("\n");
     sb.append("}");
     return sb.toString();

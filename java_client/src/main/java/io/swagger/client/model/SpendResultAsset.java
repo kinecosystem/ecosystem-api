@@ -21,53 +21,32 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
- * Order
+ * SpendResultAsset
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
-public class Order {
-@SerializedName("id")
-  private String id = null;
-  @SerializedName("blockchain_data")
-  private BlockchainData blockchainData = null;
+public class SpendResultAsset {
+@SerializedName("coupon_code")
+  private String couponCode = null;
   
-  public Order id(String id) {
-    this.id = id;
+  public SpendResultAsset couponCode(String couponCode) {
+    this.couponCode = couponCode;
     return this;
   }
 
   
   /**
-  * Get id
-  * @return id
+  * Get couponCode
+  * @return couponCode
   **/
-  @ApiModelProperty(example = "sdfsdfsdfsd", required = true, value = "")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "aaa-bbb-ccc-ddd", value = "")
+  public String getCouponCode() {
+    return couponCode;
   }
-  public void setId(String id) {
-    this.id = id;
-  }
-  
-  public Order blockchainData(BlockchainData blockchainData) {
-    this.blockchainData = blockchainData;
-    return this;
-  }
-
-  
-  /**
-  * Get blockchainData
-  * @return blockchainData
-  **/
-  @ApiModelProperty(value = "")
-  public BlockchainData getBlockchainData() {
-    return blockchainData;
-  }
-  public void setBlockchainData(BlockchainData blockchainData) {
-    this.blockchainData = blockchainData;
+  public void setCouponCode(String couponCode) {
+    this.couponCode = couponCode;
   }
   
   @Override
@@ -78,23 +57,21 @@ public class Order {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Order order = (Order) o;
-    return Objects.equals(this.id, order.id) &&
-        Objects.equals(this.blockchainData, order.blockchainData);
+    SpendResultAsset spendResultAsset = (SpendResultAsset) o;
+    return Objects.equals(this.couponCode, spendResultAsset.couponCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, blockchainData);
+    return Objects.hash(couponCode);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Order {\n");
+    sb.append("class SpendResultAsset {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
+    sb.append("    couponCode: ").append(toIndentedString(couponCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

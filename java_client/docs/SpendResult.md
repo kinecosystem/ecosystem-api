@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **offerType** | [**OfferTypeEnum**](#OfferTypeEnum) |  | 
-**asset** | **Object** |  | 
+**asset** | [**SpendResultAsset**](SpendResultAsset.md) |  | 
 
 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Enum: OfferTypeEnum
 Name | Value
 ---- | -----
-EARNRESULT | &quot;EarnResult&quot;
+SPENDRESULT | &quot;SpendResult&quot;
 
 
 

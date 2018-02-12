@@ -21,12 +21,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
  * EarnResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class EarnResult {
 
     /**
@@ -77,10 +78,8 @@ public class EarnResult {
   
   @SerializedName("offer_type")
   private OfferTypeEnum offerType = null;
-  @SerializedName("transaction_id")
-  private String transactionId = null;
-  @SerializedName("sender_address")
-  private String senderAddress = null;
+  @SerializedName("blockchain_data")
+  private BlockchainData blockchainData = null;
   
   public EarnResult offerType(OfferTypeEnum offerType) {
     this.offerType = offerType;
@@ -100,40 +99,22 @@ public class EarnResult {
     this.offerType = offerType;
   }
   
-  public EarnResult transactionId(String transactionId) {
-    this.transactionId = transactionId;
+  public EarnResult blockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
     return this;
   }
 
   
   /**
-  * Get transactionId
-  * @return transactionId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getTransactionId() {
-    return transactionId;
-  }
-  public void setTransactionId(String transactionId) {
-    this.transactionId = transactionId;
-  }
-  
-  public EarnResult senderAddress(String senderAddress) {
-    this.senderAddress = senderAddress;
-    return this;
-  }
-
-  
-  /**
-  * Get senderAddress
-  * @return senderAddress
+  * Get blockchainData
+  * @return blockchainData
   **/
   @ApiModelProperty(value = "")
-  public String getSenderAddress() {
-    return senderAddress;
+  public BlockchainData getBlockchainData() {
+    return blockchainData;
   }
-  public void setSenderAddress(String senderAddress) {
-    this.senderAddress = senderAddress;
+  public void setBlockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
   }
   
   @Override
@@ -146,13 +127,12 @@ public class EarnResult {
     }
     EarnResult earnResult = (EarnResult) o;
     return Objects.equals(this.offerType, earnResult.offerType) &&
-        Objects.equals(this.transactionId, earnResult.transactionId) &&
-        Objects.equals(this.senderAddress, earnResult.senderAddress);
+        Objects.equals(this.blockchainData, earnResult.blockchainData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offerType, transactionId, senderAddress);
+    return Objects.hash(offerType, blockchainData);
   }
   
   @Override
@@ -161,8 +141,7 @@ public class EarnResult {
     sb.append("class EarnResult {\n");
     
     sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
-    sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
-    sb.append("    senderAddress: ").append(toIndentedString(senderAddress)).append("\n");
+    sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

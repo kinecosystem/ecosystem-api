@@ -1,11 +1,11 @@
 
-# MultiChoicePoll
+# HTMLPoll
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **contentType** | [**ContentTypeEnum**](#ContentTypeEnum) |  |  [optional]
-**questions** | [**List&lt;Question&gt;**](Question.md) |  |  [optional]
+**content** | **String** |  |  [optional]
 
 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Enum: ContentTypeEnum
 Name | Value
 ---- | -----
-MULTICHOICEPOLL | &quot;MultiChoicePoll&quot;
+HTMLPOLL | &quot;HTMLPoll&quot;
 
 
 

@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.Offer;
+import io.swagger.client.model.Paging;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,12 @@ import java.util.List;
 /**
  * OfferList
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class OfferList {
 @SerializedName("offers")
   private List<Offer> offers = null;
+  @SerializedName("paging")
+  private Paging paging = null;
   
   public OfferList offers(List<Offer> offers) {
     this.offers = offers;
@@ -61,6 +64,24 @@ public class OfferList {
     this.offers = offers;
   }
   
+  public OfferList paging(Paging paging) {
+    this.paging = paging;
+    return this;
+  }
+
+  
+  /**
+  * Get paging
+  * @return paging
+  **/
+  @ApiModelProperty(value = "")
+  public Paging getPaging() {
+    return paging;
+  }
+  public void setPaging(Paging paging) {
+    this.paging = paging;
+  }
+  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -70,12 +91,13 @@ public class OfferList {
       return false;
     }
     OfferList offerList = (OfferList) o;
-    return Objects.equals(this.offers, offerList.offers);
+    return Objects.equals(this.offers, offerList.offers) &&
+        Objects.equals(this.paging, offerList.paging);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offers);
+    return Objects.hash(offers, paging);
   }
   
   @Override
@@ -84,6 +106,7 @@ public class OfferList {
     sb.append("class OfferList {\n");
     
     sb.append("    offers: ").append(toIndentedString(offers)).append("\n");
+    sb.append("    paging: ").append(toIndentedString(paging)).append("\n");
     sb.append("}");
     return sb.toString();
   }

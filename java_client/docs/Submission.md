@@ -1,19 +1,13 @@
 
-# EarnResult
+# Submission
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**offerType** | [**OfferTypeEnum**](#OfferTypeEnum) |  | 
+**offerType** | **String** |  |  [optional]
+**completedForm** | **Object** |  |  [optional]
 **blockchainData** | [**BlockchainData**](BlockchainData.md) |  |  [optional]
 
-
-
-<a name="OfferTypeEnum"></a>
-## Enum: OfferTypeEnum
-Name | Value
----- | -----
-EARNRESULT | &quot;EarnResult&quot;
 
 
 

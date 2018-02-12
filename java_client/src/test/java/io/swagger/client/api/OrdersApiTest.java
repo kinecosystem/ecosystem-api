@@ -15,10 +15,9 @@ package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Error;
-import io.swagger.client.model.OfferList;
 import io.swagger.client.model.Order;
+import io.swagger.client.model.Submission;
 import io.swagger.client.model.SubmissionResult;
-import io.swagger.client.model.TransactionHistoryList;
 
 import org.junit.Test;
 import org.junit.Ignore;
@@ -31,16 +30,16 @@ import java.util.Map;
 
 
 /**
- * API tests for DefaultApi
+ * API tests for OrdersApi
  */
 @Ignore
-public class DefaultApiTest {
+public class OrdersApiTest {
 
-    private final DefaultApi api = new DefaultApi();
+    private final OrdersApi api = new OrdersApi();
 
     
     /**
-     * 
+     * cancel an order
      *
      * cancel an order
      *
@@ -50,13 +49,17 @@ public class DefaultApiTest {
     @Test
     public void cancelOrderTest() throws ApiException {
         
-        api.cancelOrder();
+        String orderId = null;
+        
+        String X_REQUEST_ID = null;
+        
+        api.cancelOrder(orderId, X_REQUEST_ID);
 
         // TODO: test validations
     }
     
     /**
-     * 
+     * create an order for an offer
      *
      * create an order for an offer
      *
@@ -66,45 +69,17 @@ public class DefaultApiTest {
     @Test
     public void createOrderTest() throws ApiException {
         
-        Order response = api.createOrder();
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * get user history
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getHistoryTest() throws ApiException {
+        String offerId = null;
         
-        TransactionHistoryList response = api.getHistory();
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Return a list of offers
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getOffersTest() throws ApiException {
+        String X_REQUEST_ID = null;
         
-        OfferList response = api.getOffers();
+        Order response = api.createOrder(offerId, X_REQUEST_ID);
 
         // TODO: test validations
     }
     
     /**
-     * 
+     * submit an order
      *
      * submit an order
      *
@@ -114,9 +89,13 @@ public class DefaultApiTest {
     @Test
     public void submitOrderTest() throws ApiException {
         
-        Object body = null;
+        Submission submission = null;
         
-        SubmissionResult response = api.submitOrder(body);
+        String orderId = null;
+        
+        String X_REQUEST_ID = null;
+        
+        SubmissionResult response = api.submitOrder(submission, orderId, X_REQUEST_ID);
 
         // TODO: test validations
     }

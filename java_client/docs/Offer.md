@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **title** | **String** |  | 
 **description** | **String** |  | 
 **image** | **String** |  | 
-**limits** | [**Limits**](Limits.md) |  |  [optional]
 **amount** | **Integer** |  | 
 **content** | **Object** |  | 
 **offerType** | [**OfferTypeEnum**](#OfferTypeEnum) |  | 

@@ -1,11 +1,11 @@
 
-# SliderPollAnswer
+# HTMLPollAnswer
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **contentType** | [**ContentTypeEnum**](#ContentTypeEnum) |  |  [optional]
-**value** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**answers** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Enum: ContentTypeEnum
 Name | Value
 ---- | -----
-SLIDERPOLLANSWER | &quot;SliderPollAnswer&quot;
+HTMLPOLLANSWER | &quot;HTMLPollAnswer&quot;
 
 
 

@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * SubmissionResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class SubmissionResult {
 @SerializedName("order_id")
   private String orderId = null;
@@ -43,7 +43,7 @@ public class SubmissionResult {
   * Get orderId
   * @return orderId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "sdfsdfssdf", required = true, value = "")
   public String getOrderId() {
     return orderId;
   }

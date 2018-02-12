@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * Error
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class Error {
 @SerializedName("error")
   private String error = null;
@@ -45,7 +45,7 @@ public class Error {
   * Get error
   * @return error
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Invalid Form", required = true, value = "")
   public String getError() {
     return error;
   }
@@ -63,7 +63,7 @@ public class Error {
   * Get message
   * @return message
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "Form given is not in the right format", value = "")
   public String getMessage() {
     return message;
   }
@@ -81,7 +81,7 @@ public class Error {
   * Get code
   * @return code
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "4001", required = true, value = "")
   public Integer getCode() {
     return code;
   }

@@ -22,62 +22,51 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Question
+ * AuthToken
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
-public class Question {
-@SerializedName("title")
-  private String title = null;
-  @SerializedName("answers")
-  private List<String> answers = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
+public class AuthToken {
+@SerializedName("token")
+  private String token = null;
+  @SerializedName("activated")
+  private Boolean activated = null;
   
-  public Question title(String title) {
-    this.title = title;
+  public AuthToken token(String token) {
+    this.token = token;
     return this;
   }
 
   
   /**
-  * Get title
-  * @return title
+  * Get token
+  * @return token
   **/
-  @ApiModelProperty(value = "")
-  public String getTitle() {
-    return title;
+  @ApiModelProperty(example = "AAAAA-RRRRRR-DDDDD-BBBBBB", value = "")
+  public String getToken() {
+    return token;
   }
-  public void setTitle(String title) {
-    this.title = title;
+  public void setToken(String token) {
+    this.token = token;
   }
   
-  public Question answers(List<String> answers) {
-    this.answers = answers;
+  public AuthToken activated(Boolean activated) {
+    this.activated = activated;
     return this;
   }
 
-  public Question addAnswersItem(String answersItem) {
-    
-    if (this.answers == null) {
-      this.answers = new ArrayList<String>();
-    }
-    
-    this.answers.add(answersItem);
-    return this;
-  }
   
   /**
-  * Get answers
-  * @return answers
+  * Get activated
+  * @return activated
   **/
   @ApiModelProperty(value = "")
-  public List<String> getAnswers() {
-    return answers;
+  public Boolean isActivated() {
+    return activated;
   }
-  public void setAnswers(List<String> answers) {
-    this.answers = answers;
+  public void setActivated(Boolean activated) {
+    this.activated = activated;
   }
   
   @Override
@@ -88,23 +77,23 @@ public class Question {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Question question = (Question) o;
-    return Objects.equals(this.title, question.title) &&
-        Objects.equals(this.answers, question.answers);
+    AuthToken authToken = (AuthToken) o;
+    return Objects.equals(this.token, authToken.token) &&
+        Objects.equals(this.activated, authToken.activated);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, answers);
+    return Objects.hash(token, activated);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Question {\n");
+    sb.append("class AuthToken {\n");
     
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
-    sb.append("    answers: ").append(toIndentedString(answers)).append("\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    activated: ").append(toIndentedString(activated)).append("\n");
     sb.append("}");
     return sb.toString();
   }

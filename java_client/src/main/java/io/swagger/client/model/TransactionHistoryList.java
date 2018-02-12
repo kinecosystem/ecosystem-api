@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.Paging;
 import io.swagger.client.model.TransactionHistoryItem;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,10 +30,12 @@ import java.util.List;
 /**
  * TransactionHistoryList
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class TransactionHistoryList {
 @SerializedName("transactions")
   private List<TransactionHistoryItem> transactions = null;
+  @SerializedName("paging")
+  private Paging paging = null;
   
   public TransactionHistoryList transactions(List<TransactionHistoryItem> transactions) {
     this.transactions = transactions;
@@ -61,6 +64,24 @@ public class TransactionHistoryList {
     this.transactions = transactions;
   }
   
+  public TransactionHistoryList paging(Paging paging) {
+    this.paging = paging;
+    return this;
+  }
+
+  
+  /**
+  * Get paging
+  * @return paging
+  **/
+  @ApiModelProperty(value = "")
+  public Paging getPaging() {
+    return paging;
+  }
+  public void setPaging(Paging paging) {
+    this.paging = paging;
+  }
+  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -70,12 +91,13 @@ public class TransactionHistoryList {
       return false;
     }
     TransactionHistoryList transactionHistoryList = (TransactionHistoryList) o;
-    return Objects.equals(this.transactions, transactionHistoryList.transactions);
+    return Objects.equals(this.transactions, transactionHistoryList.transactions) &&
+        Objects.equals(this.paging, transactionHistoryList.paging);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transactions);
+    return Objects.hash(transactions, paging);
   }
   
   @Override
@@ -84,6 +106,7 @@ public class TransactionHistoryList {
     sb.append("class TransactionHistoryList {\n");
     
     sb.append("    transactions: ").append(toIndentedString(transactions)).append("\n");
+    sb.append("    paging: ").append(toIndentedString(paging)).append("\n");
     sb.append("}");
     return sb.toString();
   }

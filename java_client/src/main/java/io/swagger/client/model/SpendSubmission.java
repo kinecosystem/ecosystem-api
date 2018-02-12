@@ -21,52 +21,100 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
  * SpendSubmission
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
 public class SpendSubmission {
-@SerializedName("transaction_id")
-  private String transactionId = null;
-  @SerializedName("sender_address")
-  private String senderAddress = null;
+
+    /**
+   * Gets or Sets offerType
+   */
+  @JsonAdapter(OfferTypeEnum.Adapter.class)
+  public enum OfferTypeEnum {
+    
+    SPENDSUBMISSION("SpendSubmission");
+
+    private String value;
+
+    OfferTypeEnum(String value) {
+      this.value = value;
+    }
+    
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    
+    public static OfferTypeEnum fromValue(String text) {
+      for (OfferTypeEnum b : OfferTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    
+    public static class Adapter extends TypeAdapter<OfferTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OfferTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OfferTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OfferTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
   
-  public SpendSubmission transactionId(String transactionId) {
-    this.transactionId = transactionId;
+  @SerializedName("offer_type")
+  private OfferTypeEnum offerType = null;
+  @SerializedName("blockchain_data")
+  private BlockchainData blockchainData = null;
+  
+  public SpendSubmission offerType(OfferTypeEnum offerType) {
+    this.offerType = offerType;
     return this;
   }
 
   
   /**
-  * Get transactionId
-  * @return transactionId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getTransactionId() {
-    return transactionId;
-  }
-  public void setTransactionId(String transactionId) {
-    this.transactionId = transactionId;
-  }
-  
-  public SpendSubmission senderAddress(String senderAddress) {
-    this.senderAddress = senderAddress;
-    return this;
-  }
-
-  
-  /**
-  * Get senderAddress
-  * @return senderAddress
+  * Get offerType
+  * @return offerType
   **/
   @ApiModelProperty(value = "")
-  public String getSenderAddress() {
-    return senderAddress;
+  public OfferTypeEnum getOfferType() {
+    return offerType;
   }
-  public void setSenderAddress(String senderAddress) {
-    this.senderAddress = senderAddress;
+  public void setOfferType(OfferTypeEnum offerType) {
+    this.offerType = offerType;
+  }
+  
+  public SpendSubmission blockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
+    return this;
+  }
+
+  
+  /**
+  * Get blockchainData
+  * @return blockchainData
+  **/
+  @ApiModelProperty(value = "")
+  public BlockchainData getBlockchainData() {
+    return blockchainData;
+  }
+  public void setBlockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
   }
   
   @Override
@@ -78,13 +126,13 @@ public class SpendSubmission {
       return false;
     }
     SpendSubmission spendSubmission = (SpendSubmission) o;
-    return Objects.equals(this.transactionId, spendSubmission.transactionId) &&
-        Objects.equals(this.senderAddress, spendSubmission.senderAddress);
+    return Objects.equals(this.offerType, spendSubmission.offerType) &&
+        Objects.equals(this.blockchainData, spendSubmission.blockchainData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transactionId, senderAddress);
+    return Objects.hash(offerType, blockchainData);
   }
   
   @Override
@@ -92,8 +140,8 @@ public class SpendSubmission {
     StringBuilder sb = new StringBuilder();
     sb.append("class SpendSubmission {\n");
     
-    sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
-    sb.append("    senderAddress: ").append(toIndentedString(senderAddress)).append("\n");
+    sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
+    sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

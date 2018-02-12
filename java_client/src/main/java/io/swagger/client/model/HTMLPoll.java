@@ -21,16 +21,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Question;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * MultiChoicePoll
+ * HTMLPoll
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-01-29T14:22:38.269+02:00")
-public class MultiChoicePoll {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
+public class HTMLPoll {
 
     /**
    * Gets or Sets contentType
@@ -38,7 +35,7 @@ public class MultiChoicePoll {
   @JsonAdapter(ContentTypeEnum.Adapter.class)
   public enum ContentTypeEnum {
     
-    MULTICHOICEPOLL("MultiChoicePoll");
+    HTMLPOLL("HTMLPoll");
 
     private String value;
 
@@ -80,10 +77,10 @@ public class MultiChoicePoll {
   
   @SerializedName("content_type")
   private ContentTypeEnum contentType = null;
-  @SerializedName("questions")
-  private List<Question> questions = null;
+  @SerializedName("content")
+  private String content = null;
   
-  public MultiChoicePoll contentType(ContentTypeEnum contentType) {
+  public HTMLPoll contentType(ContentTypeEnum contentType) {
     this.contentType = contentType;
     return this;
   }
@@ -101,31 +98,22 @@ public class MultiChoicePoll {
     this.contentType = contentType;
   }
   
-  public MultiChoicePoll questions(List<Question> questions) {
-    this.questions = questions;
+  public HTMLPoll content(String content) {
+    this.content = content;
     return this;
   }
 
-  public MultiChoicePoll addQuestionsItem(Question questionsItem) {
-    
-    if (this.questions == null) {
-      this.questions = new ArrayList<Question>();
-    }
-    
-    this.questions.add(questionsItem);
-    return this;
-  }
   
   /**
-  * Get questions
-  * @return questions
+  * Get content
+  * @return content
   **/
   @ApiModelProperty(value = "")
-  public List<Question> getQuestions() {
-    return questions;
+  public String getContent() {
+    return content;
   }
-  public void setQuestions(List<Question> questions) {
-    this.questions = questions;
+  public void setContent(String content) {
+    this.content = content;
   }
   
   @Override
@@ -136,23 +124,23 @@ public class MultiChoicePoll {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MultiChoicePoll multiChoicePoll = (MultiChoicePoll) o;
-    return Objects.equals(this.contentType, multiChoicePoll.contentType) &&
-        Objects.equals(this.questions, multiChoicePoll.questions);
+    HTMLPoll htMLPoll = (HTMLPoll) o;
+    return Objects.equals(this.contentType, htMLPoll.contentType) &&
+        Objects.equals(this.content, htMLPoll.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, questions);
+    return Objects.hash(contentType, content);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MultiChoicePoll {\n");
+    sb.append("class HTMLPoll {\n");
     
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
-    sb.append("    questions: ").append(toIndentedString(questions)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();
   }
