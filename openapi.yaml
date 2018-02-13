@@ -88,7 +88,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  '/offers/{offer_id}/order':
+  '/offers/{offer_id}/orders':
     parameters:
       - in: path
         name: offer_id
@@ -104,12 +104,12 @@ paths:
       description: create an order for an offer
       operationId: createOrder
       responses:
-        '200':
+        '201':
           description: Successfully created an order for an offer
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
+                $ref: '#/components/schemas/OpenOrder'
         '404':
           description: Offer ended
           content:
@@ -131,6 +131,25 @@ paths:
           type: string
         description: The order id
       - $ref: '#/components/parameters/RequestId'
+    get:
+      tags:
+        - Orders
+      summary: get an order
+      description: get an order
+      operationId: getOrder
+      responses:
+        '200':
+          description: Successfully returned an order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       tags:
         - Orders
@@ -145,12 +164,20 @@ paths:
             schema:
               $ref: '#/components/schemas/Submission'
       responses:
-        '200':
-          description: Submission result
+        '201':
+          description: |
+            Order has successfully been submitted 
+            * For earn - poll form is valid, client should wait for payment on blockchain
+            * For spend - server is notified and waiting for payment on blockchain
+        '400':
+          description: |
+            Bad Request
+            * For earn - payload is invalid
+            * For spend/ earn - order has expired
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SubmissionResult'
+                $ref: '#/components/schemas/Error' 
         default:
           description: Generic Error
           content:
@@ -172,26 +199,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /transactions:
+  /orders:
     parameters:
       - $ref: '#/components/parameters/RequestId'
     get:
       tags:
-        - Transaction History
-      summary: get user history
-      description: get user history
+        - Orders
+      summary: get user order history
+      description: get user order history
       operationId: getHistory
       parameters:
         - $ref: '#/components/parameters/QueryLimit'
-        - $ref: '#/components/parameters/QuerySince'
-        - $ref: '#/components/parameters/QueryUntil'
+        - $ref: '#/components/parameters/QueryBefore'
+        - $ref: '#/components/parameters/QueryAfter'
       responses:
         '200':
           description: History result
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionHistoryList'
+                $ref: '#/components/schemas/OrderList'
         default:
           description: Generic Error
           content:
@@ -210,9 +237,8 @@ components:
       required: true
       schema:
         type: string
-      description: >-
-        A unique id for the request. A retransmitted request will have the same
-        id
+      description: |
+        A unique id for the request. A retransmitted request will have the same id
     QueryLimit:
       in: query
       name: limit
@@ -224,7 +250,7 @@ components:
       description: maximum number of items in a list
     QueryBefore:
       in: query
-      name: before
+      name: before 
       schema:
         type: string
       description: cursor that points to the start of the page of data that has been returned
@@ -234,22 +260,6 @@ components:
       schema:
         type: string
       description: cursor that points to the end of the page of data that has been returned
-    QuerySince:
-      in: query
-      name: since
-      schema:
-        type: string
-        example: "2018-09-13T14:33:33"
-        description: UTC ISO
-      description: time based pagination
-    QueryUntil:
-      in: query
-      name: until
-      schema:
-        type: string
-        example: "2018-09-13T14:33:33"
-        description: UTC ISO
-      description: time based pagination
 
   securitySchemes:
     ApiKeyAuth:
@@ -262,16 +272,19 @@ components:
       scheme: bearer
 
   schemas:
-
+  
     coupon_code:
+      description: "a coupon code - appears in a result object of an Order"
       type: string
       example: aaaa-bbbb-cccc
-
+      
     failure_message:
+      description: "failed order message - appears in a result object of an Order"
       type: string
       example: failed to find transaction in blockchain
-
+      
     BlockchainData:
+      description: "details taken from a blockchain transaction - all fields optional"
       type: object
       properties:
         transaction_id:
@@ -280,8 +293,9 @@ components:
           type: string
         recipient_address:
           type: string
-
-    TransactionHistoryItem:
+      
+    Order:
+      description: "a submitted order. it can be pending/completed/failed"
       type: object
       required:
         - status
@@ -297,7 +311,7 @@ components:
           oneOf:
           - $ref: '#/components/schemas/failure_message'
           - $ref: '#/components/schemas/coupon_code'
-          description: |
+          description: | 
             * empty when no result (pending status, completed earn)
             * failure_message when status is failed
             * coupon_code when completed spend
@@ -324,7 +338,7 @@ components:
           enum:
             - earn
             - spend
-        title:
+        title: 
           type: string
           example: Spotify
           description: usually a brand name
@@ -333,24 +347,26 @@ components:
           example: completed poll
         call_to_action:
           type: string
-          example: tap to reveil coupon
+          example: tap to reveal coupon
         amount:
           type: integer
           example: 4000 (KIN)
           description: kin amount
-
-    TransactionHistoryList:
+          
+    OrderList:
+      description: "a list of submitted orders"
       type: object
       properties:
         transactions:
           type: array
           items:
-            $ref: '#/components/schemas/TransactionHistoryItem'
+            $ref: '#/components/schemas/Order'
         paging:
           type: object
           $ref: '#/components/schemas/Paging'
-
+          
     HTMLPoll:
+      description: "a poll implemented as an HTML page"
       type: object
       properties:
         content_type:
@@ -359,8 +375,9 @@ components:
             - HTMLPoll
         content:
           type: string
-
+          
     HTMLPollAnswer:
+      description: "the result of a completed html poll"
       type: object
       properties:
         content_type:
@@ -371,8 +388,9 @@ components:
           type: object
           additionalProperties:
             type: string
-
+            
     Coupon:
+      description: "a coupon offer"
       type: object
       properties:
         content_type:
@@ -381,8 +399,9 @@ components:
             - Coupon
         description:
           type: string
-
+          
     Offer:
+      description: "offer details for the offer list"
       type: object
       required:
         - id
@@ -420,8 +439,9 @@ components:
           enum:
             - earn
             - spend
-
+            
     OfferList:
+      description: "a list of offers"
       type: object
       properties:
         offers:
@@ -432,7 +452,8 @@ components:
           type: object
           $ref: '#/components/schemas/Paging'
 
-    Order:
+    OpenOrder:
+      description: "an open order that hasn't been submitted yet"
       type: object
       required:
         - id
@@ -446,6 +467,7 @@ components:
           description: recipient_address - relevant in case of spend
 
     SpendSubmission:
+      description: "an order submission of a spend offer"
       type: object
       properties:
         offer_type:
@@ -457,6 +479,7 @@ components:
           $ref: "#/components/schemas/BlockchainData"
 
     EarnSubmission:
+      description: "an order submission of an earn offer - validation request of the poll"
       type: object
       properties:
         offer_type:
@@ -471,71 +494,19 @@ components:
             propertyName: content_type
 
     Submission:
+      description: "generic order submission"
       type: object
-      # XXX should be oneOf EarnSubmission/ SpendSubmission but there is an
-      # issue with compilation
-      properties:
-        offer_type:
-          type: string
-        completed_form:
-          type: object
-          oneOf:
-            - $ref: '#/components/schemas/HTMLPollAnswer'
-        blockchain_data:
-          type: object
-          $ref: "#/components/schemas/BlockchainData"
+      oneOf:
+        - $ref: '#/components/schemas/SpendSubmission'
+        - $ref: '#/components/schemas/EarnSubmission'
+      discriminator:
+        propertyName: offer_type
       example:
         offer_type: earn
-        completed_form: '{content_type: "HTMLPollAnswer", answers: {"a": 3, "b": "blah"}}'
-
-    EarnResult:
-      type: object
-      required:
-        - offer_type
-      properties:
-        offer_type:
-          type: string
-          enum:
-            - EarnResult
-        blockchain_data:
-          type: object
-          $ref: "#/components/schemas/BlockchainData"
-
-    SpendResult:
-      type: object
-      required:
-        - asset
-        - offer_type
-      properties:
-        offer_type:
-          type: string
-          enum:
-            - SpendResult
-        asset:
-          type: object
-          properties:
-            coupon_code:
-              type: string
-              example: "aaa-bbb-ccc-ddd"
-
-    SubmissionResult:
-      type: object
-      required:
-        - order_id
-        - content
-      properties:
-        order_id:
-          type: string
-          example: "sdfsdfssdf"
-        content:
-          type: object
-          oneOf:
-            - $ref: '#/components/schemas/SpendResult'
-            - $ref: '#/components/schemas/EarnResult'
-          discriminator:
-            propertyName: offer_type
+        completed_form: {}
 
     SignInData:
+      description: "payload required for signing in"
       type: object
       properties:
         jwt:
@@ -550,6 +521,7 @@ components:
           description: the address where earned funds will go to
 
     AuthToken:
+      description: "token issued by marketplace server"
       type: object
       properties:
         token:
@@ -559,6 +531,7 @@ components:
           type: boolean
 
     Paging:
+      description: "object accompanying lists - used to fetch next/previous section"
       type: object
       properties:
         cursors:
@@ -578,6 +551,7 @@ components:
           example: https://graph.facebook.com/me/albums?limit=25&after=MTAxNTExOTQ1MjAwNzI5NDE=
 
     Error:
+      description: "an error"
       type: object
       required:
         - error
