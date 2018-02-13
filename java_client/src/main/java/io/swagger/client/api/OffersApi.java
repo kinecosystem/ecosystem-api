@@ -65,7 +65,7 @@ public class OffersApi {
     
     /**
      * Build call for getOffers
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param limit maximum number of items in a list (optional)
      * @param after cursor that points to the end of the page of data that has been returned (optional)
      * @param before cursor that points to the start of the page of data that has been returned (optional)
@@ -148,7 +148,7 @@ public class OffersApi {
     /**
      * Return a list of offers
      * Return a **list** of offers
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param limit maximum number of items in a list (optional)
      * @param after cursor that points to the end of the page of data that has been returned (optional)
      * @param before cursor that points to the start of the page of data that has been returned (optional)
@@ -164,7 +164,7 @@ public class OffersApi {
     /**
      * Return a list of offers
      * Return a **list** of offers
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param limit maximum number of items in a list (optional)
      * @param after cursor that points to the end of the page of data that has been returned (optional)
      * @param before cursor that points to the start of the page of data that has been returned (optional)
@@ -181,7 +181,7 @@ public class OffersApi {
     /**
      * Return a list of offers (asynchronously)
      * Return a **list** of offers
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param limit maximum number of items in a list (optional)
      * @param after cursor that points to the end of the page of data that has been returned (optional)
      * @param before cursor that points to the start of the page of data that has been returned (optional)

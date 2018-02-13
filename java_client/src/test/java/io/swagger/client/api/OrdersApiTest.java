@@ -15,9 +15,9 @@ package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Error;
+import io.swagger.client.model.OpenOrder;
 import io.swagger.client.model.Order;
-import io.swagger.client.model.Submission;
-import io.swagger.client.model.SubmissionResult;
+import io.swagger.client.model.OrderList;
 
 import org.junit.Test;
 import org.junit.Ignore;
@@ -73,7 +73,51 @@ public class OrdersApiTest {
         
         String X_REQUEST_ID = null;
         
-        Order response = api.createOrder(offerId, X_REQUEST_ID);
+        OpenOrder response = api.createOrder(offerId, X_REQUEST_ID);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * get user order history
+     *
+     * get user order history
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getHistoryTest() throws ApiException {
+        
+        String X_REQUEST_ID = null;
+        
+        Integer limit = null;
+        
+        String before = null;
+        
+        String after = null;
+        
+        OrderList response = api.getHistory(X_REQUEST_ID, limit, before, after);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * get an order
+     *
+     * get an order
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getOrderTest() throws ApiException {
+        
+        String orderId = null;
+        
+        String X_REQUEST_ID = null;
+        
+        Order response = api.getOrder(orderId, X_REQUEST_ID);
 
         // TODO: test validations
     }
@@ -89,13 +133,13 @@ public class OrdersApiTest {
     @Test
     public void submitOrderTest() throws ApiException {
         
-        Submission submission = null;
+        Object body = null;
         
         String orderId = null;
         
         String X_REQUEST_ID = null;
         
-        SubmissionResult response = api.submitOrder(submission, orderId, X_REQUEST_ID);
+        api.submitOrder(body, orderId, X_REQUEST_ID);
 
         // TODO: test validations
     }

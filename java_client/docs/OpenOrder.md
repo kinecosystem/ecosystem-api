@@ -1,11 +1,10 @@
 
-# Submission
+# OpenOrder
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**offerType** | **String** |  |  [optional]
-**completedForm** | **Object** |  |  [optional]
+**id** | **String** |  | 
 **blockchainData** | [**BlockchainData**](BlockchainData.md) |  |  [optional]
 
 

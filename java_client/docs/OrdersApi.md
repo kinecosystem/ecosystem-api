@@ -5,7 +5,9 @@ All URIs are relative to *https://api.kinmarketplace.com/v1/*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelOrder**](OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
-[**createOrder**](OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/order | create an order for an offer
+[**createOrder**](OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/orders | create an order for an offer
+[**getHistory**](OrdersApi.md#getHistory) | **GET** /orders | get user order history
+[**getOrder**](OrdersApi.md#getOrder) | **GET** /orders/{order_id} | get an order
 [**submitOrder**](OrdersApi.md#submitOrder) | **POST** /orders/{order_id} | submit an order
 
 
@@ -31,7 +33,7 @@ OrdersApi apiInstance = new OrdersApi();
 
 String orderId = Arrays.asList("orderId_example"); // String | The order id
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
 try {
     apiInstance.cancelOrder(orderId, X_REQUEST_ID);
@@ -46,7 +48,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**| The order id |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
@@ -65,7 +67,7 @@ null (empty response body)
 
 <a name="createOrder"></a>
 # **createOrder**
-> Order createOrder(offerId, X_REQUEST_ID)
+> OpenOrder createOrder(offerId, X_REQUEST_ID)
 
 create an order for an offer
 
@@ -83,10 +85,10 @@ OrdersApi apiInstance = new OrdersApi();
 
 String offerId = Arrays.asList("offerId_example"); // String | The offer id
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
 try {
-    Order result = apiInstance.createOrder(offerId, X_REQUEST_ID);
+    OpenOrder result = apiInstance.createOrder(offerId, X_REQUEST_ID);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#createOrder");
@@ -99,7 +101,119 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offerId** | **String**| The offer id |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
+
+
+### Return type
+
+[**OpenOrder**](OpenOrder.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/jsonapplication/jsonapplication/json
+
+
+<a name="getHistory"></a>
+# **getHistory**
+> OrderList getHistory(X_REQUEST_ID, limit, before, after)
+
+get user order history
+
+get user order history
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.OrdersApi;
+
+
+
+OrdersApi apiInstance = new OrdersApi();
+
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
+
+Integer limit = Arrays.asList(56); // Integer | maximum number of items in a list
+
+String before = Arrays.asList("before_example"); // String | cursor that points to the start of the page of data that has been returned
+
+String after = Arrays.asList("after_example"); // String | cursor that points to the end of the page of data that has been returned
+
+try {
+    OrderList result = apiInstance.getHistory(X_REQUEST_ID, limit, before, after);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrdersApi#getHistory");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
+ **limit** | **Integer**| maximum number of items in a list | [optional] [enum: ]
+ **before** | **String**| cursor that points to the start of the page of data that has been returned | [optional]
+ **after** | **String**| cursor that points to the end of the page of data that has been returned | [optional]
+
+
+### Return type
+
+[**OrderList**](OrderList.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/jsonapplication/json
+
+
+<a name="getOrder"></a>
+# **getOrder**
+> Order getOrder(orderId, X_REQUEST_ID)
+
+get an order
+
+get an order
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.OrdersApi;
+
+
+
+OrdersApi apiInstance = new OrdersApi();
+
+String orderId = Arrays.asList("orderId_example"); // String | The order id
+
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
+
+try {
+    Order result = apiInstance.getOrder(orderId, X_REQUEST_ID);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrdersApi#getOrder");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| The order id |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
@@ -113,12 +227,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/jsonapplication/json
+ - **Accept**: application/jsonapplication/json
 
 
 <a name="submitOrder"></a>
 # **submitOrder**
-> SubmissionResult submitOrder(submission, orderId, X_REQUEST_ID)
+> submitOrder(body, orderId, X_REQUEST_ID)
 
 submit an order
 
@@ -134,15 +248,14 @@ submit an order
 
 OrdersApi apiInstance = new OrdersApi();
 
-Submission submission = ; // Submission | 
+Object body = ; // Object | 
 
 String orderId = Arrays.asList("orderId_example"); // String | The order id
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
 try {
-    SubmissionResult result = apiInstance.submitOrder(submission, orderId, X_REQUEST_ID);
-    System.out.println(result);
+    apiInstance.submitOrder(body, orderId, X_REQUEST_ID);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#submitOrder");
     e.printStackTrace();
@@ -153,14 +266,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **submission** | [**Submission**](.md)|  |
+ **body** | [**Object**](Object.md)|  |
  **orderId** | **String**| The order id |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
 
-[**SubmissionResult**](SubmissionResult.md)
+null (empty response body)
 
 ### Authorization
 

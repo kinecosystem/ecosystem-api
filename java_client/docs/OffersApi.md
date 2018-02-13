@@ -27,7 +27,7 @@ Return a **list** of offers
 
 OffersApi apiInstance = new OffersApi();
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
 Integer limit = Arrays.asList(56); // Integer | maximum number of items in a list
 
@@ -48,7 +48,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
  **limit** | **Integer**| maximum number of items in a list | [optional] [enum: ]
  **after** | **String**| cursor that points to the end of the page of data that has been returned | [optional]
  **before** | **String**| cursor that points to the start of the page of data that has been returned | [optional]

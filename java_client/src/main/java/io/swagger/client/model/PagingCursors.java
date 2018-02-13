@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * PagingCursors
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-13T14:49:31.179+02:00")
 public class PagingCursors {
 @SerializedName("after")
   private String after = null;

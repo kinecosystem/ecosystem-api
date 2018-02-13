@@ -25,54 +25,34 @@ import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
- * Submission
- */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
-public class Submission {
-@SerializedName("offer_type")
-  private String offerType = null;
-  @SerializedName("completed_form")
-  private Object completedForm = null;
+ * an open order that hasn&#x27;t been submitted yet
+ */@ApiModel(description = "an open order that hasn't been submitted yet")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-13T14:49:31.179+02:00")
+public class OpenOrder {
+@SerializedName("id")
+  private String id = null;
   @SerializedName("blockchain_data")
   private BlockchainData blockchainData = null;
   
-  public Submission offerType(String offerType) {
-    this.offerType = offerType;
+  public OpenOrder id(String id) {
+    this.id = id;
     return this;
   }
 
   
   /**
-  * Get offerType
-  * @return offerType
+  * Get id
+  * @return id
   **/
-  @ApiModelProperty(value = "")
-  public String getOfferType() {
-    return offerType;
+  @ApiModelProperty(example = "sdfsdfsdfsd", required = true, value = "")
+  public String getId() {
+    return id;
   }
-  public void setOfferType(String offerType) {
-    this.offerType = offerType;
-  }
-  
-  public Submission completedForm(Object completedForm) {
-    this.completedForm = completedForm;
-    return this;
-  }
-
-  
-  /**
-  * Get completedForm
-  * @return completedForm
-  **/
-  @ApiModelProperty(value = "")
-  public Object getCompletedForm() {
-    return completedForm;
-  }
-  public void setCompletedForm(Object completedForm) {
-    this.completedForm = completedForm;
+  public void setId(String id) {
+    this.id = id;
   }
   
-  public Submission blockchainData(BlockchainData blockchainData) {
+  public OpenOrder blockchainData(BlockchainData blockchainData) {
     this.blockchainData = blockchainData;
     return this;
   }
@@ -98,24 +78,22 @@ public class Submission {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Submission submission = (Submission) o;
-    return Objects.equals(this.offerType, submission.offerType) &&
-        Objects.equals(this.completedForm, submission.completedForm) &&
-        Objects.equals(this.blockchainData, submission.blockchainData);
+    OpenOrder openOrder = (OpenOrder) o;
+    return Objects.equals(this.id, openOrder.id) &&
+        Objects.equals(this.blockchainData, openOrder.blockchainData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offerType, completedForm, blockchainData);
+    return Objects.hash(id, blockchainData);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Submission {\n");
+    sb.append("class OpenOrder {\n");
     
-    sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
-    sb.append("    completedForm: ").append(toIndentedString(completedForm)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("}");
     return sb.toString();

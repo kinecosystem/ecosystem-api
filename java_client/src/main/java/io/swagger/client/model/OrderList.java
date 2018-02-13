@@ -21,31 +21,31 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.Order;
 import io.swagger.client.model.Paging;
-import io.swagger.client.model.TransactionHistoryItem;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TransactionHistoryList
- */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
-public class TransactionHistoryList {
+ * a list of submitted orders
+ */@ApiModel(description = "a list of submitted orders")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-13T14:49:31.179+02:00")
+public class OrderList {
 @SerializedName("transactions")
-  private List<TransactionHistoryItem> transactions = null;
+  private List<Order> transactions = null;
   @SerializedName("paging")
   private Paging paging = null;
   
-  public TransactionHistoryList transactions(List<TransactionHistoryItem> transactions) {
+  public OrderList transactions(List<Order> transactions) {
     this.transactions = transactions;
     return this;
   }
 
-  public TransactionHistoryList addTransactionsItem(TransactionHistoryItem transactionsItem) {
+  public OrderList addTransactionsItem(Order transactionsItem) {
     
     if (this.transactions == null) {
-      this.transactions = new ArrayList<TransactionHistoryItem>();
+      this.transactions = new ArrayList<Order>();
     }
     
     this.transactions.add(transactionsItem);
@@ -57,14 +57,14 @@ public class TransactionHistoryList {
   * @return transactions
   **/
   @ApiModelProperty(value = "")
-  public List<TransactionHistoryItem> getTransactions() {
+  public List<Order> getTransactions() {
     return transactions;
   }
-  public void setTransactions(List<TransactionHistoryItem> transactions) {
+  public void setTransactions(List<Order> transactions) {
     this.transactions = transactions;
   }
   
-  public TransactionHistoryList paging(Paging paging) {
+  public OrderList paging(Paging paging) {
     this.paging = paging;
     return this;
   }
@@ -90,9 +90,9 @@ public class TransactionHistoryList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TransactionHistoryList transactionHistoryList = (TransactionHistoryList) o;
-    return Objects.equals(this.transactions, transactionHistoryList.transactions) &&
-        Objects.equals(this.paging, transactionHistoryList.paging);
+    OrderList orderList = (OrderList) o;
+    return Objects.equals(this.transactions, orderList.transactions) &&
+        Objects.equals(this.paging, orderList.paging);
   }
 
   @Override
@@ -103,7 +103,7 @@ public class TransactionHistoryList {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TransactionHistoryList {\n");
+    sb.append("class OrderList {\n");
     
     sb.append("    transactions: ").append(toIndentedString(transactions)).append("\n");
     sb.append("    paging: ").append(toIndentedString(paging)).append("\n");

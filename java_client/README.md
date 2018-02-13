@@ -86,7 +86,7 @@ public class AuthApiExample {
 
         AuthApi apiInstance = new AuthApi();
         
-        String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id
+        String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
         
         try {
             AuthToken result = apiInstance.activateAcount(X_REQUEST_ID);
@@ -110,9 +110,10 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**signIn**](docs/AuthApi.md#signIn) | **POST** /users | Sign in/ Log in
 *OffersApi* | [**getOffers**](docs/OffersApi.md#getOffers) | **GET** /offers | Return a list of offers
 *OrdersApi* | [**cancelOrder**](docs/OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
-*OrdersApi* | [**createOrder**](docs/OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/order | create an order for an offer
+*OrdersApi* | [**createOrder**](docs/OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/orders | create an order for an offer
+*OrdersApi* | [**getHistory**](docs/OrdersApi.md#getHistory) | **GET** /orders | get user order history
+*OrdersApi* | [**getOrder**](docs/OrdersApi.md#getOrder) | **GET** /orders/{order_id} | get an order
 *OrdersApi* | [**submitOrder**](docs/OrdersApi.md#submitOrder) | **POST** /orders/{order_id} | submit an order
-*TransactionHistoryApi* | [**getHistory**](docs/TransactionHistoryApi.md#getHistory) | **GET** /transactions | get user history
 
 
 ## Documentation for Models
@@ -120,24 +121,19 @@ Class | Method | HTTP request | Description
  - [AuthToken](docs/AuthToken.md)
  - [BlockchainData](docs/BlockchainData.md)
  - [Coupon](docs/Coupon.md)
- - [EarnResult](docs/EarnResult.md)
  - [EarnSubmission](docs/EarnSubmission.md)
  - [Error](docs/Error.md)
  - [HTMLPoll](docs/HTMLPoll.md)
  - [HTMLPollAnswer](docs/HTMLPollAnswer.md)
  - [Offer](docs/Offer.md)
  - [OfferList](docs/OfferList.md)
+ - [OpenOrder](docs/OpenOrder.md)
  - [Order](docs/Order.md)
+ - [OrderList](docs/OrderList.md)
  - [Paging](docs/Paging.md)
  - [PagingCursors](docs/PagingCursors.md)
  - [SignInData](docs/SignInData.md)
- - [SpendResult](docs/SpendResult.md)
- - [SpendResultAsset](docs/SpendResultAsset.md)
  - [SpendSubmission](docs/SpendSubmission.md)
- - [Submission](docs/Submission.md)
- - [SubmissionResult](docs/SubmissionResult.md)
- - [TransactionHistoryItem](docs/TransactionHistoryItem.md)
- - [TransactionHistoryList](docs/TransactionHistoryList.md)
 
 
 ## Documentation for Authorization

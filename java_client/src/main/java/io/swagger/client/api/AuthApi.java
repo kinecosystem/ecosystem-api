@@ -66,7 +66,7 @@ public class AuthApi {
     
     /**
      * Build call for activateAcount
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -140,7 +140,7 @@ public class AuthApi {
     /**
      * Activate account
      * Activate account by accepting TOS
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return AuthToken
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
@@ -153,7 +153,7 @@ public class AuthApi {
     /**
      * Activate account
      * Activate account by accepting TOS
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return ApiResponse&lt;AuthToken&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
@@ -167,7 +167,7 @@ public class AuthApi {
     /**
      * Activate account (asynchronously)
      * Activate account by accepting TOS
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -203,7 +203,7 @@ public class AuthApi {
     /**
      * Build call for signIn
      * @param signindata  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -283,7 +283,7 @@ public class AuthApi {
      * Sign in/ Log in
      * Sign a user into kin marketplace
      * @param signindata  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return AuthToken
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
@@ -297,7 +297,7 @@ public class AuthApi {
      * Sign in/ Log in
      * Sign a user into kin marketplace
      * @param signindata  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return ApiResponse&lt;AuthToken&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
@@ -312,7 +312,7 @@ public class AuthApi {
      * Sign in/ Log in (asynchronously)
      * Sign a user into kin marketplace
      * @param signindata  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id (required)
+     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

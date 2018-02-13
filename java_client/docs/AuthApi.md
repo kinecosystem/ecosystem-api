@@ -28,7 +28,7 @@ Activate account by accepting TOS
 
 AuthApi apiInstance = new AuthApi();
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
 try {
     AuthToken result = apiInstance.activateAcount(X_REQUEST_ID);
@@ -43,7 +43,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
@@ -80,7 +80,7 @@ AuthApi apiInstance = new AuthApi();
 
 SignInData signindata = ; // SignInData | 
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
 try {
     AuthToken result = apiInstance.signIn(signindata, X_REQUEST_ID);
@@ -96,7 +96,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **signindata** | [**SignInData**](.md)|  |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type

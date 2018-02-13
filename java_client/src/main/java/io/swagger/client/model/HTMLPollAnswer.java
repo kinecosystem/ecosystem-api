@@ -27,9 +27,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * HTMLPollAnswer
- */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-12T14:35:13.051+02:00")
+ * the result of a completed html poll
+ */@ApiModel(description = "the result of a completed html poll")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-13T14:49:31.179+02:00")
 public class HTMLPollAnswer {
 
     /**
