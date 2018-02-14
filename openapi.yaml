@@ -359,7 +359,7 @@ components:
       description: "a list of submitted orders"
       type: object
       properties:
-        transactions:
+        orders:
           type: array
           items:
             $ref: '#/components/schemas/Order'
