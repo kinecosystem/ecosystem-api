@@ -367,40 +367,18 @@ components:
           type: object
           $ref: '#/components/schemas/Paging'
 
-    HTMLPoll:
-      description: "a poll implemented as an HTML page"
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-            - HTMLPoll
-        content:
-          type: string
-
-    HTMLPollAnswer:
+    PollAnswer:
       description: "the result of a completed html poll"
       type: object
       properties:
         content_type:
           type: string
           enum:
-            - HTMLPollAnswer
+            - PollAnswer
         answers:
           type: object
           additionalProperties:
             type: string
-
-    Coupon:
-      description: "a coupon offer"
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-            - Coupon
-        description:
-          type: string
 
     Offer:
       description: "offer details for the offer list"
@@ -417,6 +395,7 @@ components:
         id:
           type: string
           example: "1231321"
+        # for the offer list page
         title:
           type: string
           example: "Spotify Subscription"
@@ -429,18 +408,21 @@ components:
         amount:
           type: integer
           example: 300
-        content:
-          type: object
-          oneOf:
-            - $ref: '#/components/schemas/HTMLPoll'
-            - $ref: '#/components/schemas/Coupon'
-          discriminator:
-            propertyName: content_type
         offer_type:
           type: string
           enum:
             - earn
             - spend
+        # for the offer page
+        content_type:
+          description: "determines the type of data that appears in the content"
+          type: string
+          enum:
+            - poll
+            - coupon
+        content:
+          description: "The coupon description or the poll payload"
+          type: string
 
     OfferList:
       description: "a list of offers"
@@ -491,7 +473,7 @@ components:
         completed_form:
           type: object
           oneOf:
-            - $ref: '#/components/schemas/HTMLPollAnswer'
+            - $ref: '#/components/schemas/PollAnswer'
           discriminator:
             propertyName: content_type
 
