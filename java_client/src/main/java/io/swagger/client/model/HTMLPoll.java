@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * a poll implemented as an HTML page
  */@ApiModel(description = "a poll implemented as an HTML page")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-13T14:49:31.179+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T09:43:13.715+02:00")
 public class HTMLPoll {
 
     /**

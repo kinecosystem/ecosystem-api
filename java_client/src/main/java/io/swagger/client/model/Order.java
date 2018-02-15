@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * a submitted order. it can be pending/completed/failed
  */@ApiModel(description = "a submitted order. it can be pending/completed/failed")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-13T14:49:31.179+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T09:43:13.715+02:00")
 public class Order {
 @SerializedName("result")
   private Object result = null;

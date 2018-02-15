@@ -30,38 +30,38 @@ import java.util.List;
 /**
  * a list of submitted orders
  */@ApiModel(description = "a list of submitted orders")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-13T14:49:31.179+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T09:43:13.715+02:00")
 public class OrderList {
-@SerializedName("transactions")
-  private List<Order> transactions = null;
+@SerializedName("orders")
+  private List<Order> orders = null;
   @SerializedName("paging")
   private Paging paging = null;
   
-  public OrderList transactions(List<Order> transactions) {
-    this.transactions = transactions;
+  public OrderList orders(List<Order> orders) {
+    this.orders = orders;
     return this;
   }
 
-  public OrderList addTransactionsItem(Order transactionsItem) {
+  public OrderList addOrdersItem(Order ordersItem) {
     
-    if (this.transactions == null) {
-      this.transactions = new ArrayList<Order>();
+    if (this.orders == null) {
+      this.orders = new ArrayList<Order>();
     }
     
-    this.transactions.add(transactionsItem);
+    this.orders.add(ordersItem);
     return this;
   }
   
   /**
-  * Get transactions
-  * @return transactions
+  * Get orders
+  * @return orders
   **/
   @ApiModelProperty(value = "")
-  public List<Order> getTransactions() {
-    return transactions;
+  public List<Order> getOrders() {
+    return orders;
   }
-  public void setTransactions(List<Order> transactions) {
-    this.transactions = transactions;
+  public void setOrders(List<Order> orders) {
+    this.orders = orders;
   }
   
   public OrderList paging(Paging paging) {
@@ -91,13 +91,13 @@ public class OrderList {
       return false;
     }
     OrderList orderList = (OrderList) o;
-    return Objects.equals(this.transactions, orderList.transactions) &&
+    return Objects.equals(this.orders, orderList.orders) &&
         Objects.equals(this.paging, orderList.paging);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transactions, paging);
+    return Objects.hash(orders, paging);
   }
   
   @Override
@@ -105,7 +105,7 @@ public class OrderList {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderList {\n");
     
-    sb.append("    transactions: ").append(toIndentedString(transactions)).append("\n");
+    sb.append("    orders: ").append(toIndentedString(orders)).append("\n");
     sb.append("    paging: ").append(toIndentedString(paging)).append("\n");
     sb.append("}");
     return sb.toString();

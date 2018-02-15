@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * payload required for signing in
  */@ApiModel(description = "payload required for signing in")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-13T14:49:31.179+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T09:43:13.715+02:00")
 public class SignInData {
 @SerializedName("jwt")
   private String jwt = null;
