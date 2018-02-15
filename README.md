@@ -2,7 +2,7 @@
 
 The `openapi.yaml` file contains definitions of the services and models that will be available for our client to access on the server.
 
-To edit the file you can use the online editor: https://editor.swagger.io//#/
+To edit the file you can use the [online editor](http://editor.swagger.io/?url=https://raw.githubusercontent.com/kinfoundation/ecosystem-api/master/openapi.yaml)
 
 ## creating client stubs
 
