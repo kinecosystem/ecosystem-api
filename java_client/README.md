@@ -120,11 +120,8 @@ Class | Method | HTTP request | Description
 
  - [AuthToken](docs/AuthToken.md)
  - [BlockchainData](docs/BlockchainData.md)
- - [Coupon](docs/Coupon.md)
  - [EarnSubmission](docs/EarnSubmission.md)
  - [Error](docs/Error.md)
- - [HTMLPoll](docs/HTMLPoll.md)
- - [HTMLPollAnswer](docs/HTMLPollAnswer.md)
  - [Offer](docs/Offer.md)
  - [OfferList](docs/OfferList.md)
  - [OpenOrder](docs/OpenOrder.md)
@@ -132,6 +129,7 @@ Class | Method | HTTP request | Description
  - [OrderList](docs/OrderList.md)
  - [Paging](docs/Paging.md)
  - [PagingCursors](docs/PagingCursors.md)
+ - [PollAnswer](docs/PollAnswer.md)
  - [SignInData](docs/SignInData.md)
  - [SpendSubmission](docs/SpendSubmission.md)
 

@@ -29,8 +29,8 @@ import java.util.Map;
 /**
  * the result of a completed html poll
  */@ApiModel(description = "the result of a completed html poll")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T09:43:13.715+02:00")
-public class HTMLPollAnswer {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T10:30:05.403+02:00")
+public class PollAnswer {
 
     /**
    * Gets or Sets contentType
@@ -38,7 +38,7 @@ public class HTMLPollAnswer {
   @JsonAdapter(ContentTypeEnum.Adapter.class)
   public enum ContentTypeEnum {
     
-    HTMLPOLLANSWER("HTMLPollAnswer");
+    POLLANSWER("PollAnswer");
 
     private String value;
 
@@ -83,7 +83,7 @@ public class HTMLPollAnswer {
   @SerializedName("answers")
   private Map<String, String> answers = null;
   
-  public HTMLPollAnswer contentType(ContentTypeEnum contentType) {
+  public PollAnswer contentType(ContentTypeEnum contentType) {
     this.contentType = contentType;
     return this;
   }
@@ -101,12 +101,12 @@ public class HTMLPollAnswer {
     this.contentType = contentType;
   }
   
-  public HTMLPollAnswer answers(Map<String, String> answers) {
+  public PollAnswer answers(Map<String, String> answers) {
     this.answers = answers;
     return this;
   }
 
-  public HTMLPollAnswer putAnswersItem(String key, String answersItem) {
+  public PollAnswer putAnswersItem(String key, String answersItem) {
     
     if (this.answers == null) {
       this.answers = null;
@@ -135,9 +135,9 @@ public class HTMLPollAnswer {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    HTMLPollAnswer htMLPollAnswer = (HTMLPollAnswer) o;
-    return Objects.equals(this.contentType, htMLPollAnswer.contentType) &&
-        Objects.equals(this.answers, htMLPollAnswer.answers);
+    PollAnswer pollAnswer = (PollAnswer) o;
+    return Objects.equals(this.contentType, pollAnswer.contentType) &&
+        Objects.equals(this.answers, pollAnswer.answers);
   }
 
   @Override
@@ -148,7 +148,7 @@ public class HTMLPollAnswer {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class HTMLPollAnswer {\n");
+    sb.append("class PollAnswer {\n");
     
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    answers: ").append(toIndentedString(answers)).append("\n");

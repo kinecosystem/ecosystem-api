@@ -1,5 +1,5 @@
 
-# HTMLPollAnswer
+# PollAnswer
 
 ## Properties
 Name | Type | Description | Notes
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Enum: ContentTypeEnum
 Name | Value
 ---- | -----
-HTMLPOLLANSWER | &quot;HTMLPollAnswer&quot;
+POLLANSWER | &quot;PollAnswer&quot;
 
 
 

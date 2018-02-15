@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * offer details for the offer list
  */@ApiModel(description = "offer details for the offer list")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T09:43:13.715+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T10:30:05.403+02:00")
 public class Offer {
 @SerializedName("id")
   private String id = null;
@@ -38,8 +38,6 @@ public class Offer {
   private String image = null;
   @SerializedName("amount")
   private Integer amount = null;
-  @SerializedName("content")
-  private Object content = null;
   
     /**
    * Gets or Sets offerType
@@ -90,6 +88,58 @@ public class Offer {
   
   @SerializedName("offer_type")
   private OfferTypeEnum offerType = null;
+  
+    /**
+   * determines the type of data that appears in the content
+   */
+  @JsonAdapter(ContentTypeEnum.Adapter.class)
+  public enum ContentTypeEnum {
+    
+    POLL("poll"),
+    COUPON("coupon");
+
+    private String value;
+
+    ContentTypeEnum(String value) {
+      this.value = value;
+    }
+    
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    
+    public static ContentTypeEnum fromValue(String text) {
+      for (ContentTypeEnum b : ContentTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    
+    public static class Adapter extends TypeAdapter<ContentTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ContentTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ContentTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ContentTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+  
+  @SerializedName("content_type")
+  private ContentTypeEnum contentType = null;
+  @SerializedName("content")
+  private String content = null;
   
   public Offer id(String id) {
     this.id = id;
@@ -181,24 +231,6 @@ public class Offer {
     this.amount = amount;
   }
   
-  public Offer content(Object content) {
-    this.content = content;
-    return this;
-  }
-
-  
-  /**
-  * Get content
-  * @return content
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Object getContent() {
-    return content;
-  }
-  public void setContent(Object content) {
-    this.content = content;
-  }
-  
   public Offer offerType(OfferTypeEnum offerType) {
     this.offerType = offerType;
     return this;
@@ -217,6 +249,42 @@ public class Offer {
     this.offerType = offerType;
   }
   
+  public Offer contentType(ContentTypeEnum contentType) {
+    this.contentType = contentType;
+    return this;
+  }
+
+  
+  /**
+  * determines the type of data that appears in the content
+  * @return contentType
+  **/
+  @ApiModelProperty(value = "determines the type of data that appears in the content")
+  public ContentTypeEnum getContentType() {
+    return contentType;
+  }
+  public void setContentType(ContentTypeEnum contentType) {
+    this.contentType = contentType;
+  }
+  
+  public Offer content(String content) {
+    this.content = content;
+    return this;
+  }
+
+  
+  /**
+  * The coupon description or the poll payload
+  * @return content
+  **/
+  @ApiModelProperty(required = true, value = "The coupon description or the poll payload")
+  public String getContent() {
+    return content;
+  }
+  public void setContent(String content) {
+    this.content = content;
+  }
+  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -231,13 +299,14 @@ public class Offer {
         Objects.equals(this.description, offer.description) &&
         Objects.equals(this.image, offer.image) &&
         Objects.equals(this.amount, offer.amount) &&
-        Objects.equals(this.content, offer.content) &&
-        Objects.equals(this.offerType, offer.offerType);
+        Objects.equals(this.offerType, offer.offerType) &&
+        Objects.equals(this.contentType, offer.contentType) &&
+        Objects.equals(this.content, offer.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, image, amount, content, offerType);
+    return Objects.hash(id, title, description, image, amount, offerType, contentType, content);
   }
   
   @Override
@@ -250,8 +319,9 @@ public class Offer {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
+    sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();
   }
