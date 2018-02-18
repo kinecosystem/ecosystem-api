@@ -328,7 +328,7 @@ components:
           description: unique identifier of this item
         completion_date: # taken from blockchain
           type: string
-          example: "2018-09-13T14:33:33"
+          example: "2018-09-13T14:33:33Z"
           description: UTC ISO
         # filled by payment service
         blockchain_data:
