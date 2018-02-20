@@ -441,10 +441,14 @@ components:
       type: object
       required:
         - id
+        - expiration_date
       properties:
         id:
           type: string
           example: "sdfsdfsdfsd"
+        expiration_date:
+          type: string
+          example: "2018-08-09T11:25:33Z"
         blockchain_data:
           type: object
           $ref: "#/components/schemas/BlockchainData"
@@ -479,18 +483,39 @@ components:
 
     SignInData:
       description: "payload required for signing in"
-      type: object
-      properties:
-        jwt:
-          type: string
-          example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0
-          description: >
-            jwt should contain "user_id", "app_id" and "timestamp"
-        device_id:
-          type: string
-        public_address:
-          type: string
-          description: the address where earned funds will go to
+      allOf:
+        - type: object
+          properties:
+            jwt:
+              type: string
+              example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0
+              description: >
+                jwt should contain "user_id", "app_id" and "timestamp", issuer, 
+        - type: object
+          required:
+            - user_id
+            - app_id
+          properties:
+            user_id:
+              type: string
+            app_id:
+              type: string
+        - type: object
+          required:
+            - device_id
+            - public_address
+            - sign_in_type
+          properties:
+            device_id:
+              type: string
+            public_address:
+              type: string
+              description: the address where earned funds will go to 
+            sign_in_type:
+              type: string
+              enum: 
+                - jwt
+                - whitelist
 
     AuthToken:
       description: "token issued by marketplace server"
@@ -501,6 +526,9 @@ components:
           example: AAAAA-RRRRRR-DDDDD-BBBBBB
         activated:  # did approve terms of service?
           type: boolean
+        expiration_date:
+          type: string
+          example: "2018-09-29T12:55:44Z"
 
     Paging:
       description: "object accompanying lists - used to fetch next/previous section"
