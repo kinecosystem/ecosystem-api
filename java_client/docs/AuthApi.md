@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 <a name="signIn"></a>
 # **signIn**
-> AuthToken signIn(signindata, X_REQUEST_ID)
+> AuthToken signIn(body, X_REQUEST_ID)
 
 Sign in/ Log in
 
@@ -78,12 +78,12 @@ Sign a user into kin marketplace
 
 AuthApi apiInstance = new AuthApi();
 
-SignInData signindata = ; // SignInData | 
+Object body = ; // Object | 
 
 String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
 try {
-    AuthToken result = apiInstance.signIn(signindata, X_REQUEST_ID);
+    AuthToken result = apiInstance.signIn(body, X_REQUEST_ID);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AuthApi#signIn");
@@ -95,7 +95,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **signindata** | [**SignInData**](.md)|  |
+ **body** | [**Object**](Object.md)|  |
  **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 

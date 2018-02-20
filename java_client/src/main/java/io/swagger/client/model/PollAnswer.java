@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * the result of a completed html poll
  */@ApiModel(description = "the result of a completed html poll")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T10:30:05.403+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
 public class PollAnswer {
 
     /**

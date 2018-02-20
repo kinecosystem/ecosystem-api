@@ -27,10 +27,12 @@ import java.io.IOException;
 /**
  * an open order that hasn&#x27;t been submitted yet
  */@ApiModel(description = "an open order that hasn't been submitted yet")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T10:30:05.403+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
 public class OpenOrder {
 @SerializedName("id")
   private String id = null;
+  @SerializedName("expiration_date")
+  private String expirationDate = null;
   @SerializedName("blockchain_data")
   private BlockchainData blockchainData = null;
   
@@ -50,6 +52,24 @@ public class OpenOrder {
   }
   public void setId(String id) {
     this.id = id;
+  }
+  
+  public OpenOrder expirationDate(String expirationDate) {
+    this.expirationDate = expirationDate;
+    return this;
+  }
+
+  
+  /**
+  * Get expirationDate
+  * @return expirationDate
+  **/
+  @ApiModelProperty(example = "2018-08-09T11:25:33Z", required = true, value = "")
+  public String getExpirationDate() {
+    return expirationDate;
+  }
+  public void setExpirationDate(String expirationDate) {
+    this.expirationDate = expirationDate;
   }
   
   public OpenOrder blockchainData(BlockchainData blockchainData) {
@@ -80,12 +100,13 @@ public class OpenOrder {
     }
     OpenOrder openOrder = (OpenOrder) o;
     return Objects.equals(this.id, openOrder.id) &&
+        Objects.equals(this.expirationDate, openOrder.expirationDate) &&
         Objects.equals(this.blockchainData, openOrder.blockchainData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, blockchainData);
+    return Objects.hash(id, expirationDate, blockchainData);
   }
   
   @Override
@@ -94,6 +115,7 @@ public class OpenOrder {
     sb.append("class OpenOrder {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("}");
     return sb.toString();

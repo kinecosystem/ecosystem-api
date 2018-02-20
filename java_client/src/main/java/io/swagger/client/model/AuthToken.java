@@ -26,12 +26,14 @@ import java.io.IOException;
 /**
  * token issued by marketplace server
  */@ApiModel(description = "token issued by marketplace server")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T10:30:05.403+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
 public class AuthToken {
 @SerializedName("token")
   private String token = null;
   @SerializedName("activated")
   private Boolean activated = null;
+  @SerializedName("expiration_date")
+  private String expirationDate = null;
   
   public AuthToken token(String token) {
     this.token = token;
@@ -69,6 +71,24 @@ public class AuthToken {
     this.activated = activated;
   }
   
+  public AuthToken expirationDate(String expirationDate) {
+    this.expirationDate = expirationDate;
+    return this;
+  }
+
+  
+  /**
+  * Get expirationDate
+  * @return expirationDate
+  **/
+  @ApiModelProperty(example = "2018-09-29T12:55:44Z", value = "")
+  public String getExpirationDate() {
+    return expirationDate;
+  }
+  public void setExpirationDate(String expirationDate) {
+    this.expirationDate = expirationDate;
+  }
+  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -79,12 +99,13 @@ public class AuthToken {
     }
     AuthToken authToken = (AuthToken) o;
     return Objects.equals(this.token, authToken.token) &&
-        Objects.equals(this.activated, authToken.activated);
+        Objects.equals(this.activated, authToken.activated) &&
+        Objects.equals(this.expirationDate, authToken.expirationDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(token, activated);
+    return Objects.hash(token, activated, expirationDate);
   }
   
   @Override
@@ -94,6 +115,7 @@ public class AuthToken {
     
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    activated: ").append(toIndentedString(activated)).append("\n");
+    sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

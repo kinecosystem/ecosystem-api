@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * a submitted order. it can be pending/completed/failed
  */@ApiModel(description = "a submitted order. it can be pending/completed/failed")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T10:30:05.403+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
 public class Order {
 @SerializedName("result")
   private Object result = null;
@@ -211,7 +211,7 @@ public class Order {
   * UTC ISO
   * @return completionDate
   **/
-  @ApiModelProperty(example = "2018-09-13T14:33:33", required = true, value = "UTC ISO")
+  @ApiModelProperty(example = "2018-09-13T14:33:33Z", required = true, value = "UTC ISO")
   public String getCompletionDate() {
     return completionDate;
   }

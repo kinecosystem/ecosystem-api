@@ -16,7 +16,6 @@ package io.swagger.client.api;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.AuthToken;
 import io.swagger.client.model.Error;
-import io.swagger.client.model.SignInData;
 
 import org.junit.Test;
 import org.junit.Ignore;
@@ -66,11 +65,11 @@ public class AuthApiTest {
     @Test
     public void signInTest() throws ApiException {
         
-        SignInData signindata = null;
+        Object body = null;
         
         String X_REQUEST_ID = null;
         
-        AuthToken response = api.signIn(signindata, X_REQUEST_ID);
+        AuthToken response = api.signIn(body, X_REQUEST_ID);
 
         // TODO: test validations
     }

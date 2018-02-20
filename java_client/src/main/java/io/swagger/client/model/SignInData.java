@@ -26,14 +26,68 @@ import java.io.IOException;
 /**
  * payload required for signing in
  */@ApiModel(description = "payload required for signing in")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-15T10:30:05.403+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
 public class SignInData {
 @SerializedName("jwt")
   private String jwt = null;
+  @SerializedName("user_id")
+  private String userId = null;
+  @SerializedName("app_id")
+  private String appId = null;
   @SerializedName("device_id")
   private String deviceId = null;
   @SerializedName("public_address")
   private String publicAddress = null;
+  
+    /**
+   * Gets or Sets signInType
+   */
+  @JsonAdapter(SignInTypeEnum.Adapter.class)
+  public enum SignInTypeEnum {
+    
+    JWT("jwt"),
+    WHITELIST("whitelist");
+
+    private String value;
+
+    SignInTypeEnum(String value) {
+      this.value = value;
+    }
+    
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    
+    public static SignInTypeEnum fromValue(String text) {
+      for (SignInTypeEnum b : SignInTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    
+    public static class Adapter extends TypeAdapter<SignInTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final SignInTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public SignInTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return SignInTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+  
+  @SerializedName("sign_in_type")
+  private SignInTypeEnum signInType = null;
   
   public SignInData jwt(String jwt) {
     this.jwt = jwt;
@@ -42,15 +96,51 @@ public class SignInData {
 
   
   /**
-  * jwt should contain \&quot;user_id\&quot;, \&quot;app_id\&quot; and \&quot;timestamp\&quot; 
+  * jwt should contain \&quot;user_id\&quot;, \&quot;app_id\&quot; and \&quot;timestamp\&quot;, issuer,  
   * @return jwt
   **/
-  @ApiModelProperty(example = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0", value = "jwt should contain \"user_id\", \"app_id\" and \"timestamp\" ")
+  @ApiModelProperty(example = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0", value = "jwt should contain \"user_id\", \"app_id\" and \"timestamp\", issuer,  ")
   public String getJwt() {
     return jwt;
   }
   public void setJwt(String jwt) {
     this.jwt = jwt;
+  }
+  
+  public SignInData userId(String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  
+  /**
+  * Get userId
+  * @return userId
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getUserId() {
+    return userId;
+  }
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+  
+  public SignInData appId(String appId) {
+    this.appId = appId;
+    return this;
+  }
+
+  
+  /**
+  * Get appId
+  * @return appId
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getAppId() {
+    return appId;
+  }
+  public void setAppId(String appId) {
+    this.appId = appId;
   }
   
   public SignInData deviceId(String deviceId) {
@@ -63,7 +153,7 @@ public class SignInData {
   * Get deviceId
   * @return deviceId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getDeviceId() {
     return deviceId;
   }
@@ -81,12 +171,30 @@ public class SignInData {
   * the address where earned funds will go to
   * @return publicAddress
   **/
-  @ApiModelProperty(value = "the address where earned funds will go to")
+  @ApiModelProperty(required = true, value = "the address where earned funds will go to")
   public String getPublicAddress() {
     return publicAddress;
   }
   public void setPublicAddress(String publicAddress) {
     this.publicAddress = publicAddress;
+  }
+  
+  public SignInData signInType(SignInTypeEnum signInType) {
+    this.signInType = signInType;
+    return this;
+  }
+
+  
+  /**
+  * Get signInType
+  * @return signInType
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public SignInTypeEnum getSignInType() {
+    return signInType;
+  }
+  public void setSignInType(SignInTypeEnum signInType) {
+    this.signInType = signInType;
   }
   
   @Override
@@ -99,13 +207,16 @@ public class SignInData {
     }
     SignInData signInData = (SignInData) o;
     return Objects.equals(this.jwt, signInData.jwt) &&
+        Objects.equals(this.userId, signInData.userId) &&
+        Objects.equals(this.appId, signInData.appId) &&
         Objects.equals(this.deviceId, signInData.deviceId) &&
-        Objects.equals(this.publicAddress, signInData.publicAddress);
+        Objects.equals(this.publicAddress, signInData.publicAddress) &&
+        Objects.equals(this.signInType, signInData.signInType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jwt, deviceId, publicAddress);
+    return Objects.hash(jwt, userId, appId, deviceId, publicAddress, signInType);
   }
   
   @Override
@@ -114,8 +225,11 @@ public class SignInData {
     sb.append("class SignInData {\n");
     
     sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    appId: ").append(toIndentedString(appId)).append("\n");
     sb.append("    deviceId: ").append(toIndentedString(deviceId)).append("\n");
     sb.append("    publicAddress: ").append(toIndentedString(publicAddress)).append("\n");
+    sb.append("    signInType: ").append(toIndentedString(signInType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
