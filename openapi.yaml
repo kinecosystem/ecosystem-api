@@ -162,20 +162,20 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/SpendSubmission'
-                - $ref: '#/components/schemas/EarnSubmission'
+              $ref: '#/components/schemas/EarnSubmission'
       responses:
         '201':
           description: |
             Order has successfully been submitted
             * For earn - poll form is valid, client should wait for payment on blockchain
-            * For spend - server is notified and waiting for payment on blockchain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
         '400':
           description: |
             Bad Request
-            * For earn - payload is invalid
-            * For spend/ earn - order has expired
+            * For earn - payload is invalid/ order expired
           content:
             application/json:
               schema:
@@ -358,6 +358,8 @@ components:
     OrderList:
       description: "a list of submitted orders"
       type: object
+      required:
+        - orders
       properties:
         orders:
           type: array
@@ -367,18 +369,15 @@ components:
           type: object
           $ref: '#/components/schemas/Paging'
 
-    PollAnswer:
-      description: "the result of a completed html poll"
+    EarnSubmission:
+      description: "result of earn offer i.e. completed html poll"
       type: object
+      required:
+        - content
       properties:
-        content_type:
+        content:
           type: string
-          enum:
-            - PollAnswer
-        answers:
-          type: object
-          additionalProperties:
-            type: string
+          description: "json encoded payload related to the earn offer"
 
     Offer:
       description: "offer details for the offer list"
@@ -427,6 +426,8 @@ components:
     OfferList:
       description: "a list of offers"
       type: object
+      required:
+        - offers
       properties:
         offers:
           type: array
@@ -453,33 +454,6 @@ components:
           type: object
           $ref: "#/components/schemas/BlockchainData"
           description: recipient_address - relevant in case of spend
-
-    SpendSubmission:
-      description: "an order submission of a spend offer"
-      type: object
-      properties:
-        offer_type:
-          type: string
-          enum:
-            - SpendSubmission
-        blockchain_data:
-          type: object
-          $ref: "#/components/schemas/BlockchainData"
-
-    EarnSubmission:
-      description: "an order submission of an earn offer - validation request of the poll"
-      type: object
-      properties:
-        offer_type:
-          type: string
-          enum:
-            - EarnSubmission
-        completed_form:
-          type: object
-          oneOf:
-            - $ref: '#/components/schemas/PollAnswer'
-          discriminator:
-            propertyName: content_type
 
     SignInData:
       description: "payload required for signing in"
@@ -520,6 +494,10 @@ components:
     AuthToken:
       description: "token issued by marketplace server"
       type: object
+      required:
+        - token
+        - activated
+        - expiration_date
       properties:
         token:
           type: string
