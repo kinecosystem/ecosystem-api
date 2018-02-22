@@ -14,6 +14,7 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
+import io.swagger.client.model.EarnSubmission;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.OpenOrder;
 import io.swagger.client.model.Order;
@@ -133,13 +134,13 @@ public class OrdersApiTest {
     @Test
     public void submitOrderTest() throws ApiException {
         
-        Object body = null;
+        EarnSubmission earnsubmission = null;
         
         String orderId = null;
         
         String X_REQUEST_ID = null;
         
-        api.submitOrder(body, orderId, X_REQUEST_ID);
+        Order response = api.submitOrder(earnsubmission, orderId, X_REQUEST_ID);
 
         // TODO: test validations
     }

@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * token issued by marketplace server
  */@ApiModel(description = "token issued by marketplace server")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-22T11:37:07.944+02:00")
 public class AuthToken {
 @SerializedName("token")
   private String token = null;
@@ -45,7 +45,7 @@ public class AuthToken {
   * Get token
   * @return token
   **/
-  @ApiModelProperty(example = "AAAAA-RRRRRR-DDDDD-BBBBBB", value = "")
+  @ApiModelProperty(example = "AAAAA-RRRRRR-DDDDD-BBBBBB", required = true, value = "")
   public String getToken() {
     return token;
   }
@@ -63,7 +63,7 @@ public class AuthToken {
   * Get activated
   * @return activated
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Boolean isActivated() {
     return activated;
   }
@@ -81,7 +81,7 @@ public class AuthToken {
   * Get expirationDate
   * @return expirationDate
   **/
-  @ApiModelProperty(example = "2018-09-29T12:55:44Z", value = "")
+  @ApiModelProperty(example = "2018-09-29T12:55:44Z", required = true, value = "")
   public String getExpirationDate() {
     return expirationDate;
   }

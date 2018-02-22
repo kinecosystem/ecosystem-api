@@ -24,96 +24,29 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * an order submission of an earn offer - validation request of the poll
- */@ApiModel(description = "an order submission of an earn offer - validation request of the poll")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
+ * result of earn offer i.e. completed html poll
+ */@ApiModel(description = "result of earn offer i.e. completed html poll")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-22T11:37:07.944+02:00")
 public class EarnSubmission {
-
-    /**
-   * Gets or Sets offerType
-   */
-  @JsonAdapter(OfferTypeEnum.Adapter.class)
-  public enum OfferTypeEnum {
-    
-    EARNSUBMISSION("EarnSubmission");
-
-    private String value;
-
-    OfferTypeEnum(String value) {
-      this.value = value;
-    }
-    
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-    
-    public static OfferTypeEnum fromValue(String text) {
-      for (OfferTypeEnum b : OfferTypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-    
-    public static class Adapter extends TypeAdapter<OfferTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final OfferTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public OfferTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return OfferTypeEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
+@SerializedName("content")
+  private String content = null;
   
-  @SerializedName("offer_type")
-  private OfferTypeEnum offerType = null;
-  @SerializedName("completed_form")
-  private Object completedForm = null;
-  
-  public EarnSubmission offerType(OfferTypeEnum offerType) {
-    this.offerType = offerType;
+  public EarnSubmission content(String content) {
+    this.content = content;
     return this;
   }
 
   
   /**
-  * Get offerType
-  * @return offerType
+  * json encoded payload related to the earn offer
+  * @return content
   **/
-  @ApiModelProperty(value = "")
-  public OfferTypeEnum getOfferType() {
-    return offerType;
+  @ApiModelProperty(required = true, value = "json encoded payload related to the earn offer")
+  public String getContent() {
+    return content;
   }
-  public void setOfferType(OfferTypeEnum offerType) {
-    this.offerType = offerType;
-  }
-  
-  public EarnSubmission completedForm(Object completedForm) {
-    this.completedForm = completedForm;
-    return this;
-  }
-
-  
-  /**
-  * Get completedForm
-  * @return completedForm
-  **/
-  @ApiModelProperty(value = "")
-  public Object getCompletedForm() {
-    return completedForm;
-  }
-  public void setCompletedForm(Object completedForm) {
-    this.completedForm = completedForm;
+  public void setContent(String content) {
+    this.content = content;
   }
   
   @Override
@@ -125,13 +58,12 @@ public class EarnSubmission {
       return false;
     }
     EarnSubmission earnSubmission = (EarnSubmission) o;
-    return Objects.equals(this.offerType, earnSubmission.offerType) &&
-        Objects.equals(this.completedForm, earnSubmission.completedForm);
+    return Objects.equals(this.content, earnSubmission.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offerType, completedForm);
+    return Objects.hash(content);
   }
   
   @Override
@@ -139,8 +71,7 @@ public class EarnSubmission {
     StringBuilder sb = new StringBuilder();
     sb.append("class EarnSubmission {\n");
     
-    sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
-    sb.append("    completedForm: ").append(toIndentedString(completedForm)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();
   }

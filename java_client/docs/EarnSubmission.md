@@ -4,16 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**offerType** | [**OfferTypeEnum**](#OfferTypeEnum) |  |  [optional]
-**completedForm** | **Object** |  |  [optional]
+**content** | **String** | json encoded payload related to the earn offer | 
 
-
-
-<a name="OfferTypeEnum"></a>
-## Enum: OfferTypeEnum
-Name | Value
----- | -----
-EARNSUBMISSION | &quot;EarnSubmission&quot;
 
 
 

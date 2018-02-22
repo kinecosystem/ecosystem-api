@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token** | **String** |  |  [optional]
-**activated** | **Boolean** |  |  [optional]
-**expirationDate** | **String** |  |  [optional]
+**token** | **String** |  | 
+**activated** | **Boolean** |  | 
+**expirationDate** | **String** |  | 
 
 
 

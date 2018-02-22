@@ -129,9 +129,7 @@ Class | Method | HTTP request | Description
  - [OrderList](docs/OrderList.md)
  - [Paging](docs/Paging.md)
  - [PagingCursors](docs/PagingCursors.md)
- - [PollAnswer](docs/PollAnswer.md)
  - [SignInData](docs/SignInData.md)
- - [SpendSubmission](docs/SpendSubmission.md)
 
 
 ## Documentation for Authorization

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * object accompanying lists - used to fetch next/previous section
  */@ApiModel(description = "object accompanying lists - used to fetch next/previous section")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-22T11:37:07.944+02:00")
 public class Paging {
 @SerializedName("cursors")
   private PagingCursors cursors = null;

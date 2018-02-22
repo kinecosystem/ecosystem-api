@@ -30,10 +30,10 @@ import java.util.List;
 /**
  * a list of offers
  */@ApiModel(description = "a list of offers")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-22T11:37:07.944+02:00")
 public class OfferList {
 @SerializedName("offers")
-  private List<Offer> offers = null;
+  private List<Offer> offers = new ArrayList<Offer>();
   @SerializedName("paging")
   private Paging paging = null;
   
@@ -44,10 +44,6 @@ public class OfferList {
 
   public OfferList addOffersItem(Offer offersItem) {
     
-    if (this.offers == null) {
-      this.offers = new ArrayList<Offer>();
-    }
-    
     this.offers.add(offersItem);
     return this;
   }
@@ -56,7 +52,7 @@ public class OfferList {
   * Get offers
   * @return offers
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public List<Offer> getOffers() {
     return offers;
   }

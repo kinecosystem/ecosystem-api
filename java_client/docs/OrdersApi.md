@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 <a name="submitOrder"></a>
 # **submitOrder**
-> submitOrder(body, orderId, X_REQUEST_ID)
+> Order submitOrder(earnsubmission, orderId, X_REQUEST_ID)
 
 submit an order
 
@@ -248,14 +248,15 @@ submit an order
 
 OrdersApi apiInstance = new OrdersApi();
 
-Object body = ; // Object | 
+EarnSubmission earnsubmission = ; // EarnSubmission | 
 
 String orderId = Arrays.asList("orderId_example"); // String | The order id
 
 String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
 try {
-    apiInstance.submitOrder(body, orderId, X_REQUEST_ID);
+    Order result = apiInstance.submitOrder(earnsubmission, orderId, X_REQUEST_ID);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#submitOrder");
     e.printStackTrace();
@@ -266,14 +267,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Object**](Object.md)|  |
+ **earnsubmission** | [**EarnSubmission**](.md)|  |
  **orderId** | **String**| The order id |
  **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
 
-null (empty response body)
+[**Order**](Order.md)
 
 ### Authorization
 
@@ -282,7 +283,7 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/json
+ - **Accept**: application/jsonapplication/jsonapplication/json
 
 
 

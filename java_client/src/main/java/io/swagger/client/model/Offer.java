@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * offer details for the offer list
  */@ApiModel(description = "offer details for the offer list")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-20T10:50:40.217+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-22T11:37:07.944+02:00")
 public class Offer {
 @SerializedName("id")
   private String id = null;
