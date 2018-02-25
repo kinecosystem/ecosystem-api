@@ -1,8 +1,13 @@
 # Kin Ecosystem SDK API
 
+## marketplace API
 The `openapi.yaml` file contains definitions of the services and models that will be available for our client to access on the server.
 
 To edit the file you can use the [online editor](http://editor.swagger.io/?url=https://raw.githubusercontent.com/kinfoundation/ecosystem-api/master/openapi.yaml)
+
+## internal payment
+
+To edit the file you can use the [online editor](http://editor.swagger.io/?url=https://raw.githubusercontent.com/kinfoundation/ecosystem-api/master/payment.yaml)
 
 ## creating client stubs
 
