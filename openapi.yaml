@@ -300,14 +300,17 @@ components:
       description: "a submitted order. it can be pending/completed/failed"
       type: object
       required:
+        - id
         - status
-        - order_id
         - completion_date
         - offer_type
         - title
         - description
         - amount
       properties:
+        id:
+          type: string
+          description: unique identifier of this item
         result:
           type: object
           oneOf:
@@ -323,9 +326,6 @@ components:
             - pending
             - completed
             - failed
-        order_id:
-          type: string
-          description: unique identifier of this item
         completion_date: # taken from blockchain
           type: string
           example: "2018-09-13T14:33:33Z"
