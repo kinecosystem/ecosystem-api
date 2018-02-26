@@ -27,9 +27,11 @@ import java.io.IOException;
 /**
  * a submitted order. it can be pending/completed/failed
  */@ApiModel(description = "a submitted order. it can be pending/completed/failed")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-22T11:37:07.944+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-26T16:36:15.012+02:00")
 public class Order {
-@SerializedName("result")
+@SerializedName("id")
+  private String id = null;
+  @SerializedName("result")
   private Object result = null;
   
     /**
@@ -82,8 +84,6 @@ public class Order {
   
   @SerializedName("status")
   private StatusEnum status = null;
-  @SerializedName("order_id")
-  private String orderId = null;
   @SerializedName("completion_date")
   private String completionDate = null;
   @SerializedName("blockchain_data")
@@ -147,6 +147,24 @@ public class Order {
   @SerializedName("amount")
   private Integer amount = null;
   
+  public Order id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  
+  /**
+  * unique identifier of this item
+  * @return id
+  **/
+  @ApiModelProperty(required = true, value = "unique identifier of this item")
+  public String getId() {
+    return id;
+  }
+  public void setId(String id) {
+    this.id = id;
+  }
+  
   public Order result(Object result) {
     this.result = result;
     return this;
@@ -181,24 +199,6 @@ public class Order {
   }
   public void setStatus(StatusEnum status) {
     this.status = status;
-  }
-  
-  public Order orderId(String orderId) {
-    this.orderId = orderId;
-    return this;
-  }
-
-  
-  /**
-  * unique identifier of this item
-  * @return orderId
-  **/
-  @ApiModelProperty(required = true, value = "unique identifier of this item")
-  public String getOrderId() {
-    return orderId;
-  }
-  public void setOrderId(String orderId) {
-    this.orderId = orderId;
   }
   
   public Order completionDate(String completionDate) {
@@ -336,9 +336,9 @@ public class Order {
       return false;
     }
     Order order = (Order) o;
-    return Objects.equals(this.result, order.result) &&
+    return Objects.equals(this.id, order.id) &&
+        Objects.equals(this.result, order.result) &&
         Objects.equals(this.status, order.status) &&
-        Objects.equals(this.orderId, order.orderId) &&
         Objects.equals(this.completionDate, order.completionDate) &&
         Objects.equals(this.blockchainData, order.blockchainData) &&
         Objects.equals(this.offerType, order.offerType) &&
@@ -350,7 +350,7 @@ public class Order {
 
   @Override
   public int hashCode() {
-    return Objects.hash(result, status, orderId, completionDate, blockchainData, offerType, title, description, callToAction, amount);
+    return Objects.hash(id, result, status, completionDate, blockchainData, offerType, title, description, callToAction, amount);
   }
   
   @Override
@@ -358,9 +358,9 @@ public class Order {
     StringBuilder sb = new StringBuilder();
     sb.append("class Order {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    completionDate: ").append(toIndentedString(completionDate)).append("\n");
     sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");

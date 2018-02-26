@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **String** | unique identifier of this item | 
 **result** | **Object** | * empty when no result (pending status, completed earn) * failure_message when status is failed * coupon_code when completed spend  |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) |  | 
-**orderId** | **String** | unique identifier of this item | 
 **completionDate** | **String** | UTC ISO | 
 **blockchainData** | [**BlockchainData**](BlockchainData.md) |  |  [optional]
 **offerType** | [**OfferTypeEnum**](#OfferTypeEnum) |  | 
