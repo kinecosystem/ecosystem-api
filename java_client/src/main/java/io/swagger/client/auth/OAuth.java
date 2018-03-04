@@ -18,7 +18,7 @@ import io.swagger.client.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-26T16:36:15.012+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-04T18:58:29.348+02:00")
 public class OAuth implements Authentication {
   private String accessToken;
 

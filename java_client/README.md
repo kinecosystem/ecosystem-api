@@ -71,12 +71,6 @@ public class AuthApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: ApiKeyAuth
-        ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
-        ApiKeyAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //ApiKeyAuth.setApiKeyPrefix("Token");
-        
         // Configure HTTP basic authorization: BearerAuth
         HttpBasicAuth BearerAuth = (HttpBasicAuth) defaultClient.getAuthentication("BearerAuth");
         BearerAuth.setUsername("YOUR USERNAME");
@@ -135,15 +129,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
-### ApiKeyAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-
-
-
 ### BearerAuth
 
 

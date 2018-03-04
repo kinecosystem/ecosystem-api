@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * payload required for signing in
  */@ApiModel(description = "payload required for signing in")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-02-26T16:36:15.012+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-04T18:58:29.348+02:00")
 public class SignInData {
 @SerializedName("jwt")
   private String jwt = null;
@@ -34,6 +34,8 @@ public class SignInData {
   private String userId = null;
   @SerializedName("app_id")
   private String appId = null;
+  @SerializedName("api_key")
+  private String apiKey = null;
   @SerializedName("device_id")
   private String deviceId = null;
   @SerializedName("public_address")
@@ -96,10 +98,10 @@ public class SignInData {
 
   
   /**
-  * jwt should contain \&quot;user_id\&quot;, \&quot;app_id\&quot; and \&quot;timestamp\&quot;, issuer,  
+  * jwt should contain \&quot;user_id\&quot;, \&quot;app_id\&quot; and \&quot;timestamp\&quot;, \&quot;issuer\&quot;, \&quot;api_key\&quot; 
   * @return jwt
   **/
-  @ApiModelProperty(example = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0", value = "jwt should contain \"user_id\", \"app_id\" and \"timestamp\", issuer,  ")
+  @ApiModelProperty(example = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0", value = "jwt should contain \"user_id\", \"app_id\" and \"timestamp\", \"issuer\", \"api_key\" ")
   public String getJwt() {
     return jwt;
   }
@@ -141,6 +143,24 @@ public class SignInData {
   }
   public void setAppId(String appId) {
     this.appId = appId;
+  }
+  
+  public SignInData apiKey(String apiKey) {
+    this.apiKey = apiKey;
+    return this;
+  }
+
+  
+  /**
+  * Get apiKey
+  * @return apiKey
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getApiKey() {
+    return apiKey;
+  }
+  public void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
   }
   
   public SignInData deviceId(String deviceId) {
@@ -209,6 +229,7 @@ public class SignInData {
     return Objects.equals(this.jwt, signInData.jwt) &&
         Objects.equals(this.userId, signInData.userId) &&
         Objects.equals(this.appId, signInData.appId) &&
+        Objects.equals(this.apiKey, signInData.apiKey) &&
         Objects.equals(this.deviceId, signInData.deviceId) &&
         Objects.equals(this.publicAddress, signInData.publicAddress) &&
         Objects.equals(this.signInType, signInData.signInType);
@@ -216,7 +237,7 @@ public class SignInData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(jwt, userId, appId, deviceId, publicAddress, signInType);
+    return Objects.hash(jwt, userId, appId, apiKey, deviceId, publicAddress, signInType);
   }
   
   @Override
@@ -227,6 +248,7 @@ public class SignInData {
     sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    appId: ").append(toIndentedString(appId)).append("\n");
+    sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("    deviceId: ").append(toIndentedString(deviceId)).append("\n");
     sb.append("    publicAddress: ").append(toIndentedString(publicAddress)).append("\n");
     sb.append("    signInType: ").append(toIndentedString(signInType)).append("\n");

@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)[BearerAuth](../README.md#BearerAuth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+No authorization required
 
 ### HTTP request headers
 

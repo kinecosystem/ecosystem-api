@@ -111,7 +111,7 @@ public class AuthApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth", "BearerAuth" };
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -248,7 +248,7 @@ public class AuthApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
