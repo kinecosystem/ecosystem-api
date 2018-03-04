@@ -15,8 +15,7 @@ paths:
       tags:
         - Auth
       summary: Sign in/ Log in
-      security:
-        - ApiKeyAuth: []
+      security: []
       description: Sign a user into kin marketplace
       operationId: signIn
       requestBody:
@@ -228,8 +227,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 security:
-  - ApiKeyAuth: []
-    BearerAuth: []
+  - BearerAuth: []
 
 components:
   parameters:
@@ -264,11 +262,6 @@ components:
       description: cursor that points to the end of the page of data that has been returned
 
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-API-KEY
-
     BearerAuth:  # api requires the header Authorization: Bearer <token>
       type: http
       scheme: bearer
@@ -464,15 +457,18 @@ components:
               type: string
               example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0
               description: >
-                jwt should contain "user_id", "app_id" and "timestamp", issuer, 
+                jwt should contain "user_id", "app_id" and "timestamp", "issuer", "api_key"
         - type: object
           required:
             - user_id
             - app_id
+            - api_key
           properties:
             user_id:
               type: string
             app_id:
+              type: string
+            api_key:
               type: string
         - type: object
           required:
