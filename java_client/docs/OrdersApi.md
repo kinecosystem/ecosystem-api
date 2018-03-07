@@ -5,6 +5,7 @@ All URIs are relative to *https://api.kinmarketplace.com/v1/*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelOrder**](OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
+[**changeOrder**](OrdersApi.md#changeOrder) | **PATCH** /orders/{order_id} | change an order
 [**createOrder**](OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/orders | create an order for an offer
 [**getHistory**](OrdersApi.md#getHistory) | **GET** /orders | get user order history
 [**getOrder**](OrdersApi.md#getOrder) | **GET** /orders/{order_id} | get an order
@@ -19,7 +20,7 @@ Method | HTTP request | Description
 
 cancel an order
 
-cancel an order
+cancel an order - this can be called only before an order is submitted
 
 ### Example
 ```java
@@ -63,6 +64,62 @@ null (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+<a name="changeOrder"></a>
+# **changeOrder**
+> Order changeOrder(orderId, X_REQUEST_ID, body)
+
+change an order
+
+change an order, currently the error can be changed (set) this in turn will convert this submitted order to a failed order. this gives the client an endpoint to report an internal error. you can only change an order that is in pending state. a failed order can always turn completed in case the order_id successfully appears in the blockchain. 
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.OrdersApi;
+
+
+
+OrdersApi apiInstance = new OrdersApi();
+
+String orderId = Arrays.asList("orderId_example"); // String | The order id
+
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
+
+Body body = ; // Body | 
+
+try {
+    Order result = apiInstance.changeOrder(orderId, X_REQUEST_ID, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrdersApi#changeOrder");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| The order id |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
+ **body** | [**Body**](.md)|  | [optional]
+
+
+### Return type
+
+[**Order**](Order.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/merge-patch+json
+ - **Accept**: application/jsonapplication/jsonapplication/json
 
 
 <a name="createOrder"></a>
@@ -232,7 +289,7 @@ Name | Type | Description  | Notes
 
 <a name="submitOrder"></a>
 # **submitOrder**
-> Order submitOrder(earnsubmission, orderId, X_REQUEST_ID)
+> Order submitOrder(orderId, X_REQUEST_ID, earnsubmission)
 
 submit an order
 
@@ -248,14 +305,14 @@ submit an order
 
 OrdersApi apiInstance = new OrdersApi();
 
-EarnSubmission earnsubmission = ; // EarnSubmission | 
-
 String orderId = Arrays.asList("orderId_example"); // String | The order id
 
 String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
+EarnSubmission earnsubmission = ; // EarnSubmission | 
+
 try {
-    Order result = apiInstance.submitOrder(earnsubmission, orderId, X_REQUEST_ID);
+    Order result = apiInstance.submitOrder(orderId, X_REQUEST_ID, earnsubmission);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#submitOrder");
@@ -267,9 +324,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **earnsubmission** | [**EarnSubmission**](.md)|  |
  **orderId** | **String**| The order id |
  **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
+ **earnsubmission** | [**EarnSubmission**](.md)|  | [optional]
 
 
 ### Return type

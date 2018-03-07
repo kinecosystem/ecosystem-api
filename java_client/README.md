@@ -104,6 +104,7 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**signIn**](docs/AuthApi.md#signIn) | **POST** /users | Sign in/ Log in
 *OffersApi* | [**getOffers**](docs/OffersApi.md#getOffers) | **GET** /offers | Return a list of offers
 *OrdersApi* | [**cancelOrder**](docs/OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
+*OrdersApi* | [**changeOrder**](docs/OrdersApi.md#changeOrder) | **PATCH** /orders/{order_id} | change an order
 *OrdersApi* | [**createOrder**](docs/OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/orders | create an order for an offer
 *OrdersApi* | [**getHistory**](docs/OrdersApi.md#getHistory) | **GET** /orders | get user order history
 *OrdersApi* | [**getOrder**](docs/OrdersApi.md#getOrder) | **GET** /orders/{order_id} | get an order
@@ -114,6 +115,8 @@ Class | Method | HTTP request | Description
 
  - [AuthToken](docs/AuthToken.md)
  - [BlockchainData](docs/BlockchainData.md)
+ - [Body](docs/Body.md)
+ - [CouponCode](docs/CouponCode.md)
  - [EarnSubmission](docs/EarnSubmission.md)
  - [Error](docs/Error.md)
  - [Offer](docs/Offer.md)

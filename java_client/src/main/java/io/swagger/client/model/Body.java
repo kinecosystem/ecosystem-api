@@ -21,52 +21,33 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.Error;
 import java.io.IOException;
 
 /**
- * PagingCursors
+ * Body
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-07T18:47:45.900+02:00")
-public class PagingCursors {
-@SerializedName("after")
-  private String after = null;
-  @SerializedName("before")
-  private String before = null;
+public class Body {
+@SerializedName("error")
+  private Error error = null;
   
-  public PagingCursors after(String after) {
-    this.after = after;
+  public Body error(Error error) {
+    this.error = error;
     return this;
   }
 
   
   /**
-  * Get after
-  * @return after
+  * Get error
+  * @return error
   **/
-  @ApiModelProperty(example = "MTAxNTExOTQ1MjAwNzI5NDE", value = "")
-  public String getAfter() {
-    return after;
+  @ApiModelProperty(value = "")
+  public Error getError() {
+    return error;
   }
-  public void setAfter(String after) {
-    this.after = after;
-  }
-  
-  public PagingCursors before(String before) {
-    this.before = before;
-    return this;
-  }
-
-  
-  /**
-  * Get before
-  * @return before
-  **/
-  @ApiModelProperty(example = "NDMyNzQyODI3OTQw", value = "")
-  public String getBefore() {
-    return before;
-  }
-  public void setBefore(String before) {
-    this.before = before;
+  public void setError(Error error) {
+    this.error = error;
   }
   
   @Override
@@ -77,23 +58,21 @@ public class PagingCursors {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PagingCursors pagingCursors = (PagingCursors) o;
-    return Objects.equals(this.after, pagingCursors.after) &&
-        Objects.equals(this.before, pagingCursors.before);
+    Body body = (Body) o;
+    return Objects.equals(this.error, body.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(after, before);
+    return Objects.hash(error);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PagingCursors {\n");
+    sb.append("class Body {\n");
     
-    sb.append("    after: ").append(toIndentedString(after)).append("\n");
-    sb.append("    before: ").append(toIndentedString(before)).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }

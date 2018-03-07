@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | unique identifier of this item | 
-**result** | **Object** | * empty when no result (pending status, completed earn) * failure_message when status is failed * coupon_code when completed spend  |  [optional]
+**result** | **Object** | * empty when no result (pending status, completed earn) * coupon_code when completed spend  |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) |  | 
 **completionDate** | **String** | UTC ISO | 
 **blockchainData** | [**BlockchainData**](BlockchainData.md) |  |  [optional]
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | 
 **callToAction** | **String** |  |  [optional]
 **amount** | **Integer** | kin amount | 
+**error** | [**Error**](Error.md) |  |  [optional]
 
 
 

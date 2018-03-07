@@ -22,12 +22,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.BlockchainData;
+import io.swagger.client.model.Error;
 import java.io.IOException;
 
 /**
  * a submitted order. it can be pending/completed/failed
  */@ApiModel(description = "a submitted order. it can be pending/completed/failed")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-04T18:58:29.348+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-07T18:47:45.900+02:00")
 public class Order {
 @SerializedName("id")
   private String id = null;
@@ -146,6 +147,8 @@ public class Order {
   private String callToAction = null;
   @SerializedName("amount")
   private Integer amount = null;
+  @SerializedName("error")
+  private Error error = null;
   
   public Order id(String id) {
     this.id = id;
@@ -172,10 +175,10 @@ public class Order {
 
   
   /**
-  * * empty when no result (pending status, completed earn) * failure_message when status is failed * coupon_code when completed spend 
+  * * empty when no result (pending status, completed earn) * coupon_code when completed spend 
   * @return result
   **/
-  @ApiModelProperty(value = "* empty when no result (pending status, completed earn) * failure_message when status is failed * coupon_code when completed spend ")
+  @ApiModelProperty(value = "* empty when no result (pending status, completed earn) * coupon_code when completed spend ")
   public Object getResult() {
     return result;
   }
@@ -327,6 +330,24 @@ public class Order {
     this.amount = amount;
   }
   
+  public Order error(Error error) {
+    this.error = error;
+    return this;
+  }
+
+  
+  /**
+  * Get error
+  * @return error
+  **/
+  @ApiModelProperty(value = "")
+  public Error getError() {
+    return error;
+  }
+  public void setError(Error error) {
+    this.error = error;
+  }
+  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -345,12 +366,13 @@ public class Order {
         Objects.equals(this.title, order.title) &&
         Objects.equals(this.description, order.description) &&
         Objects.equals(this.callToAction, order.callToAction) &&
-        Objects.equals(this.amount, order.amount);
+        Objects.equals(this.amount, order.amount) &&
+        Objects.equals(this.error, order.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, result, status, completionDate, blockchainData, offerType, title, description, callToAction, amount);
+    return Objects.hash(id, result, status, completionDate, blockchainData, offerType, title, description, callToAction, amount, error);
   }
   
   @Override
@@ -368,6 +390,7 @@ public class Order {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }

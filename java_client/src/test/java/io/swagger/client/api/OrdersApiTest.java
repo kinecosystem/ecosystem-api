@@ -14,6 +14,7 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
+import io.swagger.client.model.Body;
 import io.swagger.client.model.EarnSubmission;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.OpenOrder;
@@ -42,7 +43,7 @@ public class OrdersApiTest {
     /**
      * cancel an order
      *
-     * cancel an order
+     * cancel an order - this can be called only before an order is submitted
      *
      * @throws ApiException
      *          if the Api call fails
@@ -55,6 +56,28 @@ public class OrdersApiTest {
         String X_REQUEST_ID = null;
         
         api.cancelOrder(orderId, X_REQUEST_ID);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * change an order
+     *
+     * change an order, currently the error can be changed (set) this in turn will convert this submitted order to a failed order. this gives the client an endpoint to report an internal error. you can only change an order that is in pending state. a failed order can always turn completed in case the order_id successfully appears in the blockchain. 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void changeOrderTest() throws ApiException {
+        
+        String orderId = null;
+        
+        String X_REQUEST_ID = null;
+        
+        Body body = null;
+        
+        Order response = api.changeOrder(orderId, X_REQUEST_ID, body);
 
         // TODO: test validations
     }
@@ -134,13 +157,13 @@ public class OrdersApiTest {
     @Test
     public void submitOrderTest() throws ApiException {
         
-        EarnSubmission earnsubmission = null;
-        
         String orderId = null;
         
         String X_REQUEST_ID = null;
         
-        Order response = api.submitOrder(earnsubmission, orderId, X_REQUEST_ID);
+        EarnSubmission earnsubmission = null;
+        
+        Order response = api.submitOrder(orderId, X_REQUEST_ID, earnsubmission);
 
         // TODO: test validations
     }
