@@ -46,16 +46,16 @@ paths:
     post:
       tags:
         - Orders
-      description: create an payment order
-      summary: create an payment order
+      description: create an order
+      summary: create an order
       operationId: createOrder
       requestBody:
-        description: payment description
+        description: order description
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Payment'
+              $ref: '#/components/schemas/OrderRequest'
       responses:
         '202':
           description: Successfully created an order and now is processing
@@ -76,12 +76,12 @@ paths:
       summary: create wallet
       operationId: createWallet
       requestBody:
-        description: payment description
+        description: wallet_address and app_id
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WalletAddress'
+              $ref: '#/components/schemas/WalletRequest'
 
       responses:
         '202':
@@ -136,7 +136,7 @@ components:
 
   schemas:
   
-    WalletAddress:
+    WalletRequest:
       type: object
       required:
         - wallet_address
@@ -149,6 +149,7 @@ components:
           type: string
 
     Wallet:
+      type: object
       required:
         - wallet_address
         - kin_balance
@@ -160,12 +161,12 @@ components:
         native_balance:
           type: number
           
-    Payment:
+    OrderRequest:
       type: object
       required:
         - amount
         - app_id
-        - wallet_address
+        - recipient_address
         - order_id
         - callback
       properties:
@@ -174,7 +175,7 @@ components:
           description: amount in KIN
         app_id:
           type: string
-        wallet_address:
+        recipient_address:
           type: string
         order_id:
           type: string
@@ -182,8 +183,10 @@ components:
             a unique identifier for this value transfer.
             The payment service should use this identifer to prevent duplicate payments.
         callback:
-          type: url
+          type: string
+          format: url
           description: a url to post back the payment once complete
+
     Order:
       type: object
       required:
