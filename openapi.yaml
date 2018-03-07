@@ -157,7 +157,7 @@ paths:
       operationId: submitOrder
       requestBody:
         description: submission of an order
-        required: true
+        required: false # in case of spend the content is not required
         content:
           application/json:
             schema:
@@ -189,11 +189,49 @@ paths:
       tags:
         - Orders
       summary: cancel an order
-      description: cancel an order
+      description: cancel an order - this can be called only before an order is submitted
       operationId: cancelOrder
       responses:
         '204':
           description: Canceled order
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Orders
+      summary: change an order
+      description: |
+        change an order, currently the error can be changed (set) this in turn will convert this submitted order to a failed order. this gives the client an endpoint to report an internal error.
+        you can only change an order that is in pending state.
+        a failed order can always turn completed in case the order_id successfully appears in the blockchain.
+      operationId: changeOrder
+      requestBody:
+        description: fields to update on an order
+        required: false # in case of spend the content is not required
+        content:
+          application/merge-patch+json:
+            schema:
+              type: object
+              properties:
+                error:
+                  $ref: '#/components/schemas/Error'
+      responses:
+        '201':
+          description: Successfully closed the order with a failure status and given message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          description: No such order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         default:
           description: Generic Error
           content:
@@ -267,16 +305,19 @@ components:
       scheme: bearer
 
   schemas:
-
-    coupon_code:
-      description: "a coupon code - appears in a result object of an Order"
-      type: string
-      example: aaaa-bbbb-cccc
-
-    failure_message:
-      description: "failed order message - appears in a result object of an Order"
-      type: string
-      example: failed to find transaction in blockchain
+    CouponCode:
+      type: object
+      required:
+        - coupon_code
+      properties:
+        coupon_code:
+          description: "a coupon code - appears in a result object of an Order"
+          type: string
+          example: aaaa-bbbb-cccc
+        type:
+          type: string
+          enum:
+            - coupon
 
     BlockchainData:
       description: "details taken from a blockchain transaction - all fields optional"
@@ -307,11 +348,9 @@ components:
         result:
           type: object
           oneOf:
-          - $ref: '#/components/schemas/failure_message'
-          - $ref: '#/components/schemas/coupon_code'
+          - $ref: '#/components/schemas/CouponCode'
           description: |
             * empty when no result (pending status, completed earn)
-            * failure_message when status is failed
             * coupon_code when completed spend
         status:
           type: string
@@ -347,6 +386,8 @@ components:
           type: integer
           example: 4000 (KIN)
           description: kin amount
+        error:
+          $ref: '#/components/schemas/Error'
 
     OrderList:
       description: "a list of submitted orders"
