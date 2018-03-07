@@ -1,0 +1,234 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Payment Ecosystem
+  description: Internal API that provides payment and wallet creation services
+servers:
+  - url: 'https://api.kinmarketplace.internal/v1/'
+paths:
+  /orders/{order_id}:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - in: path
+        name: order_id
+        schema:
+          type: string
+        required: true
+        description: application order id
+    get:
+      tags:
+        - Orders
+      description: get order info
+      summary: get order info
+      operationId: getOrder
+      responses:
+        '200':
+          description: Successfully returned order info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /orders:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+    post:
+      tags:
+        - Orders
+      description: create an order
+      summary: create an order
+      operationId: createOrder
+      requestBody:
+        description: order description
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '202':
+          description: Successfully created an order and now is processing
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+   
+  /wallets:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+    post:
+      tags:
+        - Wallets
+      description: create wallet
+      summary: create wallet
+      operationId: createWallet
+      requestBody:
+        description: wallet_address and app_id
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletRequest'
+
+      responses:
+        '202':
+          description: Successfully created wallet
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /wallets/{wallet_address}:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - in: path
+        name: wallet_address
+        schema:
+          type: string
+        required: true
+        description: public address of wallet
+    get:
+      tags:
+        - Wallets
+      description: get wallet information
+      summary: get wallet information
+      operationId: getWalletInfo
+      responses:
+        '200':
+          description: Successfully returned wallet info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  parameters:
+    RequestId:
+      in: header
+      name: X-REQUEST-ID
+      required: true
+      schema:
+        type: string
+      description: >-
+        A unique id for the request. A retransmitted request will have the same
+        id
+
+  schemas:
+  
+    WalletRequest:
+      type: object
+      required:
+        - wallet_address
+        - app_id
+      properties:
+        app_id:
+          type: string
+          description: for book keeping
+        wallet_address:
+          type: string
+
+    Wallet:
+      type: object
+      required:
+        - wallet_address
+        - kin_balance
+      properties:
+        wallet_address:
+          type: string  
+        kin_balance:
+          type: number
+        native_balance:
+          type: number
+          
+    OrderRequest:
+      type: object
+      required:
+        - amount
+        - app_id
+        - recipient_address
+        - order_id
+        - callback
+      properties:
+        amount:
+          type: integer
+          description: amount in KIN
+        app_id:
+          type: string
+        recipient_address:
+          type: string
+        order_id:
+          type: string
+          description: | 
+            a unique identifier for this value transfer.
+            The payment service should use this identifer to prevent duplicate payments.
+        callback:
+          type: string
+          format: url
+          description: a url to post back the payment once complete
+
+    Order:
+      type: object
+      required:
+        - id
+        - app_id
+        - transaction_id
+        - sender_address
+        - recipient_address
+        - amount
+        - timestamp
+      properties:
+        id:
+          type: string
+          description: the order id
+        app_id:
+          type: string
+        transaction_id:
+          type: string
+          description: identifier of the transaction on the blockchain 
+        sender_address:
+          type: string
+          description: identifier of the sender on the blockchain 
+        recipient_address:
+          type: string
+          description: identifier of the recipient on the blockchain 
+        amount:
+          type: integer
+          description: amount in KIN
+        timestamp:
+          type: string
+    Error:
+      type: object
+      required:
+        - error
+        - code
+      properties:
+        error:
+          type: string
+          example: "Invalid Transaction"
+        message:
+          type: string
+          example: "no such transaction"
+        code:
+          type: integer
+          example: 4041
