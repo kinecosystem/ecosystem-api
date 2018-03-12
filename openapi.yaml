@@ -364,7 +364,6 @@ components:
           description: UTC ISO
         # filled by payment service
         blockchain_data:
-          type: object
           $ref: "#/components/schemas/BlockchainData"
         # meta fields - filled by offer owner
         offer_type:
@@ -386,6 +385,9 @@ components:
           type: integer
           example: 4000 (KIN)
           description: kin amount
+        content:
+          type: string
+          description: optional json payload defining a coupon page
         error:
           $ref: '#/components/schemas/Error'
 
