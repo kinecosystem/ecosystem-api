@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * a submitted order. it can be pending/completed/failed
  */@ApiModel(description = "a submitted order. it can be pending/completed/failed")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-07T18:47:45.900+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-12T18:13:13.894+02:00")
 public class Order {
 @SerializedName("id")
   private String id = null;
@@ -147,6 +147,8 @@ public class Order {
   private String callToAction = null;
   @SerializedName("amount")
   private Integer amount = null;
+  @SerializedName("content")
+  private String content = null;
   @SerializedName("error")
   private Error error = null;
   
@@ -330,6 +332,24 @@ public class Order {
     this.amount = amount;
   }
   
+  public Order content(String content) {
+    this.content = content;
+    return this;
+  }
+
+  
+  /**
+  * optional json payload defining a coupon page
+  * @return content
+  **/
+  @ApiModelProperty(value = "optional json payload defining a coupon page")
+  public String getContent() {
+    return content;
+  }
+  public void setContent(String content) {
+    this.content = content;
+  }
+  
   public Order error(Error error) {
     this.error = error;
     return this;
@@ -367,12 +387,13 @@ public class Order {
         Objects.equals(this.description, order.description) &&
         Objects.equals(this.callToAction, order.callToAction) &&
         Objects.equals(this.amount, order.amount) &&
+        Objects.equals(this.content, order.content) &&
         Objects.equals(this.error, order.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, result, status, completionDate, blockchainData, offerType, title, description, callToAction, amount, error);
+    return Objects.hash(id, result, status, completionDate, blockchainData, offerType, title, description, callToAction, amount, content, error);
   }
   
   @Override
@@ -390,6 +411,7 @@ public class Order {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | 
 **callToAction** | **String** |  |  [optional]
 **amount** | **Integer** | kin amount | 
+**content** | **String** | optional json payload defining a coupon page |  [optional]
 **error** | [**Error**](Error.md) |  |  [optional]
 
 
