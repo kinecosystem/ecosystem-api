@@ -6,30 +6,30 @@ info:
 servers:
   - url: 'https://api.kinmarketplace.internal/v1/'
 paths:
-  /orders/{order_id}:
+  /payments/{payment_id}:
     parameters:
       - $ref: '#/components/parameters/RequestId'
       - in: path
-        name: order_id
+        name: payment_id
         schema:
           type: string
         required: true
-        description: application order id
+        description: application payment id
     get:
       tags:
-        - Orders
-      description: get order info
-      summary: get order info
-      operationId: getOrder
+        - Payments
+      description: get payment info
+      summary: get payment info
+      operationId: getPayment
       responses:
         '200':
-          description: Successfully returned order info
+          description: Successfully returned payment info
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
+                $ref: '#/components/schemas/Payment'
         '404':
-          description: Order not found
+          description: Payment not found
           content:
             application/json:
               schema:
@@ -40,32 +40,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /orders:
+  /payments:
     parameters:
       - $ref: '#/components/parameters/RequestId'
     post:
       tags:
-        - Orders
-      description: create an order
-      summary: create an order
-      operationId: createOrder
+        - Payments
+      description: create a payment
+      summary: create a payment
+      operationId: createPayment
       requestBody:
-        description: order description
+        description: payment description
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrderRequest'
+              $ref: '#/components/schemas/PaymentRequest'
       responses:
         '202':
-          description: Successfully created an order and now is processing
+          description: Successfully created a payment and now is processing
         default:
           description: Generic Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-   
+
   /wallets:
     parameters:
       - $ref: '#/components/parameters/RequestId'
@@ -92,7 +92,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /wallets/{wallet_address}:
     parameters:
       - $ref: '#/components/parameters/RequestId'
@@ -135,88 +135,90 @@ components:
         id
 
   schemas:
-  
-    WalletRequest:
+
+    WalletBase:
       type: object
       required:
         - wallet_address
-        - app_id
       properties:
-        app_id:
-          type: string
-          description: for book keeping
         wallet_address:
           type: string
+
+    WalletRequest:
+      allOf:
+        - $ref: '#/components/schemas/WalletBase'
+        - type: object
+          required:
+            - app_id
+          properties:
+            app_id:
+              type: string
+              description: for book keeping
 
     Wallet:
-      type: object
-      required:
-        - wallet_address
-        - kin_balance
-      properties:
-        wallet_address:
-          type: string  
-        kin_balance:
-          type: number
-        native_balance:
-          type: number
-          
-    OrderRequest:
-      type: object
-      required:
-        - amount
-        - app_id
-        - recipient_address
-        - order_id
-        - callback
-      properties:
-        amount:
-          type: integer
-          description: amount in KIN
-        app_id:
-          type: string
-        recipient_address:
-          type: string
-        order_id:
-          type: string
-          description: | 
-            a unique identifier for this value transfer.
-            The payment service should use this identifer to prevent duplicate payments.
-        callback:
-          type: string
-          format: url
-          description: a url to post back the payment once complete
+      allOf:
+        - $ref: '#/components/schemas/WalletBase'
+        - type: object
+          required:
+            - kin_balance
+          properties:
+            kin_balance:
+              type: number
+            native_balance:
+              type: number
 
-    Order:
+    PaymentBase:
       type: object
       required:
         - id
-        - app_id
-        - transaction_id
-        - sender_address
-        - recipient_address
         - amount
-        - timestamp
+        - app_id
+        - recipient_address
+        - callback
       properties:
         id:
           type: string
-          description: the order id
-        app_id:
-          type: string
-        transaction_id:
-          type: string
-          description: identifier of the transaction on the blockchain 
-        sender_address:
-          type: string
-          description: identifier of the sender on the blockchain 
-        recipient_address:
-          type: string
-          description: identifier of the recipient on the blockchain 
+          description: |
+            a unique identifier for this value transfer.
+            The payment service should use this identifer to prevent duplicate payments.
         amount:
           type: integer
           description: amount in KIN
-        timestamp:
+        app_id:
           type: string
+        recipient_address:
+          type: string
+
+    PaymentRequest:
+      allOf:
+        - $ref: '#/components/schemas/PaymentBase'
+        - type: object
+          required:
+            - callback
+          properties:
+            callback:
+              type: string
+              format: url
+              description: a url to post back the payment once complete
+
+    Payment:
+      allOf:
+        - $ref: '#/components/schemas/PaymentBase'
+        - type: object
+          required:
+            - transaction_id
+            - sender_address
+            - timestamp
+          properties:
+            transaction_id:
+              type: string
+              description: identifier of the transaction on the blockchain
+            sender_address:
+              type: string
+              description: identifier of the sender on the blockchain
+            timestamp:
+              type: string
+
     Error:
       type: object
       required:
