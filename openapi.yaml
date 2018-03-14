@@ -456,8 +456,10 @@ components:
             - poll
             - coupon
         content:
-          description: "The coupon description or the poll payload"
+          description: "The coupon description or the poll payload - as serialized json"
           type: string
+        blockchain_data:
+          $ref: "#/components/schemas/BlockchainData"
 
     OfferList:
       description: "a list of offers"
@@ -470,7 +472,6 @@ components:
           items:
             $ref: '#/components/schemas/Offer'
         paging:
-          type: object
           $ref: '#/components/schemas/Paging'
 
     OpenOrder:
@@ -486,10 +487,6 @@ components:
         expiration_date:
           type: string
           example: "2018-08-09T11:25:33Z"
-        blockchain_data:
-          type: object
-          $ref: "#/components/schemas/BlockchainData"
-          description: recipient_address - relevant in case of spend
 
     SignInData:
       description: "payload required for signing in"
