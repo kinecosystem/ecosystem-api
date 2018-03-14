@@ -21,12 +21,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
  * offer details for the offer list
  */@ApiModel(description = "offer details for the offer list")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-12T18:13:13.894+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-14T17:09:30.270+02:00")
 public class Offer {
 @SerializedName("id")
   private String id = null;
@@ -140,6 +141,8 @@ public class Offer {
   private ContentTypeEnum contentType = null;
   @SerializedName("content")
   private String content = null;
+  @SerializedName("blockchain_data")
+  private BlockchainData blockchainData = null;
   
   public Offer id(String id) {
     this.id = id;
@@ -274,15 +277,33 @@ public class Offer {
 
   
   /**
-  * The coupon description or the poll payload
+  * The coupon description or the poll payload - as serialized json
   * @return content
   **/
-  @ApiModelProperty(required = true, value = "The coupon description or the poll payload")
+  @ApiModelProperty(required = true, value = "The coupon description or the poll payload - as serialized json")
   public String getContent() {
     return content;
   }
   public void setContent(String content) {
     this.content = content;
+  }
+  
+  public Offer blockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
+    return this;
+  }
+
+  
+  /**
+  * Get blockchainData
+  * @return blockchainData
+  **/
+  @ApiModelProperty(value = "")
+  public BlockchainData getBlockchainData() {
+    return blockchainData;
+  }
+  public void setBlockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
   }
   
   @Override
@@ -301,12 +322,13 @@ public class Offer {
         Objects.equals(this.amount, offer.amount) &&
         Objects.equals(this.offerType, offer.offerType) &&
         Objects.equals(this.contentType, offer.contentType) &&
-        Objects.equals(this.content, offer.content);
+        Objects.equals(this.content, offer.content) &&
+        Objects.equals(this.blockchainData, offer.blockchainData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, description, image, amount, offerType, contentType, content);
+    return Objects.hash(id, title, description, image, amount, offerType, contentType, content, blockchainData);
   }
   
   @Override
@@ -322,6 +344,7 @@ public class Offer {
     sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

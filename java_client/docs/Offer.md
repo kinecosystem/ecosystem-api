@@ -11,7 +11,8 @@ Name | Type | Description | Notes
 **amount** | **Integer** |  | 
 **offerType** | [**OfferTypeEnum**](#OfferTypeEnum) |  | 
 **contentType** | [**ContentTypeEnum**](#ContentTypeEnum) | determines the type of data that appears in the content |  [optional]
-**content** | **String** | The coupon description or the poll payload | 
+**content** | **String** | The coupon description or the poll payload - as serialized json | 
+**blockchainData** | [**BlockchainData**](BlockchainData.md) |  |  [optional]
 
 
 

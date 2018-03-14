@@ -21,20 +21,17 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
  * an open order that hasn&#x27;t been submitted yet
  */@ApiModel(description = "an open order that hasn't been submitted yet")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-12T18:13:13.894+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-14T17:09:30.270+02:00")
 public class OpenOrder {
 @SerializedName("id")
   private String id = null;
   @SerializedName("expiration_date")
   private String expirationDate = null;
-  @SerializedName("blockchain_data")
-  private BlockchainData blockchainData = null;
   
   public OpenOrder id(String id) {
     this.id = id;
@@ -72,24 +69,6 @@ public class OpenOrder {
     this.expirationDate = expirationDate;
   }
   
-  public OpenOrder blockchainData(BlockchainData blockchainData) {
-    this.blockchainData = blockchainData;
-    return this;
-  }
-
-  
-  /**
-  * Get blockchainData
-  * @return blockchainData
-  **/
-  @ApiModelProperty(value = "")
-  public BlockchainData getBlockchainData() {
-    return blockchainData;
-  }
-  public void setBlockchainData(BlockchainData blockchainData) {
-    this.blockchainData = blockchainData;
-  }
-  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -100,13 +79,12 @@ public class OpenOrder {
     }
     OpenOrder openOrder = (OpenOrder) o;
     return Objects.equals(this.id, openOrder.id) &&
-        Objects.equals(this.expirationDate, openOrder.expirationDate) &&
-        Objects.equals(this.blockchainData, openOrder.blockchainData);
+        Objects.equals(this.expirationDate, openOrder.expirationDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, expirationDate, blockchainData);
+    return Objects.hash(id, expirationDate);
   }
   
   @Override
@@ -116,7 +94,6 @@ public class OpenOrder {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
-    sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

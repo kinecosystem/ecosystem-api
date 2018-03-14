@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * result of earn offer i.e. completed html poll
  */@ApiModel(description = "result of earn offer i.e. completed html poll")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-12T18:13:13.894+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-14T17:09:30.270+02:00")
 public class EarnSubmission {
 @SerializedName("content")
   private String content = null;
