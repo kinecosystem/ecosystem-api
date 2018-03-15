@@ -122,6 +122,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /watchers/{service_id}:
+    put:
+      tags:
+        - Watchers
+      description: set the addresses to watch for this service
+      summary: set service addresses watcher
+      operationId: setWatcher
+      requestBody:
+        description: watcher addresses and callback
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watcher'
+      responses:
+        '200':
+          description: Successfully set watcher
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watcher'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
 components:
   parameters:
     RequestId:
@@ -218,6 +247,22 @@ components:
               description: identifier of the sender on the blockchain
             timestamp:
               type: string
+    Watcher:
+      type: object
+      required:
+        - wallet_addresses
+        - callback
+      properties:
+        wallet_addresses:
+          type: array
+          items:
+            type: string
+        callback:
+          type: string
+          description: a webhook to call when a payment is complete
+        service_id:
+          type: string
+          description: the identifier of a service - usually there will only be a single server that wants to get updates on specific addresses. This can be used to shard callbacks onto multiple nodes for example.
 
     Error:
       type: object
