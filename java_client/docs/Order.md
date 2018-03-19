@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | unique identifier of this item | 
+**offerId** | **String** | the offer which this order was created from | 
 **result** | **Object** | * empty when no result (pending status, completed earn) * coupon_code when completed spend  |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) |  | 
 **completionDate** | **String** | UTC ISO | 

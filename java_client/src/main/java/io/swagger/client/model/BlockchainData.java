@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * details taken from a blockchain transaction - all fields optional
  */@ApiModel(description = "details taken from a blockchain transaction - all fields optional")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-14T17:09:30.270+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-19T10:42:22.929+02:00")
 public class BlockchainData {
 @SerializedName("transaction_id")
   private String transactionId = null;

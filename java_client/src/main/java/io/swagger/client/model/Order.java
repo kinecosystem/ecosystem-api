@@ -28,10 +28,12 @@ import java.io.IOException;
 /**
  * a submitted order. it can be pending/completed/failed
  */@ApiModel(description = "a submitted order. it can be pending/completed/failed")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-14T17:09:30.270+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-19T10:42:22.929+02:00")
 public class Order {
 @SerializedName("id")
   private String id = null;
+  @SerializedName("offer_id")
+  private String offerId = null;
   @SerializedName("result")
   private Object result = null;
   
@@ -168,6 +170,24 @@ public class Order {
   }
   public void setId(String id) {
     this.id = id;
+  }
+  
+  public Order offerId(String offerId) {
+    this.offerId = offerId;
+    return this;
+  }
+
+  
+  /**
+  * the offer which this order was created from
+  * @return offerId
+  **/
+  @ApiModelProperty(required = true, value = "the offer which this order was created from")
+  public String getOfferId() {
+    return offerId;
+  }
+  public void setOfferId(String offerId) {
+    this.offerId = offerId;
   }
   
   public Order result(Object result) {
@@ -378,6 +398,7 @@ public class Order {
     }
     Order order = (Order) o;
     return Objects.equals(this.id, order.id) &&
+        Objects.equals(this.offerId, order.offerId) &&
         Objects.equals(this.result, order.result) &&
         Objects.equals(this.status, order.status) &&
         Objects.equals(this.completionDate, order.completionDate) &&
@@ -393,7 +414,7 @@ public class Order {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, result, status, completionDate, blockchainData, offerType, title, description, callToAction, amount, content, error);
+    return Objects.hash(id, offerId, result, status, completionDate, blockchainData, offerType, title, description, callToAction, amount, content, error);
   }
   
   @Override
@@ -402,6 +423,7 @@ public class Order {
     sb.append("class Order {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    offerId: ").append(toIndentedString(offerId)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    completionDate: ").append(toIndentedString(completionDate)).append("\n");

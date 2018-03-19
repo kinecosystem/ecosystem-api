@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * CouponCode
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-14T17:09:30.270+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-19T10:42:22.929+02:00")
 public class CouponCode {
 @SerializedName("coupon_code")
   private String couponCode = null;
