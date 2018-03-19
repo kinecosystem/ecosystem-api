@@ -335,6 +335,7 @@ components:
       type: object
       required:
         - id
+        - offer_id
         - status
         - completion_date
         - offer_type
@@ -345,6 +346,9 @@ components:
         id:
           type: string
           description: unique identifier of this item
+        offer_id:
+          type: string
+          description: the offer which this order was created from
         result:
           type: object
           oneOf:
