@@ -97,8 +97,8 @@ paths:
       description: create an external order for a native offer
       operationId: createExternalOrder
       requestBody:
-        description: submission of an order
-        required: false # in case of spend the content is not required
+        description: submission of an order - currently spend only
+        required: true 
         content:
           application/json:
             schema:
