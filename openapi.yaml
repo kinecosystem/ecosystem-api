@@ -87,6 +87,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  '/offers/external/orders':
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+    post:
+      tags:
+        - Orders
+      summary: create an external order for a native offer
+      description: create an external order for a native offer
+      operationId: createExternalOrder
+      requestBody:
+        description: submission of an order
+        required: false # in case of spend the content is not required
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalOrderRequest'
+      responses:
+        '201':
+          description: Successfully created an external order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenOrder'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/offers/{offer_id}/orders':
     parameters:
       - in: path
@@ -305,19 +334,37 @@ components:
       scheme: bearer
 
   schemas:
-    CouponCode:
+    OrderSpendResult:
       type: object
       required:
-        - coupon_code
+        - type
       properties:
-        coupon_code:
-          description: "a coupon code - appears in a result object of an Order"
-          type: string
-          example: aaaa-bbbb-cccc
         type:
           type: string
-          enum:
-            - coupon
+          enum: [coupon, payment]
+
+    CouponCodeResult:
+      allOf:
+        - $ref: '#/components/schemas/OrderSpendResult'
+        - type: object
+          required:
+            - coupon_code
+          properties:
+            coupon_code:
+              description: a coupon code - appears in a result object of an Order
+              type: string
+              example: aaaa-bbbb-cccc
+
+    JWTBodyConfirmPaymentResult:
+      allOf:
+        - $ref: '#/components/schemas/OrderSpendResult'
+        - type: object
+          required:
+            - jwt
+          properties:
+            jwt:
+              description: JWT defined by JWTBodyConfirmPayment
+              type: string
 
     BlockchainData:
       description: "details taken from a blockchain transaction - all fields optional"
@@ -352,7 +399,8 @@ components:
         result:
           type: object
           oneOf:
-          - $ref: '#/components/schemas/CouponCode'
+          - $ref: '#/components/schemas/CouponCodeResult'
+          - $ref: '#/components/schemas/JWTBodyConfirmPaymentResult'
           description: |
             * empty when no result (pending status, completed earn)
             * coupon_code when completed spend
@@ -406,7 +454,6 @@ components:
           items:
             $ref: '#/components/schemas/Order'
         paging:
-          type: object
           $ref: '#/components/schemas/Paging'
 
     EarnSubmission:
@@ -478,6 +525,15 @@ components:
         paging:
           $ref: '#/components/schemas/Paging'
 
+    ExternalOrderRequest:
+      type: object
+      required:
+        - jwt
+      properties:
+        jwt:
+          type: string
+          description: string serialized JWTBodySpend
+
     OpenOrder:
       description: "an open order that hasn't been submitted yet"
       type: object
@@ -493,15 +549,16 @@ components:
           example: "2018-08-09T11:25:33Z"
 
     SignInData:
-      description: "payload required for signing in"
+      description: >
+        payload required for signing in
       allOf:
         - type: object
           properties:
             jwt:
               type: string
               example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0
-              description: >
-                jwt should contain "user_id", "app_id" and "timestamp", "issuer", "api_key"
+              description: see JWTBodyRegister
+
         - type: object
           required:
             - user_id
@@ -514,6 +571,7 @@ components:
               type: string
             api_key:
               type: string
+
         - type: object
           required:
             - device_id
@@ -524,10 +582,10 @@ components:
               type: string
             public_address:
               type: string
-              description: the address where earned funds will go to 
+              description: the address where earned funds will go to
             sign_in_type:
               type: string
-              enum: 
+              enum:
                 - jwt
                 - whitelist
 
@@ -584,3 +642,114 @@ components:
         code:
           type: integer
           example: 4001
+
+    JWTHeader:
+      description: common header for all JWTs
+      type: object
+      required:
+        - keyid
+        - alg
+        - typ
+      properties:
+        keyid:
+          type: string
+        alg:
+          type: string
+          enum: [ES256]
+        typ:
+          type: string
+          enum: [JWT]
+
+    JWTBodyCommon:
+      description: common body fields for all JWTs
+      type: object
+      required:
+        - iat
+        - iss
+        - exp
+        - sub
+      properties:
+        iat:
+          type: number
+          description: issued at - seconds from epoc
+        iss:
+          type: string
+          description: issuer name, the same as app_id (kik)
+        exp:
+          type: number
+          description: expiration - seconds from epoc
+        sub:
+          type: string
+          description: subject
+          enum: [register, spend, confirm_payment]
+
+    JWTBodyRegister:
+      allOf:
+        - $ref: '#/components/schemas/JWTBodyCommon'
+        - type: object
+          required:
+            - user_id
+            - api_key
+          properties:
+            user_id:
+              type: string
+            api_key:
+              type: string
+              description: api key supplied by kin
+
+
+    JWTBodySpend:
+      allOf:
+        - $ref: '#/components/schemas/JWTBodyCommon'
+        - type: object
+          required:
+            - offer
+          properties:
+            offer:
+              type: object
+              required:
+                - id
+                - title
+                - description
+                - amount
+                - wallet_address
+              properties:
+                id:
+                  type: string
+                  description: offer id - id is decided by digital service
+                title:
+                  type: string
+                  description: offer title - appears in order history
+                description:
+                  type: string
+                  description: offer description - appears in order history
+                amount:
+                  type: number
+                  description: amount of kin for this offer - price
+                wallet_address:
+                  type: string
+                  description: address the client should send kin to to acquire this offer
+
+    JWTBodyConfirmPayment:
+      allOf:
+        - $ref: '#/components/schemas/JWTBodyCommon'
+        - type: object
+          required:
+            - payment
+          properties:
+            payment:
+              type: object
+              required:
+                - offer_id
+                - user_id
+                - date
+              properties:
+                offer_id:
+                  type: string
+                  description: offer id - id is decided by digital service
+                user_id:
+                  type: string
+                  description: user identifier - same value as given by register
+                date:
+                  type: number
+                  description: date of which payment was received in seconds from epoc
