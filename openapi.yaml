@@ -98,7 +98,7 @@ paths:
       operationId: createExternalOrder
       requestBody:
         description: submission of an order - currently spend only
-        required: true 
+        required: true
         content:
           application/json:
             schema:
@@ -341,7 +341,7 @@ components:
       properties:
         type:
           type: string
-          enum: [coupon, payment]
+          enum: [coupon, confirm_payment]
 
     CouponCodeResult:
       allOf:
@@ -377,18 +377,16 @@ components:
         recipient_address:
           type: string
 
-    Order:
-      description: "a submitted order. it can be pending/completed/failed"
+    BaseOrder:
       type: object
       required:
         - id
         - offer_id
-        - status
-        - completion_date
         - offer_type
         - title
         - description
         - amount
+        - blockchain_data
       properties:
         id:
           type: string
@@ -396,28 +394,6 @@ components:
         offer_id:
           type: string
           description: the offer which this order was created from
-        result:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/CouponCodeResult'
-          - $ref: '#/components/schemas/JWTBodyConfirmPaymentResult'
-          description: |
-            * empty when no result (pending status, completed earn)
-            * coupon_code when completed spend
-        status:
-          type: string
-          enum:
-            - pending
-            - completed
-            - failed
-        completion_date: # taken from blockchain
-          type: string
-          example: "2018-09-13T14:33:33Z"
-          description: UTC ISO
-        # filled by payment service
-        blockchain_data:
-          $ref: "#/components/schemas/BlockchainData"
-        # meta fields - filled by offer owner
         offer_type:
           type: string
           enum:
@@ -430,18 +406,53 @@ components:
         description:
           type: string
           example: completed poll
-        call_to_action:
-          type: string
-          example: tap to reveal coupon
         amount:
           type: integer
           example: 4000 (KIN)
           description: kin amount
-        content:
-          type: string
-          description: optional json payload defining a coupon page
-        error:
-          $ref: '#/components/schemas/Error'
+        blockchain_data:
+          $ref: "#/components/schemas/BlockchainData"
+
+    Order:
+      description: "a submitted order. it can be pending/completed/failed"
+      allOf:
+        - $ref: '#/components/schemas/BaseOrder'
+        - type: object
+          required:
+            - status
+            - completion_date
+          properties:
+            result:
+              type: object
+              oneOf:
+                - $ref: '#/components/schemas/CouponCodeResult'
+                - $ref: '#/components/schemas/JWTBodyConfirmPaymentResult'
+              discriminator:
+                propertyName: type
+                mapping:
+                  coupon: '#/components/schemas/CouponCodeResult'
+                  confirm_payment: '#/components/schemas/JWTBodyConfirmPaymentResult'
+              description: |
+                * empty when no result (pending status, completed earn)
+                * coupon code or confirm payment JWT when completed spend
+            status:
+              type: string
+              enum:
+                - pending
+                - completed
+                - failed
+            completion_date:
+              type: string
+              example: "2018-09-13T14:33:33Z"
+              description: UTC ISO
+            call_to_action:
+              type: string
+              example: tap to reveal coupon
+            content:
+              type: string
+              description: optional json payload defining a coupon page
+            error:
+              $ref: '#/components/schemas/Error'
 
     OrderList:
       description: "a list of submitted orders"
@@ -536,17 +547,15 @@ components:
 
     OpenOrder:
       description: "an open order that hasn't been submitted yet"
-      type: object
-      required:
-        - id
-        - expiration_date
-      properties:
-        id:
-          type: string
-          example: "sdfsdfsdfsd"
-        expiration_date:
-          type: string
-          example: "2018-08-09T11:25:33Z"
+      allOf:
+        - $ref: '#/components/schemas/BaseOrder'
+        - type: object
+          required:
+            - expiration_date
+          properties:
+            expiration_date:
+              type: string
+              example: "2018-08-09T11:25:33Z"
 
     SignInData:
       description: >
