@@ -28,12 +28,70 @@ import java.io.IOException;
 /**
  * a submitted order. it can be pending/completed/failed
  */@ApiModel(description = "a submitted order. it can be pending/completed/failed")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-19T10:42:22.929+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-15T20:40:18.015+03:00")
 public class Order {
 @SerializedName("id")
   private String id = null;
   @SerializedName("offer_id")
   private String offerId = null;
+  
+    /**
+   * Gets or Sets offerType
+   */
+  @JsonAdapter(OfferTypeEnum.Adapter.class)
+  public enum OfferTypeEnum {
+    
+    EARN("earn"),
+    SPEND("spend");
+
+    private String value;
+
+    OfferTypeEnum(String value) {
+      this.value = value;
+    }
+    
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    
+    public static OfferTypeEnum fromValue(String text) {
+      for (OfferTypeEnum b : OfferTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    
+    public static class Adapter extends TypeAdapter<OfferTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OfferTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OfferTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OfferTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+  
+  @SerializedName("offer_type")
+  private OfferTypeEnum offerType = null;
+  @SerializedName("title")
+  private String title = null;
+  @SerializedName("description")
+  private String description = null;
+  @SerializedName("amount")
+  private Integer amount = null;
+  @SerializedName("blockchain_data")
+  private BlockchainData blockchainData = null;
   @SerializedName("result")
   private Object result = null;
   
@@ -89,66 +147,8 @@ public class Order {
   private StatusEnum status = null;
   @SerializedName("completion_date")
   private String completionDate = null;
-  @SerializedName("blockchain_data")
-  private BlockchainData blockchainData = null;
-  
-    /**
-   * Gets or Sets offerType
-   */
-  @JsonAdapter(OfferTypeEnum.Adapter.class)
-  public enum OfferTypeEnum {
-    
-    EARN("earn"),
-    SPEND("spend");
-
-    private String value;
-
-    OfferTypeEnum(String value) {
-      this.value = value;
-    }
-    
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-    
-    public static OfferTypeEnum fromValue(String text) {
-      for (OfferTypeEnum b : OfferTypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-    
-    public static class Adapter extends TypeAdapter<OfferTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final OfferTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public OfferTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return OfferTypeEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-  
-  @SerializedName("offer_type")
-  private OfferTypeEnum offerType = null;
-  @SerializedName("title")
-  private String title = null;
-  @SerializedName("description")
-  private String description = null;
   @SerializedName("call_to_action")
   private String callToAction = null;
-  @SerializedName("amount")
-  private Integer amount = null;
   @SerializedName("content")
   private String content = null;
   @SerializedName("error")
@@ -188,78 +188,6 @@ public class Order {
   }
   public void setOfferId(String offerId) {
     this.offerId = offerId;
-  }
-  
-  public Order result(Object result) {
-    this.result = result;
-    return this;
-  }
-
-  
-  /**
-  * * empty when no result (pending status, completed earn) * coupon_code when completed spend 
-  * @return result
-  **/
-  @ApiModelProperty(value = "* empty when no result (pending status, completed earn) * coupon_code when completed spend ")
-  public Object getResult() {
-    return result;
-  }
-  public void setResult(Object result) {
-    this.result = result;
-  }
-  
-  public Order status(StatusEnum status) {
-    this.status = status;
-    return this;
-  }
-
-  
-  /**
-  * Get status
-  * @return status
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public StatusEnum getStatus() {
-    return status;
-  }
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-  
-  public Order completionDate(String completionDate) {
-    this.completionDate = completionDate;
-    return this;
-  }
-
-  
-  /**
-  * UTC ISO
-  * @return completionDate
-  **/
-  @ApiModelProperty(example = "2018-09-13T14:33:33Z", required = true, value = "UTC ISO")
-  public String getCompletionDate() {
-    return completionDate;
-  }
-  public void setCompletionDate(String completionDate) {
-    this.completionDate = completionDate;
-  }
-  
-  public Order blockchainData(BlockchainData blockchainData) {
-    this.blockchainData = blockchainData;
-    return this;
-  }
-
-  
-  /**
-  * Get blockchainData
-  * @return blockchainData
-  **/
-  @ApiModelProperty(value = "")
-  public BlockchainData getBlockchainData() {
-    return blockchainData;
-  }
-  public void setBlockchainData(BlockchainData blockchainData) {
-    this.blockchainData = blockchainData;
   }
   
   public Order offerType(OfferTypeEnum offerType) {
@@ -316,24 +244,6 @@ public class Order {
     this.description = description;
   }
   
-  public Order callToAction(String callToAction) {
-    this.callToAction = callToAction;
-    return this;
-  }
-
-  
-  /**
-  * Get callToAction
-  * @return callToAction
-  **/
-  @ApiModelProperty(example = "tap to reveal coupon", value = "")
-  public String getCallToAction() {
-    return callToAction;
-  }
-  public void setCallToAction(String callToAction) {
-    this.callToAction = callToAction;
-  }
-  
   public Order amount(Integer amount) {
     this.amount = amount;
     return this;
@@ -350,6 +260,96 @@ public class Order {
   }
   public void setAmount(Integer amount) {
     this.amount = amount;
+  }
+  
+  public Order blockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
+    return this;
+  }
+
+  
+  /**
+  * Get blockchainData
+  * @return blockchainData
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public BlockchainData getBlockchainData() {
+    return blockchainData;
+  }
+  public void setBlockchainData(BlockchainData blockchainData) {
+    this.blockchainData = blockchainData;
+  }
+  
+  public Order result(Object result) {
+    this.result = result;
+    return this;
+  }
+
+  
+  /**
+  * * empty when no result (pending status, completed earn) * coupon code or confirm payment JWT when completed spend 
+  * @return result
+  **/
+  @ApiModelProperty(value = "* empty when no result (pending status, completed earn) * coupon code or confirm payment JWT when completed spend ")
+  public Object getResult() {
+    return result;
+  }
+  public void setResult(Object result) {
+    this.result = result;
+  }
+  
+  public Order status(StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  
+  /**
+  * Get status
+  * @return status
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public StatusEnum getStatus() {
+    return status;
+  }
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+  
+  public Order completionDate(String completionDate) {
+    this.completionDate = completionDate;
+    return this;
+  }
+
+  
+  /**
+  * UTC ISO
+  * @return completionDate
+  **/
+  @ApiModelProperty(example = "2018-09-13T14:33:33Z", required = true, value = "UTC ISO")
+  public String getCompletionDate() {
+    return completionDate;
+  }
+  public void setCompletionDate(String completionDate) {
+    this.completionDate = completionDate;
+  }
+  
+  public Order callToAction(String callToAction) {
+    this.callToAction = callToAction;
+    return this;
+  }
+
+  
+  /**
+  * Get callToAction
+  * @return callToAction
+  **/
+  @ApiModelProperty(example = "tap to reveal coupon", value = "")
+  public String getCallToAction() {
+    return callToAction;
+  }
+  public void setCallToAction(String callToAction) {
+    this.callToAction = callToAction;
   }
   
   public Order content(String content) {
@@ -399,22 +399,22 @@ public class Order {
     Order order = (Order) o;
     return Objects.equals(this.id, order.id) &&
         Objects.equals(this.offerId, order.offerId) &&
-        Objects.equals(this.result, order.result) &&
-        Objects.equals(this.status, order.status) &&
-        Objects.equals(this.completionDate, order.completionDate) &&
-        Objects.equals(this.blockchainData, order.blockchainData) &&
         Objects.equals(this.offerType, order.offerType) &&
         Objects.equals(this.title, order.title) &&
         Objects.equals(this.description, order.description) &&
-        Objects.equals(this.callToAction, order.callToAction) &&
         Objects.equals(this.amount, order.amount) &&
+        Objects.equals(this.blockchainData, order.blockchainData) &&
+        Objects.equals(this.result, order.result) &&
+        Objects.equals(this.status, order.status) &&
+        Objects.equals(this.completionDate, order.completionDate) &&
+        Objects.equals(this.callToAction, order.callToAction) &&
         Objects.equals(this.content, order.content) &&
         Objects.equals(this.error, order.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, offerId, result, status, completionDate, blockchainData, offerType, title, description, callToAction, amount, content, error);
+    return Objects.hash(id, offerId, offerType, title, description, amount, blockchainData, result, status, completionDate, callToAction, content, error);
   }
   
   @Override
@@ -424,15 +424,15 @@ public class Order {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    offerId: ").append(toIndentedString(offerId)).append("\n");
-    sb.append("    result: ").append(toIndentedString(result)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    completionDate: ").append(toIndentedString(completionDate)).append("\n");
-    sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
     sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
+    sb.append("    result: ").append(toIndentedString(result)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    completionDate: ").append(toIndentedString(completionDate)).append("\n");
+    sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");

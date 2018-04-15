@@ -105,6 +105,7 @@ Class | Method | HTTP request | Description
 *OffersApi* | [**getOffers**](docs/OffersApi.md#getOffers) | **GET** /offers | Return a list of offers
 *OrdersApi* | [**cancelOrder**](docs/OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
 *OrdersApi* | [**changeOrder**](docs/OrdersApi.md#changeOrder) | **PATCH** /orders/{order_id} | change an order
+*OrdersApi* | [**createExternalOrder**](docs/OrdersApi.md#createExternalOrder) | **POST** /offers/external/orders | create an external order for a native offer
 *OrdersApi* | [**createOrder**](docs/OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/orders | create an order for an offer
 *OrdersApi* | [**getHistory**](docs/OrdersApi.md#getHistory) | **GET** /orders | get user order history
 *OrdersApi* | [**getOrder**](docs/OrdersApi.md#getOrder) | **GET** /orders/{order_id} | get an order
@@ -114,16 +115,27 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AuthToken](docs/AuthToken.md)
+ - [BaseOrder](docs/BaseOrder.md)
  - [BlockchainData](docs/BlockchainData.md)
  - [Body](docs/Body.md)
- - [CouponCode](docs/CouponCode.md)
+ - [CouponCodeResult](docs/CouponCodeResult.md)
  - [EarnSubmission](docs/EarnSubmission.md)
  - [Error](docs/Error.md)
+ - [ExternalOrderRequest](docs/ExternalOrderRequest.md)
+ - [JWTBodyCommon](docs/JWTBodyCommon.md)
+ - [JWTBodyConfirmPayment](docs/JWTBodyConfirmPayment.md)
+ - [JWTBodyConfirmPaymentPayment](docs/JWTBodyConfirmPaymentPayment.md)
+ - [JWTBodyConfirmPaymentResult](docs/JWTBodyConfirmPaymentResult.md)
+ - [JWTBodyRegister](docs/JWTBodyRegister.md)
+ - [JWTBodySpend](docs/JWTBodySpend.md)
+ - [JWTBodySpendOffer](docs/JWTBodySpendOffer.md)
+ - [JWTHeader](docs/JWTHeader.md)
  - [Offer](docs/Offer.md)
  - [OfferList](docs/OfferList.md)
  - [OpenOrder](docs/OpenOrder.md)
  - [Order](docs/Order.md)
  - [OrderList](docs/OrderList.md)
+ - [OrderSpendResult](docs/OrderSpendResult.md)
  - [Paging](docs/Paging.md)
  - [PagingCursors](docs/PagingCursors.md)
  - [SignInData](docs/SignInData.md)

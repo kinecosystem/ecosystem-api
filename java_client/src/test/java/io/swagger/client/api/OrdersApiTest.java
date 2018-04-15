@@ -17,6 +17,7 @@ import io.swagger.client.ApiException;
 import io.swagger.client.model.Body;
 import io.swagger.client.model.EarnSubmission;
 import io.swagger.client.model.Error;
+import io.swagger.client.model.ExternalOrderRequest;
 import io.swagger.client.model.OpenOrder;
 import io.swagger.client.model.Order;
 import io.swagger.client.model.OrderList;
@@ -78,6 +79,26 @@ public class OrdersApiTest {
         Body body = null;
         
         Order response = api.changeOrder(orderId, X_REQUEST_ID, body);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * create an external order for a native offer
+     *
+     * create an external order for a native offer
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createExternalOrderTest() throws ApiException {
+        
+        ExternalOrderRequest externalorderrequest = null;
+        
+        String X_REQUEST_ID = null;
+        
+        OpenOrder response = api.createExternalOrder(externalorderrequest, X_REQUEST_ID);
 
         // TODO: test validations
     }

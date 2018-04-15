@@ -25,10 +25,10 @@ import io.swagger.client.model.BlockchainData;
 import java.io.IOException;
 
 /**
- * an open order that hasn&#x27;t been submitted yet
- */@ApiModel(description = "an open order that hasn't been submitted yet")
+ * BaseOrder
+ */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-15T20:40:18.015+03:00")
-public class OpenOrder {
+public class BaseOrder {
 @SerializedName("id")
   private String id = null;
   @SerializedName("offer_id")
@@ -91,10 +91,8 @@ public class OpenOrder {
   private Integer amount = null;
   @SerializedName("blockchain_data")
   private BlockchainData blockchainData = null;
-  @SerializedName("expiration_date")
-  private String expirationDate = null;
   
-  public OpenOrder id(String id) {
+  public BaseOrder id(String id) {
     this.id = id;
     return this;
   }
@@ -112,7 +110,7 @@ public class OpenOrder {
     this.id = id;
   }
   
-  public OpenOrder offerId(String offerId) {
+  public BaseOrder offerId(String offerId) {
     this.offerId = offerId;
     return this;
   }
@@ -130,7 +128,7 @@ public class OpenOrder {
     this.offerId = offerId;
   }
   
-  public OpenOrder offerType(OfferTypeEnum offerType) {
+  public BaseOrder offerType(OfferTypeEnum offerType) {
     this.offerType = offerType;
     return this;
   }
@@ -148,7 +146,7 @@ public class OpenOrder {
     this.offerType = offerType;
   }
   
-  public OpenOrder title(String title) {
+  public BaseOrder title(String title) {
     this.title = title;
     return this;
   }
@@ -166,7 +164,7 @@ public class OpenOrder {
     this.title = title;
   }
   
-  public OpenOrder description(String description) {
+  public BaseOrder description(String description) {
     this.description = description;
     return this;
   }
@@ -184,7 +182,7 @@ public class OpenOrder {
     this.description = description;
   }
   
-  public OpenOrder amount(Integer amount) {
+  public BaseOrder amount(Integer amount) {
     this.amount = amount;
     return this;
   }
@@ -202,7 +200,7 @@ public class OpenOrder {
     this.amount = amount;
   }
   
-  public OpenOrder blockchainData(BlockchainData blockchainData) {
+  public BaseOrder blockchainData(BlockchainData blockchainData) {
     this.blockchainData = blockchainData;
     return this;
   }
@@ -220,24 +218,6 @@ public class OpenOrder {
     this.blockchainData = blockchainData;
   }
   
-  public OpenOrder expirationDate(String expirationDate) {
-    this.expirationDate = expirationDate;
-    return this;
-  }
-
-  
-  /**
-  * Get expirationDate
-  * @return expirationDate
-  **/
-  @ApiModelProperty(example = "2018-08-09T11:25:33Z", required = true, value = "")
-  public String getExpirationDate() {
-    return expirationDate;
-  }
-  public void setExpirationDate(String expirationDate) {
-    this.expirationDate = expirationDate;
-  }
-  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -246,26 +226,25 @@ public class OpenOrder {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OpenOrder openOrder = (OpenOrder) o;
-    return Objects.equals(this.id, openOrder.id) &&
-        Objects.equals(this.offerId, openOrder.offerId) &&
-        Objects.equals(this.offerType, openOrder.offerType) &&
-        Objects.equals(this.title, openOrder.title) &&
-        Objects.equals(this.description, openOrder.description) &&
-        Objects.equals(this.amount, openOrder.amount) &&
-        Objects.equals(this.blockchainData, openOrder.blockchainData) &&
-        Objects.equals(this.expirationDate, openOrder.expirationDate);
+    BaseOrder baseOrder = (BaseOrder) o;
+    return Objects.equals(this.id, baseOrder.id) &&
+        Objects.equals(this.offerId, baseOrder.offerId) &&
+        Objects.equals(this.offerType, baseOrder.offerType) &&
+        Objects.equals(this.title, baseOrder.title) &&
+        Objects.equals(this.description, baseOrder.description) &&
+        Objects.equals(this.amount, baseOrder.amount) &&
+        Objects.equals(this.blockchainData, baseOrder.blockchainData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, offerId, offerType, title, description, amount, blockchainData, expirationDate);
+    return Objects.hash(id, offerId, offerType, title, description, amount, blockchainData);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OpenOrder {\n");
+    sb.append("class BaseOrder {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    offerId: ").append(toIndentedString(offerId)).append("\n");
@@ -274,7 +253,6 @@ public class OpenOrder {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
-    sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

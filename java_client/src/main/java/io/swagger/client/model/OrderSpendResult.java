@@ -24,20 +24,19 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CouponCode
+ * OrderSpendResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-03-19T10:42:22.929+02:00")
-public class CouponCode {
-@SerializedName("coupon_code")
-  private String couponCode = null;
-  
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-15T20:40:18.015+03:00")
+public class OrderSpendResult {
+
     /**
    * Gets or Sets type
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
     
-    COUPON("coupon");
+    COUPON("coupon"),
+    CONFIRM_PAYMENT("confirm_payment");
 
     private String value;
 
@@ -80,25 +79,7 @@ public class CouponCode {
   @SerializedName("type")
   private TypeEnum type = null;
   
-  public CouponCode couponCode(String couponCode) {
-    this.couponCode = couponCode;
-    return this;
-  }
-
-  
-  /**
-  * a coupon code - appears in a result object of an Order
-  * @return couponCode
-  **/
-  @ApiModelProperty(example = "aaaa-bbbb-cccc", required = true, value = "a coupon code - appears in a result object of an Order")
-  public String getCouponCode() {
-    return couponCode;
-  }
-  public void setCouponCode(String couponCode) {
-    this.couponCode = couponCode;
-  }
-  
-  public CouponCode type(TypeEnum type) {
+  public OrderSpendResult type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -108,7 +89,7 @@ public class CouponCode {
   * Get type
   * @return type
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public TypeEnum getType() {
     return type;
   }
@@ -124,22 +105,20 @@ public class CouponCode {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CouponCode couponCode = (CouponCode) o;
-    return Objects.equals(this.couponCode, couponCode.couponCode) &&
-        Objects.equals(this.type, couponCode.type);
+    OrderSpendResult orderSpendResult = (OrderSpendResult) o;
+    return Objects.equals(this.type, orderSpendResult.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(couponCode, type);
+    return Objects.hash(type);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CouponCode {\n");
+    sb.append("class OrderSpendResult {\n");
     
-    sb.append("    couponCode: ").append(toIndentedString(couponCode)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

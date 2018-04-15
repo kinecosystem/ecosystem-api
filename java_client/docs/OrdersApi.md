@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelOrder**](OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
 [**changeOrder**](OrdersApi.md#changeOrder) | **PATCH** /orders/{order_id} | change an order
+[**createExternalOrder**](OrdersApi.md#createExternalOrder) | **POST** /offers/external/orders | create an external order for a native offer
 [**createOrder**](OrdersApi.md#createOrder) | **POST** /offers/{offer_id}/orders | create an order for an offer
 [**getHistory**](OrdersApi.md#getHistory) | **GET** /orders | get user order history
 [**getOrder**](OrdersApi.md#getOrder) | **GET** /orders/{order_id} | get an order
@@ -120,6 +121,59 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/merge-patch+json
  - **Accept**: application/jsonapplication/jsonapplication/json
+
+
+<a name="createExternalOrder"></a>
+# **createExternalOrder**
+> OpenOrder createExternalOrder(externalorderrequest, X_REQUEST_ID)
+
+create an external order for a native offer
+
+create an external order for a native offer
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.OrdersApi;
+
+
+
+OrdersApi apiInstance = new OrdersApi();
+
+ExternalOrderRequest externalorderrequest = ; // ExternalOrderRequest | 
+
+String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
+
+try {
+    OpenOrder result = apiInstance.createExternalOrder(externalorderrequest, X_REQUEST_ID);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OrdersApi#createExternalOrder");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **externalorderrequest** | [**ExternalOrderRequest**](.md)|  |
+ **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
+
+
+### Return type
+
+[**OpenOrder**](OpenOrder.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/jsonapplication/json
 
 
 <a name="createOrder"></a>

@@ -1,5 +1,5 @@
 
-# Order
+# BaseOrder
 
 ## Properties
 Name | Type | Description | Notes
@@ -11,12 +11,6 @@ Name | Type | Description | Notes
 **description** | **String** |  | 
 **amount** | **Integer** | kin amount | 
 **blockchainData** | [**BlockchainData**](BlockchainData.md) |  | 
-**result** | **Object** | * empty when no result (pending status, completed earn) * coupon code or confirm payment JWT when completed spend  |  [optional]
-**status** | [**StatusEnum**](#StatusEnum) |  | 
-**completionDate** | **String** | UTC ISO | 
-**callToAction** | **String** |  |  [optional]
-**content** | **String** | optional json payload defining a coupon page |  [optional]
-**error** | [**Error**](Error.md) |  |  [optional]
 
 
 
@@ -26,15 +20,6 @@ Name | Value
 ---- | -----
 EARN | &quot;earn&quot;
 SPEND | &quot;spend&quot;
-
-
-<a name="StatusEnum"></a>
-## Enum: StatusEnum
-Name | Value
----- | -----
-PENDING | &quot;pending&quot;
-COMPLETED | &quot;completed&quot;
-FAILED | &quot;failed&quot;
 
 
 

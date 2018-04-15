@@ -1,11 +1,11 @@
 
-# CouponCode
+# CouponCodeResult
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | [**TypeEnum**](#TypeEnum) |  | 
 **couponCode** | **String** | a coupon code - appears in a result object of an Order | 
-**type** | [**TypeEnum**](#TypeEnum) |  |  [optional]
 
 
 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 Name | Value
 ---- | -----
 COUPON | &quot;coupon&quot;
+CONFIRM_PAYMENT | &quot;confirm_payment&quot;
 
 
 

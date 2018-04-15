@@ -24,49 +24,29 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PagingCursors
+ * ExternalOrderRequest
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-15T20:40:18.015+03:00")
-public class PagingCursors {
-@SerializedName("after")
-  private String after = null;
-  @SerializedName("before")
-  private String before = null;
+public class ExternalOrderRequest {
+@SerializedName("jwt")
+  private String jwt = null;
   
-  public PagingCursors after(String after) {
-    this.after = after;
+  public ExternalOrderRequest jwt(String jwt) {
+    this.jwt = jwt;
     return this;
   }
 
   
   /**
-  * Get after
-  * @return after
+  * string serialized JWTBodySpend
+  * @return jwt
   **/
-  @ApiModelProperty(example = "MTAxNTExOTQ1MjAwNzI5NDE", value = "")
-  public String getAfter() {
-    return after;
+  @ApiModelProperty(required = true, value = "string serialized JWTBodySpend")
+  public String getJwt() {
+    return jwt;
   }
-  public void setAfter(String after) {
-    this.after = after;
-  }
-  
-  public PagingCursors before(String before) {
-    this.before = before;
-    return this;
-  }
-
-  
-  /**
-  * Get before
-  * @return before
-  **/
-  @ApiModelProperty(example = "NDMyNzQyODI3OTQw", value = "")
-  public String getBefore() {
-    return before;
-  }
-  public void setBefore(String before) {
-    this.before = before;
+  public void setJwt(String jwt) {
+    this.jwt = jwt;
   }
   
   @Override
@@ -77,23 +57,21 @@ public class PagingCursors {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PagingCursors pagingCursors = (PagingCursors) o;
-    return Objects.equals(this.after, pagingCursors.after) &&
-        Objects.equals(this.before, pagingCursors.before);
+    ExternalOrderRequest externalOrderRequest = (ExternalOrderRequest) o;
+    return Objects.equals(this.jwt, externalOrderRequest.jwt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(after, before);
+    return Objects.hash(jwt);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PagingCursors {\n");
+    sb.append("class ExternalOrderRequest {\n");
     
-    sb.append("    after: ").append(toIndentedString(after)).append("\n");
-    sb.append("    before: ").append(toIndentedString(before)).append("\n");
+    sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
