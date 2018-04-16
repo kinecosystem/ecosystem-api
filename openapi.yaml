@@ -557,17 +557,44 @@ components:
               type: string
               example: "2018-08-09T11:25:33Z"
 
-    SignInData:
-      description: >
-        payload required for signing in
+    CommonSignInData:
+      description: "Base data for all sign in types"
+      type: object
+      required:
+        - device_id
+        - public_address
+        - sign_in_type
+      properties:
+        device_id:
+          type: string
+        public_address:
+          type: string
+          description: "The address where earned funds will go to"
+        sign_in_type:
+          type: string
+          enum:
+            - jwt
+            - whitelist
+
+    JWTSignInData:
+      description: "Sign in data for JWT sign in type"
+      type: object
       allOf:
+        - $ref: '#/components/schemas/CommonSignInData'
         - type: object
+          required:
+            - jwt
           properties:
             jwt:
               type: string
               example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0
               description: see JWTBodyRegister
-
+              
+    WhitelistSignInData:
+      description: "Sign in data for whitelist sign in type"
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CommonSignInData'
         - type: object
           required:
             - user_id
@@ -580,23 +607,17 @@ components:
               type: string
             api_key:
               type: string
-
-        - type: object
-          required:
-            - device_id
-            - public_address
-            - sign_in_type
-          properties:
-            device_id:
-              type: string
-            public_address:
-              type: string
-              description: the address where earned funds will go to
-            sign_in_type:
-              type: string
-              enum:
-                - jwt
-                - whitelist
+              
+    SignInData:
+      description: "payload required for signing in"
+      oneOf:
+        - $ref: '#/components/schemas/JWTSignInData'
+        - $ref: '#/components/schemas/WhitelistSignInData'
+      discriminator:
+        propertyName: sign_in_type
+        mapping:
+          jwt: '#/components/schemas/JWTSignInData'
+          whitelist: '#/components/schemas/WhitelistSignInData'
 
     AuthToken:
       description: "token issued by marketplace server"
