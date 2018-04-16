@@ -562,12 +562,12 @@ components:
       type: object
       required:
         - device_id
-        - public_address
+        - wallet_address
         - sign_in_type
       properties:
         device_id:
           type: string
-        public_address:
+        wallet_address:
           type: string
           description: "The address where earned funds will go to"
         sign_in_type:
@@ -598,7 +598,6 @@ components:
         - type: object
           required:
             - user_id
-            - app_id
             - api_key
           properties:
             user_id:
@@ -626,6 +625,7 @@ components:
         - token
         - activated
         - expiration_date
+        - app_id
       properties:
         token:
           type: string
@@ -635,6 +635,10 @@ components:
         expiration_date:
           type: string
           example: "2018-09-29T12:55:44Z"
+        app_id:
+          type: string
+          example: kik
+          description: a 3 - 4 letter symbol identifying the app
 
     Paging:
       description: "object accompanying lists - used to fetch next/previous section"
