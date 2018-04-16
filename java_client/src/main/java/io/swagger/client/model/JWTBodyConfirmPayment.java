@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * JWTBodyConfirmPayment
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-15T20:40:18.015+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
 public class JWTBodyConfirmPayment {
 @SerializedName("iat")
   private BigDecimal iat = null;

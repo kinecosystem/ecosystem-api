@@ -1,5 +1,5 @@
 
-# SignInData
+# WhitelistSignInData
 
 ## Properties
 Name | Type | Description | Notes
@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **userId** | **String** |  | 
 **appId** | **String** |  |  [optional]
 **apiKey** | **String** |  | 
-**jwt** | **String** | see JWTBodyRegister | 
 
 
 

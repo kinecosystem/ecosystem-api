@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * token issued by marketplace server
  */@ApiModel(description = "token issued by marketplace server")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-15T20:40:18.015+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
 public class AuthToken {
 @SerializedName("token")
   private String token = null;
@@ -34,6 +34,8 @@ public class AuthToken {
   private Boolean activated = null;
   @SerializedName("expiration_date")
   private String expirationDate = null;
+  @SerializedName("app_id")
+  private String appId = null;
   
   public AuthToken token(String token) {
     this.token = token;
@@ -89,6 +91,24 @@ public class AuthToken {
     this.expirationDate = expirationDate;
   }
   
+  public AuthToken appId(String appId) {
+    this.appId = appId;
+    return this;
+  }
+
+  
+  /**
+  * a 3 - 4 letter symbol identifying the app
+  * @return appId
+  **/
+  @ApiModelProperty(example = "kik", required = true, value = "a 3 - 4 letter symbol identifying the app")
+  public String getAppId() {
+    return appId;
+  }
+  public void setAppId(String appId) {
+    this.appId = appId;
+  }
+  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -100,12 +120,13 @@ public class AuthToken {
     AuthToken authToken = (AuthToken) o;
     return Objects.equals(this.token, authToken.token) &&
         Objects.equals(this.activated, authToken.activated) &&
-        Objects.equals(this.expirationDate, authToken.expirationDate);
+        Objects.equals(this.expirationDate, authToken.expirationDate) &&
+        Objects.equals(this.appId, authToken.appId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(token, activated, expirationDate);
+    return Objects.hash(token, activated, expirationDate, appId);
   }
   
   @Override
@@ -116,6 +137,7 @@ public class AuthToken {
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    activated: ").append(toIndentedString(activated)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
+    sb.append("    appId: ").append(toIndentedString(appId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

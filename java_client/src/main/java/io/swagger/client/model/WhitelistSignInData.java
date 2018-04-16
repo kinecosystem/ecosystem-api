@@ -21,15 +21,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.WhitelistSignInData;
 import java.io.IOException;
 
 /**
- * payload required for signing in
- */@ApiModel(description = "payload required for signing in")
+ * Sign in data for whitelist sign in type
+ */@ApiModel(description = "Sign in data for whitelist sign in type")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
-
-public class SignInData {
+public class WhitelistSignInData {
 @SerializedName("device_id")
   private String deviceId = null;
   @SerializedName("wallet_address")
@@ -90,10 +88,8 @@ public class SignInData {
   private String appId = null;
   @SerializedName("api_key")
   private String apiKey = null;
-  @SerializedName("jwt")
-  private String jwt = null;
   
-  public SignInData deviceId(String deviceId) {
+  public WhitelistSignInData deviceId(String deviceId) {
     this.deviceId = deviceId;
     return this;
   }
@@ -111,7 +107,7 @@ public class SignInData {
     this.deviceId = deviceId;
   }
   
-  public SignInData walletAddress(String walletAddress) {
+  public WhitelistSignInData walletAddress(String walletAddress) {
     this.walletAddress = walletAddress;
     return this;
   }
@@ -129,7 +125,7 @@ public class SignInData {
     this.walletAddress = walletAddress;
   }
   
-  public SignInData signInType(SignInTypeEnum signInType) {
+  public WhitelistSignInData signInType(SignInTypeEnum signInType) {
     this.signInType = signInType;
     return this;
   }
@@ -147,7 +143,7 @@ public class SignInData {
     this.signInType = signInType;
   }
   
-  public SignInData userId(String userId) {
+  public WhitelistSignInData userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -165,7 +161,7 @@ public class SignInData {
     this.userId = userId;
   }
   
-  public SignInData appId(String appId) {
+  public WhitelistSignInData appId(String appId) {
     this.appId = appId;
     return this;
   }
@@ -183,7 +179,7 @@ public class SignInData {
     this.appId = appId;
   }
   
-  public SignInData apiKey(String apiKey) {
+  public WhitelistSignInData apiKey(String apiKey) {
     this.apiKey = apiKey;
     return this;
   }
@@ -201,24 +197,6 @@ public class SignInData {
     this.apiKey = apiKey;
   }
   
-  public SignInData jwt(String jwt) {
-    this.jwt = jwt;
-    return this;
-  }
-
-  
-  /**
-  * see JWTBodyRegister
-  * @return jwt
-  **/
-  @ApiModelProperty(example = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0", required = true, value = "see JWTBodyRegister")
-  public String getJwt() {
-    return jwt;
-  }
-  public void setJwt(String jwt) {
-    this.jwt = jwt;
-  }
-  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -227,25 +205,24 @@ public class SignInData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SignInData signInData = (SignInData) o;
-    return Objects.equals(this.deviceId, signInData.deviceId) &&
-        Objects.equals(this.walletAddress, signInData.walletAddress) &&
-        Objects.equals(this.signInType, signInData.signInType) &&
-        Objects.equals(this.userId, signInData.userId) &&
-        Objects.equals(this.appId, signInData.appId) &&
-        Objects.equals(this.apiKey, signInData.apiKey) &&
-        Objects.equals(this.jwt, signInData.jwt);
+    WhitelistSignInData whitelistSignInData = (WhitelistSignInData) o;
+    return Objects.equals(this.deviceId, whitelistSignInData.deviceId) &&
+        Objects.equals(this.walletAddress, whitelistSignInData.walletAddress) &&
+        Objects.equals(this.signInType, whitelistSignInData.signInType) &&
+        Objects.equals(this.userId, whitelistSignInData.userId) &&
+        Objects.equals(this.appId, whitelistSignInData.appId) &&
+        Objects.equals(this.apiKey, whitelistSignInData.apiKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deviceId, walletAddress, signInType, userId, appId, apiKey, jwt);
+    return Objects.hash(deviceId, walletAddress, signInType, userId, appId, apiKey);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SignInData {\n");
+    sb.append("class WhitelistSignInData {\n");
     
     sb.append("    deviceId: ").append(toIndentedString(deviceId)).append("\n");
     sb.append("    walletAddress: ").append(toIndentedString(walletAddress)).append("\n");
@@ -253,7 +230,6 @@ public class SignInData {
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    appId: ").append(toIndentedString(appId)).append("\n");
     sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
-    sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

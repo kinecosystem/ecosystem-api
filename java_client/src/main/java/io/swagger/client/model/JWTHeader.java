@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * common header for all JWTs
  */@ApiModel(description = "common header for all JWTs")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-15T20:40:18.015+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
 public class JWTHeader {
 @SerializedName("keyid")
   private String keyid = null;

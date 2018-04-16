@@ -1,5 +1,5 @@
 
-# SignInData
+# CommonSignInData
 
 ## Properties
 Name | Type | Description | Notes
@@ -7,10 +7,6 @@ Name | Type | Description | Notes
 **deviceId** | **String** |  | 
 **walletAddress** | **String** | The address where earned funds will go to | 
 **signInType** | [**SignInTypeEnum**](#SignInTypeEnum) |  | 
-**userId** | **String** |  | 
-**appId** | **String** |  |  [optional]
-**apiKey** | **String** |  | 
-**jwt** | **String** | see JWTBodyRegister | 
 
 
 

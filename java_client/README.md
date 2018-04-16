@@ -118,6 +118,7 @@ Class | Method | HTTP request | Description
  - [BaseOrder](docs/BaseOrder.md)
  - [BlockchainData](docs/BlockchainData.md)
  - [Body](docs/Body.md)
+ - [CommonSignInData](docs/CommonSignInData.md)
  - [CouponCodeResult](docs/CouponCodeResult.md)
  - [EarnSubmission](docs/EarnSubmission.md)
  - [Error](docs/Error.md)
@@ -130,6 +131,7 @@ Class | Method | HTTP request | Description
  - [JWTBodySpend](docs/JWTBodySpend.md)
  - [JWTBodySpendOffer](docs/JWTBodySpendOffer.md)
  - [JWTHeader](docs/JWTHeader.md)
+ - [JWTSignInData](docs/JWTSignInData.md)
  - [Offer](docs/Offer.md)
  - [OfferList](docs/OfferList.md)
  - [OpenOrder](docs/OpenOrder.md)
@@ -139,6 +141,7 @@ Class | Method | HTTP request | Description
  - [Paging](docs/Paging.md)
  - [PagingCursors](docs/PagingCursors.md)
  - [SignInData](docs/SignInData.md)
+ - [WhitelistSignInData](docs/WhitelistSignInData.md)
 
 
 ## Documentation for Authorization

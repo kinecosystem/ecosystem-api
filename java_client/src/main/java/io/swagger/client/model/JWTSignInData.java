@@ -21,15 +21,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.WhitelistSignInData;
 import java.io.IOException;
 
 /**
- * payload required for signing in
- */@ApiModel(description = "payload required for signing in")
+ * Sign in data for JWT sign in type
+ */@ApiModel(description = "Sign in data for JWT sign in type")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
-
-public class SignInData {
+public class JWTSignInData {
 @SerializedName("device_id")
   private String deviceId = null;
   @SerializedName("wallet_address")
@@ -84,16 +82,10 @@ public class SignInData {
   
   @SerializedName("sign_in_type")
   private SignInTypeEnum signInType = null;
-  @SerializedName("user_id")
-  private String userId = null;
-  @SerializedName("app_id")
-  private String appId = null;
-  @SerializedName("api_key")
-  private String apiKey = null;
   @SerializedName("jwt")
   private String jwt = null;
   
-  public SignInData deviceId(String deviceId) {
+  public JWTSignInData deviceId(String deviceId) {
     this.deviceId = deviceId;
     return this;
   }
@@ -111,7 +103,7 @@ public class SignInData {
     this.deviceId = deviceId;
   }
   
-  public SignInData walletAddress(String walletAddress) {
+  public JWTSignInData walletAddress(String walletAddress) {
     this.walletAddress = walletAddress;
     return this;
   }
@@ -129,7 +121,7 @@ public class SignInData {
     this.walletAddress = walletAddress;
   }
   
-  public SignInData signInType(SignInTypeEnum signInType) {
+  public JWTSignInData signInType(SignInTypeEnum signInType) {
     this.signInType = signInType;
     return this;
   }
@@ -147,61 +139,7 @@ public class SignInData {
     this.signInType = signInType;
   }
   
-  public SignInData userId(String userId) {
-    this.userId = userId;
-    return this;
-  }
-
-  
-  /**
-  * Get userId
-  * @return userId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getUserId() {
-    return userId;
-  }
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
-  
-  public SignInData appId(String appId) {
-    this.appId = appId;
-    return this;
-  }
-
-  
-  /**
-  * Get appId
-  * @return appId
-  **/
-  @ApiModelProperty(value = "")
-  public String getAppId() {
-    return appId;
-  }
-  public void setAppId(String appId) {
-    this.appId = appId;
-  }
-  
-  public SignInData apiKey(String apiKey) {
-    this.apiKey = apiKey;
-    return this;
-  }
-
-  
-  /**
-  * Get apiKey
-  * @return apiKey
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getApiKey() {
-    return apiKey;
-  }
-  public void setApiKey(String apiKey) {
-    this.apiKey = apiKey;
-  }
-  
-  public SignInData jwt(String jwt) {
+  public JWTSignInData jwt(String jwt) {
     this.jwt = jwt;
     return this;
   }
@@ -227,32 +165,26 @@ public class SignInData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SignInData signInData = (SignInData) o;
-    return Objects.equals(this.deviceId, signInData.deviceId) &&
-        Objects.equals(this.walletAddress, signInData.walletAddress) &&
-        Objects.equals(this.signInType, signInData.signInType) &&
-        Objects.equals(this.userId, signInData.userId) &&
-        Objects.equals(this.appId, signInData.appId) &&
-        Objects.equals(this.apiKey, signInData.apiKey) &&
-        Objects.equals(this.jwt, signInData.jwt);
+    JWTSignInData jwTSignInData = (JWTSignInData) o;
+    return Objects.equals(this.deviceId, jwTSignInData.deviceId) &&
+        Objects.equals(this.walletAddress, jwTSignInData.walletAddress) &&
+        Objects.equals(this.signInType, jwTSignInData.signInType) &&
+        Objects.equals(this.jwt, jwTSignInData.jwt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deviceId, walletAddress, signInType, userId, appId, apiKey, jwt);
+    return Objects.hash(deviceId, walletAddress, signInType, jwt);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SignInData {\n");
+    sb.append("class JWTSignInData {\n");
     
     sb.append("    deviceId: ").append(toIndentedString(deviceId)).append("\n");
     sb.append("    walletAddress: ").append(toIndentedString(walletAddress)).append("\n");
     sb.append("    signInType: ").append(toIndentedString(signInType)).append("\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
-    sb.append("    appId: ").append(toIndentedString(appId)).append("\n");
-    sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");
     sb.append("}");
     return sb.toString();
