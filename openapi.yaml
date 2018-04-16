@@ -609,7 +609,8 @@ components:
               
     SignInData:
       description: "payload required for signing in"
-      oneOf:
+      type: object
+      allOf:  # should be oneOf but generator doesn't work
         - $ref: '#/components/schemas/JWTSignInData'
         - $ref: '#/components/schemas/WhitelistSignInData'
       discriminator:
