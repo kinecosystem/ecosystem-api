@@ -724,14 +724,9 @@ components:
         - type: object
           required:
             - user_id
-            - api_key
           properties:
             user_id:
               type: string
-            api_key:
-              type: string
-              description: api key supplied by kin
-
 
     JWTBodySpend:
       allOf:
