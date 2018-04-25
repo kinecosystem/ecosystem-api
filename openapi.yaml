@@ -680,11 +680,11 @@ components:
       description: common header for all JWTs
       type: object
       required:
-        - keyid
+        - kid
         - alg
         - typ
       properties:
-        keyid:
+        kid:
           type: string
         alg:
           type: string
