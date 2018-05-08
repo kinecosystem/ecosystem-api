@@ -277,6 +277,19 @@ paths:
       description: get user order history
       operationId: getHistory
       parameters:
+        - in: query
+          name: origin
+          required: false
+          schema:
+            type: string
+            enum: [marketplace, external]
+          description: filter by origin
+        - in: query
+          name: offer_id
+          required: false
+          schema:
+            type: string
+          description: filter by offer_id
         - $ref: '#/components/parameters/QueryLimit'
         - $ref: '#/components/parameters/QueryBefore'
         - $ref: '#/components/parameters/QueryAfter'
