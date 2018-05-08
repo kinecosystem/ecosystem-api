@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **walletAddress** | **String** | The address where earned funds will go to | 
 **signInType** | [**SignInTypeEnum**](#SignInTypeEnum) |  | 
 **userId** | **String** |  | 
-**appId** | **String** |  |  [optional]
 **apiKey** | **String** |  | 
 
 

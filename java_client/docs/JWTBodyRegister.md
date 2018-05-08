@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **exp** | [**BigDecimal**](BigDecimal.md) | expiration - seconds from epoc | 
 **sub** | [**SubEnum**](#SubEnum) | subject | 
 **userId** | **String** |  | 
-**apiKey** | **String** | api key supplied by kin | 
 
 
 

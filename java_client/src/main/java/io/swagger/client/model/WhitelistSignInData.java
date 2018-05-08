@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * Sign in data for whitelist sign in type
  */@ApiModel(description = "Sign in data for whitelist sign in type")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
 public class WhitelistSignInData {
 @SerializedName("device_id")
   private String deviceId = null;
@@ -84,8 +84,6 @@ public class WhitelistSignInData {
   private SignInTypeEnum signInType = null;
   @SerializedName("user_id")
   private String userId = null;
-  @SerializedName("app_id")
-  private String appId = null;
   @SerializedName("api_key")
   private String apiKey = null;
   
@@ -161,24 +159,6 @@ public class WhitelistSignInData {
     this.userId = userId;
   }
   
-  public WhitelistSignInData appId(String appId) {
-    this.appId = appId;
-    return this;
-  }
-
-  
-  /**
-  * Get appId
-  * @return appId
-  **/
-  @ApiModelProperty(value = "")
-  public String getAppId() {
-    return appId;
-  }
-  public void setAppId(String appId) {
-    this.appId = appId;
-  }
-  
   public WhitelistSignInData apiKey(String apiKey) {
     this.apiKey = apiKey;
     return this;
@@ -210,13 +190,12 @@ public class WhitelistSignInData {
         Objects.equals(this.walletAddress, whitelistSignInData.walletAddress) &&
         Objects.equals(this.signInType, whitelistSignInData.signInType) &&
         Objects.equals(this.userId, whitelistSignInData.userId) &&
-        Objects.equals(this.appId, whitelistSignInData.appId) &&
         Objects.equals(this.apiKey, whitelistSignInData.apiKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deviceId, walletAddress, signInType, userId, appId, apiKey);
+    return Objects.hash(deviceId, walletAddress, signInType, userId, apiKey);
   }
   
   @Override
@@ -228,7 +207,6 @@ public class WhitelistSignInData {
     sb.append("    walletAddress: ").append(toIndentedString(walletAddress)).append("\n");
     sb.append("    signInType: ").append(toIndentedString(signInType)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
-    sb.append("    appId: ").append(toIndentedString(appId)).append("\n");
     sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("}");
     return sb.toString();

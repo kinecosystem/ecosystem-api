@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**keyid** | **String** |  | 
+**kid** | **String** |  | 
 **alg** | [**AlgEnum**](#AlgEnum) |  | 
 **typ** | [**TypEnum**](#TypEnum) |  | 
 

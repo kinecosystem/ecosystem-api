@@ -654,6 +654,8 @@ public class OrdersApi {
     /**
      * Build call for getHistory
      * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
+     * @param origin filter by origin (optional)
+     * @param offerId filter by offer_id (optional)
      * @param limit maximum number of items in a list (optional)
      * @param before cursor that points to the start of the page of data that has been returned (optional)
      * @param after cursor that points to the end of the page of data that has been returned (optional)
@@ -663,7 +665,7 @@ public class OrdersApi {
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call getHistoryCall(String X_REQUEST_ID, Integer limit, String before, String after, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getHistoryCall(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -671,6 +673,10 @@ public class OrdersApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (origin != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("origin", origin));
+        if (offerId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("offer_id", offerId));
         if (limit != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
         if (before != null)
@@ -713,7 +719,7 @@ public class OrdersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getHistoryValidateBeforeCall(String X_REQUEST_ID, Integer limit, String before, String after, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getHistoryValidateBeforeCall(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         // verify the required parameter 'X_REQUEST_ID' is set
@@ -722,7 +728,7 @@ public class OrdersApi {
         }
         
         
-        com.squareup.okhttp.Call call = getHistoryCall(X_REQUEST_ID, limit, before, after, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getHistoryCall(X_REQUEST_ID, origin, offerId, limit, before, after, progressListener, progressRequestListener);
         return call;
 
         
@@ -737,6 +743,8 @@ public class OrdersApi {
      * get user order history
      * get user order history
      * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
+     * @param origin filter by origin (optional)
+     * @param offerId filter by offer_id (optional)
      * @param limit maximum number of items in a list (optional)
      * @param before cursor that points to the start of the page of data that has been returned (optional)
      * @param after cursor that points to the end of the page of data that has been returned (optional)
@@ -744,8 +752,8 @@ public class OrdersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public OrderList getHistory(String X_REQUEST_ID, Integer limit, String before, String after) throws ApiException {
-        ApiResponse<OrderList> resp = getHistoryWithHttpInfo(X_REQUEST_ID, limit, before, after);
+    public OrderList getHistory(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after) throws ApiException {
+        ApiResponse<OrderList> resp = getHistoryWithHttpInfo(X_REQUEST_ID, origin, offerId, limit, before, after);
         return resp.getData();
     }
 
@@ -753,6 +761,8 @@ public class OrdersApi {
      * get user order history
      * get user order history
      * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
+     * @param origin filter by origin (optional)
+     * @param offerId filter by offer_id (optional)
      * @param limit maximum number of items in a list (optional)
      * @param before cursor that points to the start of the page of data that has been returned (optional)
      * @param after cursor that points to the end of the page of data that has been returned (optional)
@@ -760,8 +770,8 @@ public class OrdersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<OrderList> getHistoryWithHttpInfo(String X_REQUEST_ID, Integer limit, String before, String after) throws ApiException {
-        com.squareup.okhttp.Call call = getHistoryValidateBeforeCall(X_REQUEST_ID, limit, before, after, null, null);
+    public ApiResponse<OrderList> getHistoryWithHttpInfo(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after) throws ApiException {
+        com.squareup.okhttp.Call call = getHistoryValidateBeforeCall(X_REQUEST_ID, origin, offerId, limit, before, after, null, null);
         Type localVarReturnType = new TypeToken<OrderList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -770,6 +780,8 @@ public class OrdersApi {
      * get user order history (asynchronously)
      * get user order history
      * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
+     * @param origin filter by origin (optional)
+     * @param offerId filter by offer_id (optional)
      * @param limit maximum number of items in a list (optional)
      * @param before cursor that points to the start of the page of data that has been returned (optional)
      * @param after cursor that points to the end of the page of data that has been returned (optional)
@@ -778,7 +790,7 @@ public class OrdersApi {
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call getHistoryAsync(String X_REQUEST_ID, Integer limit, String before, String after, final ApiCallback<OrderList> callback) throws ApiException {
+    public com.squareup.okhttp.Call getHistoryAsync(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after, final ApiCallback<OrderList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -799,7 +811,7 @@ public class OrdersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getHistoryValidateBeforeCall(X_REQUEST_ID, limit, before, after, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getHistoryValidateBeforeCall(X_REQUEST_ID, origin, offerId, limit, before, after, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OrderList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

@@ -136,13 +136,17 @@ public class OrdersApiTest {
         
         String X_REQUEST_ID = null;
         
+        String origin = null;
+        
+        String offerId = null;
+        
         Integer limit = null;
         
         String before = null;
         
         String after = null;
         
-        OrderList response = api.getHistory(X_REQUEST_ID, limit, before, after);
+        OrderList response = api.getHistory(X_REQUEST_ID, origin, offerId, limit, before, after);
 
         // TODO: test validations
     }

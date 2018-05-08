@@ -26,10 +26,10 @@ import java.io.IOException;
 /**
  * common header for all JWTs
  */@ApiModel(description = "common header for all JWTs")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
 public class JWTHeader {
-@SerializedName("keyid")
-  private String keyid = null;
+@SerializedName("kid")
+  private String kid = null;
   
     /**
    * Gets or Sets alg
@@ -129,22 +129,22 @@ public class JWTHeader {
   @SerializedName("typ")
   private TypEnum typ = null;
   
-  public JWTHeader keyid(String keyid) {
-    this.keyid = keyid;
+  public JWTHeader kid(String kid) {
+    this.kid = kid;
     return this;
   }
 
   
   /**
-  * Get keyid
-  * @return keyid
+  * Get kid
+  * @return kid
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getKeyid() {
-    return keyid;
+  public String getKid() {
+    return kid;
   }
-  public void setKeyid(String keyid) {
-    this.keyid = keyid;
+  public void setKid(String kid) {
+    this.kid = kid;
   }
   
   public JWTHeader alg(AlgEnum alg) {
@@ -192,14 +192,14 @@ public class JWTHeader {
       return false;
     }
     JWTHeader jwTHeader = (JWTHeader) o;
-    return Objects.equals(this.keyid, jwTHeader.keyid) &&
+    return Objects.equals(this.kid, jwTHeader.kid) &&
         Objects.equals(this.alg, jwTHeader.alg) &&
         Objects.equals(this.typ, jwTHeader.typ);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(keyid, alg, typ);
+    return Objects.hash(kid, alg, typ);
   }
   
   @Override
@@ -207,7 +207,7 @@ public class JWTHeader {
     StringBuilder sb = new StringBuilder();
     sb.append("class JWTHeader {\n");
     
-    sb.append("    keyid: ").append(toIndentedString(keyid)).append("\n");
+    sb.append("    kid: ").append(toIndentedString(kid)).append("\n");
     sb.append("    alg: ").append(toIndentedString(alg)).append("\n");
     sb.append("    typ: ").append(toIndentedString(typ)).append("\n");
     sb.append("}");

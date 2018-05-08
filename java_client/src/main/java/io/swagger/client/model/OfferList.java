@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * a list of offers
  */@ApiModel(description = "a list of offers")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
 public class OfferList {
 @SerializedName("offers")
   private List<Offer> offers = new ArrayList<Offer>();

@@ -27,7 +27,7 @@ import java.math.BigDecimal;
 /**
  * JWTBodyRegister
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
 public class JWTBodyRegister {
 @SerializedName("iat")
   private BigDecimal iat = null;
@@ -88,8 +88,6 @@ public class JWTBodyRegister {
   private SubEnum sub = null;
   @SerializedName("user_id")
   private String userId = null;
-  @SerializedName("api_key")
-  private String apiKey = null;
   
   public JWTBodyRegister iat(BigDecimal iat) {
     this.iat = iat;
@@ -181,24 +179,6 @@ public class JWTBodyRegister {
     this.userId = userId;
   }
   
-  public JWTBodyRegister apiKey(String apiKey) {
-    this.apiKey = apiKey;
-    return this;
-  }
-
-  
-  /**
-  * api key supplied by kin
-  * @return apiKey
-  **/
-  @ApiModelProperty(required = true, value = "api key supplied by kin")
-  public String getApiKey() {
-    return apiKey;
-  }
-  public void setApiKey(String apiKey) {
-    this.apiKey = apiKey;
-  }
-  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -212,13 +192,12 @@ public class JWTBodyRegister {
         Objects.equals(this.iss, jwTBodyRegister.iss) &&
         Objects.equals(this.exp, jwTBodyRegister.exp) &&
         Objects.equals(this.sub, jwTBodyRegister.sub) &&
-        Objects.equals(this.userId, jwTBodyRegister.userId) &&
-        Objects.equals(this.apiKey, jwTBodyRegister.apiKey);
+        Objects.equals(this.userId, jwTBodyRegister.userId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(iat, iss, exp, sub, userId, apiKey);
+    return Objects.hash(iat, iss, exp, sub, userId);
   }
   
   @Override
@@ -231,7 +210,6 @@ public class JWTBodyRegister {
     sb.append("    exp: ").append(toIndentedString(exp)).append("\n");
     sb.append("    sub: ").append(toIndentedString(sub)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
-    sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }

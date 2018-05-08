@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 <a name="getHistory"></a>
 # **getHistory**
-> OrderList getHistory(X_REQUEST_ID, limit, before, after)
+> OrderList getHistory(X_REQUEST_ID, origin, offerId, limit, before, after)
 
 get user order history
 
@@ -249,6 +249,10 @@ OrdersApi apiInstance = new OrdersApi();
 
 String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
 
+String origin = Arrays.asList("origin_example"); // String | filter by origin
+
+String offerId = Arrays.asList("offerId_example"); // String | filter by offer_id
+
 Integer limit = Arrays.asList(56); // Integer | maximum number of items in a list
 
 String before = Arrays.asList("before_example"); // String | cursor that points to the start of the page of data that has been returned
@@ -256,7 +260,7 @@ String before = Arrays.asList("before_example"); // String | cursor that points 
 String after = Arrays.asList("after_example"); // String | cursor that points to the end of the page of data that has been returned
 
 try {
-    OrderList result = apiInstance.getHistory(X_REQUEST_ID, limit, before, after);
+    OrderList result = apiInstance.getHistory(X_REQUEST_ID, origin, offerId, limit, before, after);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#getHistory");
@@ -269,6 +273,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
+ **origin** | **String**| filter by origin | [optional] [enum: marketplace, external]
+ **offerId** | **String**| filter by offer_id | [optional]
  **limit** | **Integer**| maximum number of items in a list | [optional] [enum: ]
  **before** | **String**| cursor that points to the start of the page of data that has been returned | [optional]
  **after** | **String**| cursor that points to the end of the page of data that has been returned | [optional]

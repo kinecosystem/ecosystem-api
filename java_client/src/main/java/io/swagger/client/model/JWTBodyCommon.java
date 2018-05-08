@@ -27,7 +27,7 @@ import java.math.BigDecimal;
 /**
  * common body fields for all JWTs
  */@ApiModel(description = "common body fields for all JWTs")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-04-16T18:06:48.710+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
 public class JWTBodyCommon {
 @SerializedName("iat")
   private BigDecimal iat = null;
