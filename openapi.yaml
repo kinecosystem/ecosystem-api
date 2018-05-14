@@ -354,7 +354,7 @@ components:
       properties:
         type:
           type: string
-          enum: [coupon, confirm_payment]
+          enum: [coupon, payment_confirmed]
 
     CouponCodeResult:
       allOf:
@@ -368,7 +368,7 @@ components:
               type: string
               example: aaaa-bbbb-cccc
 
-    JWTBodyConfirmPaymentResult:
+    JWTBodyPaymentConfirmationResult:
       allOf:
         - $ref: '#/components/schemas/OrderSpendResult'
         - type: object
@@ -376,7 +376,7 @@ components:
             - jwt
           properties:
             jwt:
-              description: JWT defined by JWTBodyConfirmPayment
+              description: JWT defined by JWTBodyPaymentConfirmation
               type: string
 
     BlockchainData:
@@ -439,12 +439,12 @@ components:
               type: object
               oneOf:
                 - $ref: '#/components/schemas/CouponCodeResult'
-                - $ref: '#/components/schemas/JWTBodyConfirmPaymentResult'
+                - $ref: '#/components/schemas/JWTBodyPaymentConfirmationResult'
               discriminator:
                 propertyName: type
                 mapping:
                   coupon: '#/components/schemas/CouponCodeResult'
-                  confirm_payment: '#/components/schemas/JWTBodyConfirmPaymentResult'
+                  payment_confirmed: '#/components/schemas/JWTBodyPaymentConfirmationResult'
               description: |
                 * empty when no result (pending status, completed earn)
                 * coupon code or confirm payment JWT when completed spend
@@ -556,7 +556,7 @@ components:
       properties:
         jwt:
           type: string
-          description: string serialized JWTBodySpend
+          description: string serialized JWTBodySpend/ JWTBodyEarn/ JWTBodyPayToUser
 
     OpenOrder:
       description: "an open order that hasn't been submitted yet"
@@ -602,7 +602,7 @@ components:
               type: string
               example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lc3RhbXAiOjEyMzQ1Njc4OTAsInVzZXJfaWQiOiJ1c2VyOjEyMzQiLCJhcHBfaWQiOiJhcHA6a2lrIn0.ywXZUlH2fSTxIk8V2egE9WkyJ4a9UOsAZqFN5G7o84al_utwmMA-HKSSM0-2EDtaZ2lM4FUIs0Byd0KO2HxglxrHL_grFHW_wFtnjcNrNxCsGKIXEpGowudQDuAh_ycY2EZ_JKhNY4ZPrTx69ImmeYvDkN3PvYV6_uSYQSMy6H0
               description: see JWTBodyRegister
-              
+
     WhitelistSignInData:
       description: "Sign in data for whitelist sign in type"
       type: object
@@ -617,7 +617,7 @@ components:
               type: string
             api_key:
               type: string
-              
+
     SignInData:
       description: "payload required for signing in"
       type: object
@@ -727,7 +727,7 @@ components:
         sub:
           type: string
           description: subject
-          enum: [register, spend, confirm_payment]
+          enum: [register, spend, earn, pay_to_user, payment_confirmed]
 
     JWTBodyRegister:
       allOf:
@@ -745,52 +745,108 @@ components:
         - type: object
           required:
             - offer
+            - order
           properties:
+            offer:
+              $ref: '#/components/schemas/JWTBodyPartOffer'
+            order:
+              $ref: '#/components/schemas/JWTBodyPartOrder'
+
+    JWTBodyEarn:
+      allOf:
+        - $ref: '#/components/schemas/JWTBodyCommon'
+        - type: object
+          required:
+            - offer
+            - order
+          properties:
+            order:
+              $ref: '#/components/schemas/JWTBodyPartOrder'
+            offer:
+              $ref: '#/components/schemas/JWTBodyPartOffer'
+
+    JWTBodyPartOffer:
+      type: object
+      required:
+        - id
+        - amount
+      properties:
+        id:
+          type: string
+          description: offer id - id is decided by digital service
+        amount:
+          type: number
+          description: amount of kin for this offer - price
+
+    JWTBodyPartOrder:
+      type: object
+      required:
+        - user_id
+        - title
+        - description
+      properties:
+        user_id:
+          type: string
+          description: same user_id as in register
+        title:
+          type: string
+          description: offer title - appears in order history
+        description:
+          type: string
+          description: offer description - appears in order history
+
+    JWTBodyPayToUser:
+      allOf:
+        - $ref: '#/components/schemas/JWTBodyCommon'
+        - type: object
+          required:
+            - offer
+            - sender_order
+            - recipient_order
+          properties:
+            sender_order:
+              $ref: '#/components/schemas/JWTBodyPartOrder'
+            recipient_order:
+              $ref: '#/components/schemas/JWTBodyPartOrder'
             offer:
               type: object
               required:
                 - id
-                - title
-                - description
                 - amount
-                - wallet_address
               properties:
                 id:
                   type: string
                   description: offer id - id is decided by digital service
-                title:
-                  type: string
-                  description: offer title - appears in order history
-                description:
-                  type: string
-                  description: offer description - appears in order history
                 amount:
                   type: number
                   description: amount of kin for this offer - price
-                wallet_address:
-                  type: string
-                  description: address the client should send kin to to acquire this offer
 
-    JWTBodyConfirmPayment:
+    JWTBodyPaymentConfirmation:
       allOf:
         - $ref: '#/components/schemas/JWTBodyCommon'
         - type: object
           required:
             - payment
+            - offer_id
           properties:
+            offer_id:
+              type: string
+              description: offer id - id is decided by digital service
+            sender_user_id:
+              type: string
+              description: user identifier - same value as given by register
+            recipient_user_id:
+              type: string
+              description: user identifier - same value as given by register
             payment:
               type: object
               required:
-                - offer_id
-                - user_id
-                - date
+                - blockchain
+                - transaction_id
               properties:
-                offer_id:
+                blockchain:
                   type: string
-                  description: offer id - id is decided by digital service
-                user_id:
+                  description: identifier of the blockchain network the transaction was made on
+                transaction_id:
                   type: string
-                  description: user identifier - same value as given by register
-                date:
-                  type: number
-                  description: date of which payment was received in seconds from epoc
+                  description: stellar identifier of the blockchain transaction
