@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **exp** | [**BigDecimal**](BigDecimal.md) | expiration - seconds from epoc | 
 **sub** | [**SubEnum**](#SubEnum) | subject | 
 **offer** | [**JWTBodyPartOffer**](JWTBodyPartOffer.md) |  | 
-**order** | [**JWTBodyPartOrder**](JWTBodyPartOrder.md) |  | 
+**sender** | [**JWTBodyPartSender**](JWTBodyPartSender.md) |  | 
 
 
 

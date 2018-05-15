@@ -21,7 +21,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.JWTBodyPartOrder;
+import io.swagger.client.model.JWTBodyPartRecipient;
+import io.swagger.client.model.JWTBodyPartSender;
 import io.swagger.client.model.JWTBodyPayToUserOffer;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -29,7 +30,7 @@ import java.math.BigDecimal;
 /**
  * JWTBodyPayToUser
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T14:45:47.586+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T16:56:00.988+03:00")
 public class JWTBodyPayToUser {
 @SerializedName("iat")
   private BigDecimal iat = null;
@@ -90,10 +91,10 @@ public class JWTBodyPayToUser {
   
   @SerializedName("sub")
   private SubEnum sub = null;
-  @SerializedName("sender_order")
-  private JWTBodyPartOrder senderOrder = null;
-  @SerializedName("recipient_order")
-  private JWTBodyPartOrder recipientOrder = null;
+  @SerializedName("sender")
+  private JWTBodyPartSender sender = null;
+  @SerializedName("recipient")
+  private JWTBodyPartRecipient recipient = null;
   @SerializedName("offer")
   private JWTBodyPayToUserOffer offer = null;
   
@@ -169,40 +170,40 @@ public class JWTBodyPayToUser {
     this.sub = sub;
   }
   
-  public JWTBodyPayToUser senderOrder(JWTBodyPartOrder senderOrder) {
-    this.senderOrder = senderOrder;
+  public JWTBodyPayToUser sender(JWTBodyPartSender sender) {
+    this.sender = sender;
     return this;
   }
 
   
   /**
-  * Get senderOrder
-  * @return senderOrder
+  * Get sender
+  * @return sender
   **/
   @ApiModelProperty(required = true, value = "")
-  public JWTBodyPartOrder getSenderOrder() {
-    return senderOrder;
+  public JWTBodyPartSender getSender() {
+    return sender;
   }
-  public void setSenderOrder(JWTBodyPartOrder senderOrder) {
-    this.senderOrder = senderOrder;
+  public void setSender(JWTBodyPartSender sender) {
+    this.sender = sender;
   }
   
-  public JWTBodyPayToUser recipientOrder(JWTBodyPartOrder recipientOrder) {
-    this.recipientOrder = recipientOrder;
+  public JWTBodyPayToUser recipient(JWTBodyPartRecipient recipient) {
+    this.recipient = recipient;
     return this;
   }
 
   
   /**
-  * Get recipientOrder
-  * @return recipientOrder
+  * Get recipient
+  * @return recipient
   **/
   @ApiModelProperty(required = true, value = "")
-  public JWTBodyPartOrder getRecipientOrder() {
-    return recipientOrder;
+  public JWTBodyPartRecipient getRecipient() {
+    return recipient;
   }
-  public void setRecipientOrder(JWTBodyPartOrder recipientOrder) {
-    this.recipientOrder = recipientOrder;
+  public void setRecipient(JWTBodyPartRecipient recipient) {
+    this.recipient = recipient;
   }
   
   public JWTBodyPayToUser offer(JWTBodyPayToUserOffer offer) {
@@ -236,14 +237,14 @@ public class JWTBodyPayToUser {
         Objects.equals(this.iss, jwTBodyPayToUser.iss) &&
         Objects.equals(this.exp, jwTBodyPayToUser.exp) &&
         Objects.equals(this.sub, jwTBodyPayToUser.sub) &&
-        Objects.equals(this.senderOrder, jwTBodyPayToUser.senderOrder) &&
-        Objects.equals(this.recipientOrder, jwTBodyPayToUser.recipientOrder) &&
+        Objects.equals(this.sender, jwTBodyPayToUser.sender) &&
+        Objects.equals(this.recipient, jwTBodyPayToUser.recipient) &&
         Objects.equals(this.offer, jwTBodyPayToUser.offer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(iat, iss, exp, sub, senderOrder, recipientOrder, offer);
+    return Objects.hash(iat, iss, exp, sub, sender, recipient, offer);
   }
   
   @Override
@@ -255,8 +256,8 @@ public class JWTBodyPayToUser {
     sb.append("    iss: ").append(toIndentedString(iss)).append("\n");
     sb.append("    exp: ").append(toIndentedString(exp)).append("\n");
     sb.append("    sub: ").append(toIndentedString(sub)).append("\n");
-    sb.append("    senderOrder: ").append(toIndentedString(senderOrder)).append("\n");
-    sb.append("    recipientOrder: ").append(toIndentedString(recipientOrder)).append("\n");
+    sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
+    sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
     sb.append("    offer: ").append(toIndentedString(offer)).append("\n");
     sb.append("}");
     return sb.toString();

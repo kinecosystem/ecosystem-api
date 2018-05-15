@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * an open order that hasn&#x27;t been submitted yet
  */@ApiModel(description = "an open order that hasn't been submitted yet")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T14:45:47.586+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T16:56:00.988+03:00")
 public class OpenOrder {
 @SerializedName("id")
   private String id = null;

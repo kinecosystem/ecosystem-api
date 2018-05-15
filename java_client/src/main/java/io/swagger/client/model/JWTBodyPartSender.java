@@ -24,10 +24,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * JWTBodyPartOrder
+ * JWTBodyPartSender
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T14:45:47.586+03:00")
-public class JWTBodyPartOrder {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T16:56:00.988+03:00")
+public class JWTBodyPartSender {
 @SerializedName("user_id")
   private String userId = null;
   @SerializedName("title")
@@ -35,7 +35,7 @@ public class JWTBodyPartOrder {
   @SerializedName("description")
   private String description = null;
   
-  public JWTBodyPartOrder userId(String userId) {
+  public JWTBodyPartSender userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -45,7 +45,7 @@ public class JWTBodyPartOrder {
   * same user_id as in register
   * @return userId
   **/
-  @ApiModelProperty(required = true, value = "same user_id as in register")
+  @ApiModelProperty(value = "same user_id as in register")
   public String getUserId() {
     return userId;
   }
@@ -53,7 +53,7 @@ public class JWTBodyPartOrder {
     this.userId = userId;
   }
   
-  public JWTBodyPartOrder title(String title) {
+  public JWTBodyPartSender title(String title) {
     this.title = title;
     return this;
   }
@@ -71,7 +71,7 @@ public class JWTBodyPartOrder {
     this.title = title;
   }
   
-  public JWTBodyPartOrder description(String description) {
+  public JWTBodyPartSender description(String description) {
     this.description = description;
     return this;
   }
@@ -97,10 +97,10 @@ public class JWTBodyPartOrder {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JWTBodyPartOrder jwTBodyPartOrder = (JWTBodyPartOrder) o;
-    return Objects.equals(this.userId, jwTBodyPartOrder.userId) &&
-        Objects.equals(this.title, jwTBodyPartOrder.title) &&
-        Objects.equals(this.description, jwTBodyPartOrder.description);
+    JWTBodyPartSender jwTBodyPartSender = (JWTBodyPartSender) o;
+    return Objects.equals(this.userId, jwTBodyPartSender.userId) &&
+        Objects.equals(this.title, jwTBodyPartSender.title) &&
+        Objects.equals(this.description, jwTBodyPartSender.description);
   }
 
   @Override
@@ -111,7 +111,7 @@ public class JWTBodyPartOrder {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JWTBodyPartOrder {\n");
+    sb.append("class JWTBodyPartSender {\n");
     
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");

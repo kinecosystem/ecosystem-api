@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **iss** | **String** | issuer name, the same as app_id (kik) | 
 **exp** | [**BigDecimal**](BigDecimal.md) | expiration - seconds from epoc | 
 **sub** | [**SubEnum**](#SubEnum) | subject | 
-**senderOrder** | [**JWTBodyPartOrder**](JWTBodyPartOrder.md) |  | 
-**recipientOrder** | [**JWTBodyPartOrder**](JWTBodyPartOrder.md) |  | 
+**sender** | [**JWTBodyPartSender**](JWTBodyPartSender.md) |  | 
+**recipient** | [**JWTBodyPartRecipient**](JWTBodyPartRecipient.md) |  | 
 **offer** | [**JWTBodyPayToUserOffer**](JWTBodyPayToUserOffer.md) |  | 
 
 
