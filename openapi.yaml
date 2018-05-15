@@ -354,7 +354,7 @@ components:
       properties:
         type:
           type: string
-          enum: [coupon, payment_confirmed]
+          enum: [coupon, payment_confirmation]
 
     CouponCodeResult:
       allOf:
@@ -444,7 +444,7 @@ components:
                 propertyName: type
                 mapping:
                   coupon: '#/components/schemas/CouponCodeResult'
-                  payment_confirmed: '#/components/schemas/JWTBodyPaymentConfirmationResult'
+                  payment_confirmation: '#/components/schemas/JWTBodyPaymentConfirmationResult'
               description: |
                 * empty when no result (pending status, completed earn)
                 * coupon code or confirm payment JWT when completed spend
@@ -727,7 +727,7 @@ components:
         sub:
           type: string
           description: subject
-          enum: [register, spend, earn, pay_to_user, payment_confirmed]
+          enum: [register, spend, earn, pay_to_user, payment_confirmation]
 
     JWTBodyRegister:
       allOf:
