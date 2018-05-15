@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * Sign in data for JWT sign in type
  */@ApiModel(description = "Sign in data for JWT sign in type")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T14:45:47.586+03:00")
 public class JWTSignInData {
 @SerializedName("device_id")
   private String deviceId = null;

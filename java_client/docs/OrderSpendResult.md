@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 Name | Value
 ---- | -----
 COUPON | &quot;coupon&quot;
-PAYMENT_CONFIRMED | &quot;payment_confirmed&quot;
+PAYMENT_CONFIRMATION | &quot;payment_confirmation&quot;
 
 
 

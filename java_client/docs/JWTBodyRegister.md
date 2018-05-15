@@ -20,7 +20,7 @@ REGISTER | &quot;register&quot;
 SPEND | &quot;spend&quot;
 EARN | &quot;earn&quot;
 PAY_TO_USER | &quot;pay_to_user&quot;
-PAYMENT_CONFIRMED | &quot;payment_confirmed&quot;
+PAYMENT_CONFIRMATION | &quot;payment_confirmation&quot;
 
 
 

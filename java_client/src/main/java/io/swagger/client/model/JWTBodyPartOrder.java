@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * JWTBodyPartOrder
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T14:45:47.586+03:00")
 public class JWTBodyPartOrder {
 @SerializedName("user_id")
   private String userId = null;

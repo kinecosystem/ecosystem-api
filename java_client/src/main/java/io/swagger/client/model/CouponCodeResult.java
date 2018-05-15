@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * CouponCodeResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T14:45:47.586+03:00")
 public class CouponCodeResult {
 
     /**
@@ -36,7 +36,7 @@ public class CouponCodeResult {
   public enum TypeEnum {
     
     COUPON("coupon"),
-    PAYMENT_CONFIRMED("payment_confirmed");
+    PAYMENT_CONFIRMATION("payment_confirmation");
 
     private String value;
 
