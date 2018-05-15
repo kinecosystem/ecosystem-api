@@ -1,5 +1,5 @@
 
-# JWTBodyConfirmPayment
+# JWTBodyEarn
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **iss** | **String** | issuer name, the same as app_id (kik) | 
 **exp** | [**BigDecimal**](BigDecimal.md) | expiration - seconds from epoc | 
 **sub** | [**SubEnum**](#SubEnum) | subject | 
-**payment** | [**JWTBodyConfirmPaymentPayment**](JWTBodyConfirmPaymentPayment.md) |  | 
+**order** | [**JWTBodyPartOrder**](JWTBodyPartOrder.md) |  | 
+**offer** | [**JWTBodyPartOffer**](JWTBodyPartOffer.md) |  | 
 
 
 
@@ -18,7 +19,9 @@ Name | Value
 ---- | -----
 REGISTER | &quot;register&quot;
 SPEND | &quot;spend&quot;
-CONFIRM_PAYMENT | &quot;confirm_payment&quot;
+EARN | &quot;earn&quot;
+PAY_TO_USER | &quot;pay_to_user&quot;
+PAYMENT_CONFIRMED | &quot;payment_confirmed&quot;
 
 
 

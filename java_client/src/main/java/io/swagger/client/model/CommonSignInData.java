@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * Base data for all sign in types
  */@ApiModel(description = "Base data for all sign in types")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
 public class CommonSignInData {
 @SerializedName("device_id")
   private String deviceId = null;

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 Name | Value
 ---- | -----
 COUPON | &quot;coupon&quot;
-CONFIRM_PAYMENT | &quot;confirm_payment&quot;
+PAYMENT_CONFIRMED | &quot;payment_confirmed&quot;
 
 
 

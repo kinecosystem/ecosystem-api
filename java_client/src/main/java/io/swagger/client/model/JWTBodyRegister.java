@@ -27,7 +27,7 @@ import java.math.BigDecimal;
 /**
  * JWTBodyRegister
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
 public class JWTBodyRegister {
 @SerializedName("iat")
   private BigDecimal iat = null;
@@ -44,7 +44,9 @@ public class JWTBodyRegister {
     
     REGISTER("register"),
     SPEND("spend"),
-    CONFIRM_PAYMENT("confirm_payment");
+    EARN("earn"),
+    PAY_TO_USER("pay_to_user"),
+    PAYMENT_CONFIRMED("payment_confirmed");
 
     private String value;
 

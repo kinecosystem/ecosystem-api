@@ -1,5 +1,5 @@
 
-# JWTBodyRegister
+# JWTBodyPaymentConfirmation
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,7 +8,10 @@ Name | Type | Description | Notes
 **iss** | **String** | issuer name, the same as app_id (kik) | 
 **exp** | [**BigDecimal**](BigDecimal.md) | expiration - seconds from epoc | 
 **sub** | [**SubEnum**](#SubEnum) | subject | 
-**userId** | **String** |  | 
+**offerId** | **String** | offer id - id is decided by digital service | 
+**senderUserId** | **String** | user identifier - same value as given by register |  [optional]
+**recipientUserId** | **String** | user identifier - same value as given by register |  [optional]
+**payment** | [**JWTBodyPaymentConfirmationPayment**](JWTBodyPaymentConfirmationPayment.md) |  | 
 
 
 

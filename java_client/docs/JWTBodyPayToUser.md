@@ -1,5 +1,5 @@
 
-# JWTBodyRegister
+# JWTBodyPayToUser
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 **iss** | **String** | issuer name, the same as app_id (kik) | 
 **exp** | [**BigDecimal**](BigDecimal.md) | expiration - seconds from epoc | 
 **sub** | [**SubEnum**](#SubEnum) | subject | 
-**userId** | **String** |  | 
+**senderOrder** | [**JWTBodyPartOrder**](JWTBodyPartOrder.md) |  | 
+**recipientOrder** | [**JWTBodyPartOrder**](JWTBodyPartOrder.md) |  | 
+**offer** | [**JWTBodyPayToUserOffer**](JWTBodyPayToUserOffer.md) |  | 
 
 
 

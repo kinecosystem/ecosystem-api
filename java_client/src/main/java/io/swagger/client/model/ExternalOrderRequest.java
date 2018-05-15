@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * ExternalOrderRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
 public class ExternalOrderRequest {
 @SerializedName("jwt")
   private String jwt = null;
@@ -38,10 +38,10 @@ public class ExternalOrderRequest {
 
   
   /**
-  * string serialized JWTBodySpend
+  * string serialized JWTBodySpend/ JWTBodyEarn/ JWTBodyPayToUser
   * @return jwt
   **/
-  @ApiModelProperty(required = true, value = "string serialized JWTBodySpend")
+  @ApiModelProperty(required = true, value = "string serialized JWTBodySpend/ JWTBodyEarn/ JWTBodyPayToUser")
   public String getJwt() {
     return jwt;
   }

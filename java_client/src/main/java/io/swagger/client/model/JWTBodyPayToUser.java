@@ -21,16 +21,16 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.JWTBodyPartOffer;
 import io.swagger.client.model.JWTBodyPartOrder;
+import io.swagger.client.model.JWTBodyPayToUserOffer;
 import java.io.IOException;
 import java.math.BigDecimal;
 
 /**
- * JWTBodySpend
+ * JWTBodyPayToUser
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
-public class JWTBodySpend {
+public class JWTBodyPayToUser {
 @SerializedName("iat")
   private BigDecimal iat = null;
   @SerializedName("iss")
@@ -90,12 +90,14 @@ public class JWTBodySpend {
   
   @SerializedName("sub")
   private SubEnum sub = null;
+  @SerializedName("sender_order")
+  private JWTBodyPartOrder senderOrder = null;
+  @SerializedName("recipient_order")
+  private JWTBodyPartOrder recipientOrder = null;
   @SerializedName("offer")
-  private JWTBodyPartOffer offer = null;
-  @SerializedName("order")
-  private JWTBodyPartOrder order = null;
+  private JWTBodyPayToUserOffer offer = null;
   
-  public JWTBodySpend iat(BigDecimal iat) {
+  public JWTBodyPayToUser iat(BigDecimal iat) {
     this.iat = iat;
     return this;
   }
@@ -113,7 +115,7 @@ public class JWTBodySpend {
     this.iat = iat;
   }
   
-  public JWTBodySpend iss(String iss) {
+  public JWTBodyPayToUser iss(String iss) {
     this.iss = iss;
     return this;
   }
@@ -131,7 +133,7 @@ public class JWTBodySpend {
     this.iss = iss;
   }
   
-  public JWTBodySpend exp(BigDecimal exp) {
+  public JWTBodyPayToUser exp(BigDecimal exp) {
     this.exp = exp;
     return this;
   }
@@ -149,7 +151,7 @@ public class JWTBodySpend {
     this.exp = exp;
   }
   
-  public JWTBodySpend sub(SubEnum sub) {
+  public JWTBodyPayToUser sub(SubEnum sub) {
     this.sub = sub;
     return this;
   }
@@ -167,7 +169,43 @@ public class JWTBodySpend {
     this.sub = sub;
   }
   
-  public JWTBodySpend offer(JWTBodyPartOffer offer) {
+  public JWTBodyPayToUser senderOrder(JWTBodyPartOrder senderOrder) {
+    this.senderOrder = senderOrder;
+    return this;
+  }
+
+  
+  /**
+  * Get senderOrder
+  * @return senderOrder
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public JWTBodyPartOrder getSenderOrder() {
+    return senderOrder;
+  }
+  public void setSenderOrder(JWTBodyPartOrder senderOrder) {
+    this.senderOrder = senderOrder;
+  }
+  
+  public JWTBodyPayToUser recipientOrder(JWTBodyPartOrder recipientOrder) {
+    this.recipientOrder = recipientOrder;
+    return this;
+  }
+
+  
+  /**
+  * Get recipientOrder
+  * @return recipientOrder
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public JWTBodyPartOrder getRecipientOrder() {
+    return recipientOrder;
+  }
+  public void setRecipientOrder(JWTBodyPartOrder recipientOrder) {
+    this.recipientOrder = recipientOrder;
+  }
+  
+  public JWTBodyPayToUser offer(JWTBodyPayToUserOffer offer) {
     this.offer = offer;
     return this;
   }
@@ -178,29 +216,11 @@ public class JWTBodySpend {
   * @return offer
   **/
   @ApiModelProperty(required = true, value = "")
-  public JWTBodyPartOffer getOffer() {
+  public JWTBodyPayToUserOffer getOffer() {
     return offer;
   }
-  public void setOffer(JWTBodyPartOffer offer) {
+  public void setOffer(JWTBodyPayToUserOffer offer) {
     this.offer = offer;
-  }
-  
-  public JWTBodySpend order(JWTBodyPartOrder order) {
-    this.order = order;
-    return this;
-  }
-
-  
-  /**
-  * Get order
-  * @return order
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public JWTBodyPartOrder getOrder() {
-    return order;
-  }
-  public void setOrder(JWTBodyPartOrder order) {
-    this.order = order;
   }
   
   @Override
@@ -211,31 +231,33 @@ public class JWTBodySpend {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JWTBodySpend jwTBodySpend = (JWTBodySpend) o;
-    return Objects.equals(this.iat, jwTBodySpend.iat) &&
-        Objects.equals(this.iss, jwTBodySpend.iss) &&
-        Objects.equals(this.exp, jwTBodySpend.exp) &&
-        Objects.equals(this.sub, jwTBodySpend.sub) &&
-        Objects.equals(this.offer, jwTBodySpend.offer) &&
-        Objects.equals(this.order, jwTBodySpend.order);
+    JWTBodyPayToUser jwTBodyPayToUser = (JWTBodyPayToUser) o;
+    return Objects.equals(this.iat, jwTBodyPayToUser.iat) &&
+        Objects.equals(this.iss, jwTBodyPayToUser.iss) &&
+        Objects.equals(this.exp, jwTBodyPayToUser.exp) &&
+        Objects.equals(this.sub, jwTBodyPayToUser.sub) &&
+        Objects.equals(this.senderOrder, jwTBodyPayToUser.senderOrder) &&
+        Objects.equals(this.recipientOrder, jwTBodyPayToUser.recipientOrder) &&
+        Objects.equals(this.offer, jwTBodyPayToUser.offer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(iat, iss, exp, sub, offer, order);
+    return Objects.hash(iat, iss, exp, sub, senderOrder, recipientOrder, offer);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JWTBodySpend {\n");
+    sb.append("class JWTBodyPayToUser {\n");
     
     sb.append("    iat: ").append(toIndentedString(iat)).append("\n");
     sb.append("    iss: ").append(toIndentedString(iss)).append("\n");
     sb.append("    exp: ").append(toIndentedString(exp)).append("\n");
     sb.append("    sub: ").append(toIndentedString(sub)).append("\n");
+    sb.append("    senderOrder: ").append(toIndentedString(senderOrder)).append("\n");
+    sb.append("    recipientOrder: ").append(toIndentedString(recipientOrder)).append("\n");
     sb.append("    offer: ").append(toIndentedString(offer)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -21,61 +21,53 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Order;
-import io.swagger.client.model.Paging;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 /**
- * a list of submitted orders
- */@ApiModel(description = "a list of submitted orders")
+ * JWTBodyPayToUserOffer
+ */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
-public class OrderList {
-@SerializedName("orders")
-  private List<Order> orders = new ArrayList<Order>();
-  @SerializedName("paging")
-  private Paging paging = null;
+public class JWTBodyPayToUserOffer {
+@SerializedName("id")
+  private String id = null;
+  @SerializedName("amount")
+  private BigDecimal amount = null;
   
-  public OrderList orders(List<Order> orders) {
-    this.orders = orders;
-    return this;
-  }
-
-  public OrderList addOrdersItem(Order ordersItem) {
-    
-    this.orders.add(ordersItem);
-    return this;
-  }
-  
-  /**
-  * Get orders
-  * @return orders
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public List<Order> getOrders() {
-    return orders;
-  }
-  public void setOrders(List<Order> orders) {
-    this.orders = orders;
-  }
-  
-  public OrderList paging(Paging paging) {
-    this.paging = paging;
+  public JWTBodyPayToUserOffer id(String id) {
+    this.id = id;
     return this;
   }
 
   
   /**
-  * Get paging
-  * @return paging
+  * offer id - id is decided by digital service
+  * @return id
   **/
-  @ApiModelProperty(value = "")
-  public Paging getPaging() {
-    return paging;
+  @ApiModelProperty(value = "offer id - id is decided by digital service")
+  public String getId() {
+    return id;
   }
-  public void setPaging(Paging paging) {
-    this.paging = paging;
+  public void setId(String id) {
+    this.id = id;
+  }
+  
+  public JWTBodyPayToUserOffer amount(BigDecimal amount) {
+    this.amount = amount;
+    return this;
+  }
+
+  
+  /**
+  * amount of kin for this offer - price
+  * @return amount
+  **/
+  @ApiModelProperty(value = "amount of kin for this offer - price")
+  public BigDecimal getAmount() {
+    return amount;
+  }
+  public void setAmount(BigDecimal amount) {
+    this.amount = amount;
   }
   
   @Override
@@ -86,23 +78,23 @@ public class OrderList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrderList orderList = (OrderList) o;
-    return Objects.equals(this.orders, orderList.orders) &&
-        Objects.equals(this.paging, orderList.paging);
+    JWTBodyPayToUserOffer jwTBodyPayToUserOffer = (JWTBodyPayToUserOffer) o;
+    return Objects.equals(this.id, jwTBodyPayToUserOffer.id) &&
+        Objects.equals(this.amount, jwTBodyPayToUserOffer.amount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orders, paging);
+    return Objects.hash(id, amount);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrderList {\n");
+    sb.append("class JWTBodyPayToUserOffer {\n");
     
-    sb.append("    orders: ").append(toIndentedString(orders)).append("\n");
-    sb.append("    paging: ").append(toIndentedString(paging)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

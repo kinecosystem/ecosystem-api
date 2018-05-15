@@ -1,11 +1,11 @@
 
-# JWTBodyConfirmPaymentResult
+# JWTBodyPaymentConfirmationResult
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**TypeEnum**](#TypeEnum) |  | 
-**jwt** | **String** | JWT defined by JWTBodyConfirmPayment | 
+**jwt** | **String** | JWT defined by JWTBodyPaymentConfirmation | 
 
 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 Name | Value
 ---- | -----
 COUPON | &quot;coupon&quot;
-CONFIRM_PAYMENT | &quot;confirm_payment&quot;
+PAYMENT_CONFIRMED | &quot;payment_confirmed&quot;
 
 
 

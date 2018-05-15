@@ -24,10 +24,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * JWTBodyConfirmPaymentResult
+ * JWTBodyPaymentConfirmationResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
-public class JWTBodyConfirmPaymentResult {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
+public class JWTBodyPaymentConfirmationResult {
 
     /**
    * Gets or Sets type
@@ -36,7 +36,7 @@ public class JWTBodyConfirmPaymentResult {
   public enum TypeEnum {
     
     COUPON("coupon"),
-    CONFIRM_PAYMENT("confirm_payment");
+    PAYMENT_CONFIRMED("payment_confirmed");
 
     private String value;
 
@@ -81,7 +81,7 @@ public class JWTBodyConfirmPaymentResult {
   @SerializedName("jwt")
   private String jwt = null;
   
-  public JWTBodyConfirmPaymentResult type(TypeEnum type) {
+  public JWTBodyPaymentConfirmationResult type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -99,17 +99,17 @@ public class JWTBodyConfirmPaymentResult {
     this.type = type;
   }
   
-  public JWTBodyConfirmPaymentResult jwt(String jwt) {
+  public JWTBodyPaymentConfirmationResult jwt(String jwt) {
     this.jwt = jwt;
     return this;
   }
 
   
   /**
-  * JWT defined by JWTBodyConfirmPayment
+  * JWT defined by JWTBodyPaymentConfirmation
   * @return jwt
   **/
-  @ApiModelProperty(required = true, value = "JWT defined by JWTBodyConfirmPayment")
+  @ApiModelProperty(required = true, value = "JWT defined by JWTBodyPaymentConfirmation")
   public String getJwt() {
     return jwt;
   }
@@ -125,9 +125,9 @@ public class JWTBodyConfirmPaymentResult {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JWTBodyConfirmPaymentResult jwTBodyConfirmPaymentResult = (JWTBodyConfirmPaymentResult) o;
-    return Objects.equals(this.type, jwTBodyConfirmPaymentResult.type) &&
-        Objects.equals(this.jwt, jwTBodyConfirmPaymentResult.jwt);
+    JWTBodyPaymentConfirmationResult jwTBodyPaymentConfirmationResult = (JWTBodyPaymentConfirmationResult) o;
+    return Objects.equals(this.type, jwTBodyPaymentConfirmationResult.type) &&
+        Objects.equals(this.jwt, jwTBodyPaymentConfirmationResult.jwt);
   }
 
   @Override
@@ -138,7 +138,7 @@ public class JWTBodyConfirmPaymentResult {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JWTBodyConfirmPaymentResult {\n");
+    sb.append("class JWTBodyPaymentConfirmationResult {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");

@@ -21,15 +21,16 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.JWTBodyConfirmPaymentPayment;
+import io.swagger.client.model.JWTBodyPartOffer;
+import io.swagger.client.model.JWTBodyPartOrder;
 import java.io.IOException;
 import java.math.BigDecimal;
 
 /**
- * JWTBodyConfirmPayment
+ * JWTBodyEarn
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-08T12:31:47.633+03:00")
-public class JWTBodyConfirmPayment {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T10:52:55.639+03:00")
+public class JWTBodyEarn {
 @SerializedName("iat")
   private BigDecimal iat = null;
   @SerializedName("iss")
@@ -45,7 +46,9 @@ public class JWTBodyConfirmPayment {
     
     REGISTER("register"),
     SPEND("spend"),
-    CONFIRM_PAYMENT("confirm_payment");
+    EARN("earn"),
+    PAY_TO_USER("pay_to_user"),
+    PAYMENT_CONFIRMED("payment_confirmed");
 
     private String value;
 
@@ -87,10 +90,12 @@ public class JWTBodyConfirmPayment {
   
   @SerializedName("sub")
   private SubEnum sub = null;
-  @SerializedName("payment")
-  private JWTBodyConfirmPaymentPayment payment = null;
+  @SerializedName("order")
+  private JWTBodyPartOrder order = null;
+  @SerializedName("offer")
+  private JWTBodyPartOffer offer = null;
   
-  public JWTBodyConfirmPayment iat(BigDecimal iat) {
+  public JWTBodyEarn iat(BigDecimal iat) {
     this.iat = iat;
     return this;
   }
@@ -108,7 +113,7 @@ public class JWTBodyConfirmPayment {
     this.iat = iat;
   }
   
-  public JWTBodyConfirmPayment iss(String iss) {
+  public JWTBodyEarn iss(String iss) {
     this.iss = iss;
     return this;
   }
@@ -126,7 +131,7 @@ public class JWTBodyConfirmPayment {
     this.iss = iss;
   }
   
-  public JWTBodyConfirmPayment exp(BigDecimal exp) {
+  public JWTBodyEarn exp(BigDecimal exp) {
     this.exp = exp;
     return this;
   }
@@ -144,7 +149,7 @@ public class JWTBodyConfirmPayment {
     this.exp = exp;
   }
   
-  public JWTBodyConfirmPayment sub(SubEnum sub) {
+  public JWTBodyEarn sub(SubEnum sub) {
     this.sub = sub;
     return this;
   }
@@ -162,22 +167,40 @@ public class JWTBodyConfirmPayment {
     this.sub = sub;
   }
   
-  public JWTBodyConfirmPayment payment(JWTBodyConfirmPaymentPayment payment) {
-    this.payment = payment;
+  public JWTBodyEarn order(JWTBodyPartOrder order) {
+    this.order = order;
     return this;
   }
 
   
   /**
-  * Get payment
-  * @return payment
+  * Get order
+  * @return order
   **/
   @ApiModelProperty(required = true, value = "")
-  public JWTBodyConfirmPaymentPayment getPayment() {
-    return payment;
+  public JWTBodyPartOrder getOrder() {
+    return order;
   }
-  public void setPayment(JWTBodyConfirmPaymentPayment payment) {
-    this.payment = payment;
+  public void setOrder(JWTBodyPartOrder order) {
+    this.order = order;
+  }
+  
+  public JWTBodyEarn offer(JWTBodyPartOffer offer) {
+    this.offer = offer;
+    return this;
+  }
+
+  
+  /**
+  * Get offer
+  * @return offer
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public JWTBodyPartOffer getOffer() {
+    return offer;
+  }
+  public void setOffer(JWTBodyPartOffer offer) {
+    this.offer = offer;
   }
   
   @Override
@@ -188,29 +211,31 @@ public class JWTBodyConfirmPayment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JWTBodyConfirmPayment jwTBodyConfirmPayment = (JWTBodyConfirmPayment) o;
-    return Objects.equals(this.iat, jwTBodyConfirmPayment.iat) &&
-        Objects.equals(this.iss, jwTBodyConfirmPayment.iss) &&
-        Objects.equals(this.exp, jwTBodyConfirmPayment.exp) &&
-        Objects.equals(this.sub, jwTBodyConfirmPayment.sub) &&
-        Objects.equals(this.payment, jwTBodyConfirmPayment.payment);
+    JWTBodyEarn jwTBodyEarn = (JWTBodyEarn) o;
+    return Objects.equals(this.iat, jwTBodyEarn.iat) &&
+        Objects.equals(this.iss, jwTBodyEarn.iss) &&
+        Objects.equals(this.exp, jwTBodyEarn.exp) &&
+        Objects.equals(this.sub, jwTBodyEarn.sub) &&
+        Objects.equals(this.order, jwTBodyEarn.order) &&
+        Objects.equals(this.offer, jwTBodyEarn.offer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(iat, iss, exp, sub, payment);
+    return Objects.hash(iat, iss, exp, sub, order, offer);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JWTBodyConfirmPayment {\n");
+    sb.append("class JWTBodyEarn {\n");
     
     sb.append("    iat: ").append(toIndentedString(iat)).append("\n");
     sb.append("    iss: ").append(toIndentedString(iss)).append("\n");
     sb.append("    exp: ").append(toIndentedString(exp)).append("\n");
     sb.append("    sub: ").append(toIndentedString(sub)).append("\n");
-    sb.append("    payment: ").append(toIndentedString(payment)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
+    sb.append("    offer: ").append(toIndentedString(offer)).append("\n");
     sb.append("}");
     return sb.toString();
   }
