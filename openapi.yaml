@@ -745,12 +745,12 @@ components:
         - type: object
           required:
             - offer
-            - order
+            - sender
           properties:
             offer:
               $ref: '#/components/schemas/JWTBodyPartOffer'
-            order:
-              $ref: '#/components/schemas/JWTBodyPartOrder'
+            sender:
+              $ref: '#/components/schemas/JWTBodyPartSender'
 
     JWTBodyEarn:
       allOf:
@@ -758,10 +758,10 @@ components:
         - type: object
           required:
             - offer
-            - order
+            - recipient
           properties:
-            order:
-              $ref: '#/components/schemas/JWTBodyPartOrder'
+            recipient:
+              $ref: '#/components/schemas/JWTBodyPartRecipient'
             offer:
               $ref: '#/components/schemas/JWTBodyPartOffer'
 
@@ -778,10 +778,9 @@ components:
           type: number
           description: amount of kin for this offer - price
 
-    JWTBodyPartOrder:
+    JWTBodyPartSender:
       type: object
       required:
-        - user_id
         - title
         - description
       properties:
@@ -795,19 +794,26 @@ components:
           type: string
           description: offer description - appears in order history
 
+    JWTBodyPartRecipient:
+      allOf:
+        - $ref: '#/components/schemas/JWTBodyPartSender'
+        - type: object
+          required:
+            - user_id
+
     JWTBodyPayToUser:
       allOf:
         - $ref: '#/components/schemas/JWTBodyCommon'
         - type: object
           required:
             - offer
-            - sender_order
-            - recipient_order
+            - sender
+            - recipient
           properties:
-            sender_order:
-              $ref: '#/components/schemas/JWTBodyPartOrder'
-            recipient_order:
-              $ref: '#/components/schemas/JWTBodyPartOrder'
+            sender:
+              $ref: '#/components/schemas/JWTBodyPartSender'
+            recipient:
+              $ref: '#/components/schemas/JWTBodyPartRecipient'
             offer:
               type: object
               required:
