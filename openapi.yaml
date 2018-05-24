@@ -249,8 +249,8 @@ paths:
                 error:
                   $ref: '#/components/schemas/Error'
       responses:
-        '201':
-          description: Successfully closed the order with a failure status and given message
+        '200':
+          description: Successfully changed the order with a failure status and given message
           content:
             application/json:
               schema:
