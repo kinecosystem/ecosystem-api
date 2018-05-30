@@ -110,6 +110,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OpenOrder'
+        '409':
+          description: Conflict
+          headers:
+            Location:
+              schema:
+                type: string
+              description: location of the order that conflicts with this one
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         default:
           description: Generic Error
           content:
