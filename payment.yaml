@@ -96,12 +96,7 @@ paths:
   /wallets/{wallet_address}:
     parameters:
       - $ref: '#/components/parameters/RequestId'
-      - in: path
-        name: wallet_address
-        schema:
-          type: string
-        required: true
-        description: public address of wallet
+      - $ref: '#/components/parameters/WalletAddressParam'
     get:
       tags:
         - Wallets
@@ -122,7 +117,43 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /wallets/{wallet_address}/payments:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - $ref: '#/components/parameters/WalletAddressParam'
+    get:
+      tags:
+        - Wallets
+      description: get wallet payments
+      summary: get wallet payments
+      operationId: getWalletPayments
+      responses:
+        '200':
+          description: Successfully returned wallet payments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Payment'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
   /watchers/{service_id}:
+    parameters:
+    - in: path
+      name: service_id
+      schema:
+        type: string
+      required: true
+      description: an identifer to group addresses watched
     put:
       tags:
         - Watchers
@@ -149,7 +180,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
+    post:
+      tags:
+        - Watchers
+      description: add addresses to watch for this service
+      summary: add addresses to watcher
+      operationId: addWatcherAddresses
+      requestBody:
+        description: watcher addresses and callback
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watcher'
+      responses:
+        '200':
+          description: Successfully added addresses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watcher'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 components:
   parameters:
@@ -162,6 +218,13 @@ components:
       description: >-
         A unique id for the request. A retransmitted request will have the same
         id
+    WalletAddressParam:
+      in: path
+      name: wallet_address
+      schema:
+        type: string
+      required: true
+      description: public address of wallet
 
   schemas:
 
@@ -203,7 +266,6 @@ components:
         - amount
         - app_id
         - recipient_address
-        - callback
       properties:
         id:
           type: string
