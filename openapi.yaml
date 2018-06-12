@@ -7,10 +7,17 @@ servers:
   - url: 'https://api.kinmarketplace.com/v1/'
   - url: 'https://api-stage.kinmarketplace.com/v1/'
   - url: 'https://api-test.kinmarketplace.com/v1/'
+x-globalParameters: &GLOB_PARAMS
+  - $ref: '#/components/parameters/RequestId'
+  - $ref: '#/components/parameters/SDKVersion'
+  - $ref: '#/components/parameters/DeviceModel'
+  - $ref: '#/components/parameters/DeviceManufacturer'
+  - $ref: '#/components/parameters/DeviceId'
+  - $ref: '#/components/parameters/OS'
 paths:
   /users:
     parameters:
-      - $ref: '#/components/parameters/RequestId'
+      *GLOB_PARAMS
     post:
       tags:
         - Auth
@@ -41,7 +48,7 @@ paths:
 
   /users/me/activate:
     parameters:
-      - $ref: '#/components/parameters/RequestId'
+      *GLOB_PARAMS
     post:
       tags:
         - Auth
@@ -63,7 +70,7 @@ paths:
                 $ref: '#/components/schemas/Error'
   /offers:
     parameters:
-      - $ref: '#/components/parameters/RequestId'
+      *GLOB_PARAMS
     get:
       tags:
         - Offers
@@ -89,7 +96,7 @@ paths:
                 $ref: '#/components/schemas/Error'
   '/offers/external/orders':
     parameters:
-      - $ref: '#/components/parameters/RequestId'
+      *GLOB_PARAMS
     post:
       tags:
         - Orders
@@ -129,19 +136,20 @@ paths:
                 $ref: '#/components/schemas/Error'
   '/offers/{offer_id}/orders':
     parameters:
-      - in: path
-        name: offer_id
-        required: true
-        schema:
-          type: string
-        description: The offer id
-      - $ref: '#/components/parameters/RequestId'
+      *GLOB_PARAMS
     post:
       tags:
         - Orders
       summary: create an order for an offer
       description: create an order for an offer
       operationId: createOrder
+      parameters:
+        - in: path
+          name: offer_id
+          required: true
+          schema:
+            type: string
+          description: The offer id
       responses:
         '201':
           description: Successfully created an order for an offer
@@ -163,19 +171,15 @@ paths:
                 $ref: '#/components/schemas/Error'
   '/orders/{order_id}':
     parameters:
-      - in: path
-        name: order_id
-        required: true
-        schema:
-          type: string
-        description: The order id
-      - $ref: '#/components/parameters/RequestId'
+      *GLOB_PARAMS
     get:
       tags:
         - Orders
       summary: get an order
       description: get an order
       operationId: getOrder
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
       responses:
         '200':
           description: Successfully returned an order
@@ -195,6 +199,8 @@ paths:
       summary: submit an order
       description: submit an order
       operationId: submitOrder
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
       requestBody:
         description: submission of an order
         required: false # in case of spend the content is not required
@@ -231,6 +237,8 @@ paths:
       summary: cancel an order
       description: cancel an order - this can be called only before an order is submitted
       operationId: cancelOrder
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
       responses:
         '204':
           description: Canceled order
@@ -249,6 +257,8 @@ paths:
         you can only change an order that is in pending state.
         a failed order can always turn completed in case the order_id successfully appears in the blockchain.
       operationId: changeOrder
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
       requestBody:
         description: fields to update on an order
         required: false # in case of spend the content is not required
@@ -280,7 +290,7 @@ paths:
                 $ref: '#/components/schemas/Error'
   /orders:
     parameters:
-      - $ref: '#/components/parameters/RequestId'
+      *GLOB_PARAMS
     get:
       tags:
         - Orders
@@ -343,6 +353,40 @@ components:
         type: string
       description: |
         A unique id for the request. A retransmitted request will have the same id
+    SDKVersion:
+      in: header
+      name: X-SDK-VERSION
+      required: true
+      schema:
+        type: string
+    DeviceModel:
+      in: header
+      name: X-DEVICE-MODEL
+      required: true
+      schema:
+        type: string
+      example: S9
+    DeviceManufacturer:
+      in: header
+      name: X-DEVICE-MANUFACTURER
+      required: true
+      schema:
+        type: string
+      example: Samsung
+    DeviceId:
+      in: header
+      name: X-DEVICE-ID
+      required: true
+      schema:
+        type: string
+    OS:
+      in: header
+      name: X-OS
+      required: true
+      schema:
+        type: string
+      description: os name and version
+      example: iOS 12.0.1
     QueryLimit:
       in: query
       name: limit
@@ -364,7 +408,13 @@ components:
       schema:
         type: string
       description: cursor that points to the end of the page of data that has been returned
-
+    OrderId:
+      in: path
+      name: order_id
+      required: true
+      schema:
+        type: string
+      description: The order id
   securitySchemes:
     BearerAuth:  # api requires the header Authorization: Bearer <token>
       type: http
