@@ -712,6 +712,8 @@ components:
         - activated
         - expiration_date
         - app_id
+        - user_id
+        - ecosystem_user_id
       properties:
         token:
           type: string
@@ -725,6 +727,14 @@ components:
           type: string
           example: kik
           description: a 3 - 4 letter symbol identifying the app
+        user_id:
+          type: string
+          example: doody
+          description: the user_id from the digital service
+        ecosystem_user_id:
+          type: string
+          example: Usdefsdlfjksldjf
+          description: the internal server user_id - it's unique across all the digital services
 
     Paging:
       description: "object accompanying lists - used to fetch next/previous section"
