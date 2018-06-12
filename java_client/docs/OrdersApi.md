@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 <a name="cancelOrder"></a>
 # **cancelOrder**
-> cancelOrder(orderId, X_REQUEST_ID)
+> cancelOrder(orderId)
 
 cancel an order
 
@@ -35,10 +35,8 @@ OrdersApi apiInstance = new OrdersApi();
 
 String orderId = Arrays.asList("orderId_example"); // String | The order id
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 try {
-    apiInstance.cancelOrder(orderId, X_REQUEST_ID);
+    apiInstance.cancelOrder(orderId);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#cancelOrder");
     e.printStackTrace();
@@ -50,7 +48,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**| The order id |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
@@ -69,7 +66,7 @@ null (empty response body)
 
 <a name="changeOrder"></a>
 # **changeOrder**
-> Order changeOrder(orderId, X_REQUEST_ID, body)
+> Order changeOrder(orderId, body)
 
 change an order
 
@@ -87,12 +84,10 @@ OrdersApi apiInstance = new OrdersApi();
 
 String orderId = Arrays.asList("orderId_example"); // String | The order id
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 Body body = ; // Body | 
 
 try {
-    Order result = apiInstance.changeOrder(orderId, X_REQUEST_ID, body);
+    Order result = apiInstance.changeOrder(orderId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#changeOrder");
@@ -105,7 +100,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**| The order id |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
  **body** | [**Body**](.md)|  | [optional]
 
 
@@ -125,7 +119,7 @@ Name | Type | Description  | Notes
 
 <a name="createExternalOrder"></a>
 # **createExternalOrder**
-> OpenOrder createExternalOrder(externalorderrequest, X_REQUEST_ID)
+> OpenOrder createExternalOrder(externalorderrequest)
 
 create an external order for a native offer
 
@@ -143,10 +137,8 @@ OrdersApi apiInstance = new OrdersApi();
 
 ExternalOrderRequest externalorderrequest = ; // ExternalOrderRequest | 
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 try {
-    OpenOrder result = apiInstance.createExternalOrder(externalorderrequest, X_REQUEST_ID);
+    OpenOrder result = apiInstance.createExternalOrder(externalorderrequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#createExternalOrder");
@@ -159,7 +151,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **externalorderrequest** | [**ExternalOrderRequest**](.md)|  |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
@@ -173,12 +164,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/json
+ - **Accept**: application/jsonapplication/jsonapplication/json
 
 
 <a name="createOrder"></a>
 # **createOrder**
-> OpenOrder createOrder(offerId, X_REQUEST_ID)
+> OpenOrder createOrder(offerId)
 
 create an order for an offer
 
@@ -196,10 +187,8 @@ OrdersApi apiInstance = new OrdersApi();
 
 String offerId = Arrays.asList("offerId_example"); // String | The offer id
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 try {
-    OpenOrder result = apiInstance.createOrder(offerId, X_REQUEST_ID);
+    OpenOrder result = apiInstance.createOrder(offerId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#createOrder");
@@ -212,7 +201,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offerId** | **String**| The offer id |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
@@ -231,7 +219,7 @@ Name | Type | Description  | Notes
 
 <a name="getHistory"></a>
 # **getHistory**
-> OrderList getHistory(X_REQUEST_ID, origin, offerId, limit, before, after)
+> OrderList getHistory(origin, offerId, limit, before, after)
 
 get user order history
 
@@ -247,8 +235,6 @@ get user order history
 
 OrdersApi apiInstance = new OrdersApi();
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 String origin = Arrays.asList("origin_example"); // String | filter by origin
 
 String offerId = Arrays.asList("offerId_example"); // String | filter by offer_id
@@ -260,7 +246,7 @@ String before = Arrays.asList("before_example"); // String | cursor that points 
 String after = Arrays.asList("after_example"); // String | cursor that points to the end of the page of data that has been returned
 
 try {
-    OrderList result = apiInstance.getHistory(X_REQUEST_ID, origin, offerId, limit, before, after);
+    OrderList result = apiInstance.getHistory(origin, offerId, limit, before, after);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#getHistory");
@@ -272,7 +258,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
  **origin** | **String**| filter by origin | [optional] [enum: marketplace, external]
  **offerId** | **String**| filter by offer_id | [optional]
  **limit** | **Integer**| maximum number of items in a list | [optional] [enum: ]
@@ -296,7 +281,7 @@ Name | Type | Description  | Notes
 
 <a name="getOrder"></a>
 # **getOrder**
-> Order getOrder(orderId, X_REQUEST_ID)
+> Order getOrder(orderId)
 
 get an order
 
@@ -314,10 +299,8 @@ OrdersApi apiInstance = new OrdersApi();
 
 String orderId = Arrays.asList("orderId_example"); // String | The order id
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 try {
-    Order result = apiInstance.getOrder(orderId, X_REQUEST_ID);
+    Order result = apiInstance.getOrder(orderId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#getOrder");
@@ -330,7 +313,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**| The order id |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type
@@ -349,7 +331,7 @@ Name | Type | Description  | Notes
 
 <a name="submitOrder"></a>
 # **submitOrder**
-> Order submitOrder(orderId, X_REQUEST_ID, earnsubmission)
+> Order submitOrder(orderId, earnsubmission)
 
 submit an order
 
@@ -367,12 +349,10 @@ OrdersApi apiInstance = new OrdersApi();
 
 String orderId = Arrays.asList("orderId_example"); // String | The order id
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 EarnSubmission earnsubmission = ; // EarnSubmission | 
 
 try {
-    Order result = apiInstance.submitOrder(orderId, X_REQUEST_ID, earnsubmission);
+    Order result = apiInstance.submitOrder(orderId, earnsubmission);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrdersApi#submitOrder");
@@ -385,7 +365,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**| The order id |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
  **earnsubmission** | [**EarnSubmission**](.md)|  | [optional]
 
 

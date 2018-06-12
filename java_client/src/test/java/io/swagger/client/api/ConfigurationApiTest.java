@@ -14,8 +14,7 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.Error;
-import io.swagger.client.model.OfferList;
+import io.swagger.client.model.Config;
 
 import org.junit.Test;
 import org.junit.Ignore;
@@ -28,32 +27,26 @@ import java.util.Map;
 
 
 /**
- * API tests for OffersApi
+ * API tests for ConfigurationApi
  */
 @Ignore
-public class OffersApiTest {
+public class ConfigurationApiTest {
 
-    private final OffersApi api = new OffersApi();
+    private final ConfigurationApi api = new ConfigurationApi();
 
     
     /**
-     * Return a list of offers
+     * 
      *
-     * Return a **list** of offers
+     * 
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void getOffersTest() throws ApiException {
+    public void configGetTest() throws ApiException {
         
-        Integer limit = null;
-        
-        String after = null;
-        
-        String before = null;
-        
-        OfferList response = api.getOffers(limit, after, before);
+        Config response = api.configGet();
 
         // TODO: test validations
     }

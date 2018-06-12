@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * token issued by marketplace server
  */@ApiModel(description = "token issued by marketplace server")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-05-15T16:56:00.988+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-06-12T15:56:08.924+03:00")
 public class AuthToken {
 @SerializedName("token")
   private String token = null;
@@ -36,6 +36,10 @@ public class AuthToken {
   private String expirationDate = null;
   @SerializedName("app_id")
   private String appId = null;
+  @SerializedName("user_id")
+  private String userId = null;
+  @SerializedName("ecosystem_user_id")
+  private String ecosystemUserId = null;
   
   public AuthToken token(String token) {
     this.token = token;
@@ -109,6 +113,42 @@ public class AuthToken {
     this.appId = appId;
   }
   
+  public AuthToken userId(String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  
+  /**
+  * the user_id from the digital service
+  * @return userId
+  **/
+  @ApiModelProperty(example = "doody", required = true, value = "the user_id from the digital service")
+  public String getUserId() {
+    return userId;
+  }
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+  
+  public AuthToken ecosystemUserId(String ecosystemUserId) {
+    this.ecosystemUserId = ecosystemUserId;
+    return this;
+  }
+
+  
+  /**
+  * the internal server user_id - it&#x27;s unique across all the digital services
+  * @return ecosystemUserId
+  **/
+  @ApiModelProperty(example = "Usdefsdlfjksldjf", required = true, value = "the internal server user_id - it's unique across all the digital services")
+  public String getEcosystemUserId() {
+    return ecosystemUserId;
+  }
+  public void setEcosystemUserId(String ecosystemUserId) {
+    this.ecosystemUserId = ecosystemUserId;
+  }
+  
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -121,12 +161,14 @@ public class AuthToken {
     return Objects.equals(this.token, authToken.token) &&
         Objects.equals(this.activated, authToken.activated) &&
         Objects.equals(this.expirationDate, authToken.expirationDate) &&
-        Objects.equals(this.appId, authToken.appId);
+        Objects.equals(this.appId, authToken.appId) &&
+        Objects.equals(this.userId, authToken.userId) &&
+        Objects.equals(this.ecosystemUserId, authToken.ecosystemUserId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(token, activated, expirationDate, appId);
+    return Objects.hash(token, activated, expirationDate, appId, userId, ecosystemUserId);
   }
   
   @Override
@@ -138,6 +180,8 @@ public class AuthToken {
     sb.append("    activated: ").append(toIndentedString(activated)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("    appId: ").append(toIndentedString(appId)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    ecosystemUserId: ").append(toIndentedString(ecosystemUserId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

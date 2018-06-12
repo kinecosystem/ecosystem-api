@@ -66,14 +66,13 @@ public class AuthApi {
     
     /**
      * Build call for activateAcount
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call activateAcountCall(String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call activateAcountCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -83,8 +82,6 @@ public class AuthApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -117,16 +114,11 @@ public class AuthApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call activateAcountValidateBeforeCall(String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call activateAcountValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling activateAcount(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = activateAcountCall(X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = activateAcountCall(progressListener, progressRequestListener);
         return call;
 
         
@@ -140,26 +132,24 @@ public class AuthApi {
     /**
      * Activate account
      * Activate account by accepting TOS
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return AuthToken
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public AuthToken activateAcount(String X_REQUEST_ID) throws ApiException {
-        ApiResponse<AuthToken> resp = activateAcountWithHttpInfo(X_REQUEST_ID);
+    public AuthToken activateAcount() throws ApiException {
+        ApiResponse<AuthToken> resp = activateAcountWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * Activate account
      * Activate account by accepting TOS
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return ApiResponse&lt;AuthToken&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<AuthToken> activateAcountWithHttpInfo(String X_REQUEST_ID) throws ApiException {
-        com.squareup.okhttp.Call call = activateAcountValidateBeforeCall(X_REQUEST_ID, null, null);
+    public ApiResponse<AuthToken> activateAcountWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = activateAcountValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<AuthToken>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -167,13 +157,12 @@ public class AuthApi {
     /**
      * Activate account (asynchronously)
      * Activate account by accepting TOS
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call activateAcountAsync(String X_REQUEST_ID, final ApiCallback<AuthToken> callback) throws ApiException {
+    public com.squareup.okhttp.Call activateAcountAsync(final ApiCallback<AuthToken> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -194,7 +183,7 @@ public class AuthApi {
             };
         }
 
-        com.squareup.okhttp.Call call = activateAcountValidateBeforeCall(X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = activateAcountValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<AuthToken>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -203,14 +192,13 @@ public class AuthApi {
     /**
      * Build call for signIn
      * @param signindata  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call signInCall(SignInData signindata, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call signInCall(SignInData signindata, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = signindata;
         
         // create path and map variables
@@ -220,8 +208,6 @@ public class AuthApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -254,7 +240,7 @@ public class AuthApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call signInValidateBeforeCall(SignInData signindata, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call signInValidateBeforeCall(SignInData signindata, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         // verify the required parameter 'signindata' is set
@@ -262,13 +248,8 @@ public class AuthApi {
             throw new ApiException("Missing the required parameter 'signindata' when calling signIn(Async)");
         }
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling signIn(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = signInCall(signindata, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = signInCall(signindata, progressListener, progressRequestListener);
         return call;
 
         
@@ -283,13 +264,12 @@ public class AuthApi {
      * Sign in/ Log in
      * Sign a user into kin marketplace
      * @param signindata  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return AuthToken
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public AuthToken signIn(SignInData signindata, String X_REQUEST_ID) throws ApiException {
-        ApiResponse<AuthToken> resp = signInWithHttpInfo(signindata, X_REQUEST_ID);
+    public AuthToken signIn(SignInData signindata) throws ApiException {
+        ApiResponse<AuthToken> resp = signInWithHttpInfo(signindata);
         return resp.getData();
     }
 
@@ -297,13 +277,12 @@ public class AuthApi {
      * Sign in/ Log in
      * Sign a user into kin marketplace
      * @param signindata  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return ApiResponse&lt;AuthToken&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<AuthToken> signInWithHttpInfo(SignInData signindata, String X_REQUEST_ID) throws ApiException {
-        com.squareup.okhttp.Call call = signInValidateBeforeCall(signindata, X_REQUEST_ID, null, null);
+    public ApiResponse<AuthToken> signInWithHttpInfo(SignInData signindata) throws ApiException {
+        com.squareup.okhttp.Call call = signInValidateBeforeCall(signindata, null, null);
         Type localVarReturnType = new TypeToken<AuthToken>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -312,13 +291,12 @@ public class AuthApi {
      * Sign in/ Log in (asynchronously)
      * Sign a user into kin marketplace
      * @param signindata  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call signInAsync(SignInData signindata, String X_REQUEST_ID, final ApiCallback<AuthToken> callback) throws ApiException {
+    public com.squareup.okhttp.Call signInAsync(SignInData signindata, final ApiCallback<AuthToken> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -339,7 +317,7 @@ public class AuthApi {
             };
         }
 
-        com.squareup.okhttp.Call call = signInValidateBeforeCall(signindata, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = signInValidateBeforeCall(signindata, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<AuthToken>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

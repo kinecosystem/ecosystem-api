@@ -54,9 +54,7 @@ public class OrdersApiTest {
         
         String orderId = null;
         
-        String X_REQUEST_ID = null;
-        
-        api.cancelOrder(orderId, X_REQUEST_ID);
+        api.cancelOrder(orderId);
 
         // TODO: test validations
     }
@@ -74,11 +72,9 @@ public class OrdersApiTest {
         
         String orderId = null;
         
-        String X_REQUEST_ID = null;
-        
         Body body = null;
         
-        Order response = api.changeOrder(orderId, X_REQUEST_ID, body);
+        Order response = api.changeOrder(orderId, body);
 
         // TODO: test validations
     }
@@ -96,9 +92,7 @@ public class OrdersApiTest {
         
         ExternalOrderRequest externalorderrequest = null;
         
-        String X_REQUEST_ID = null;
-        
-        OpenOrder response = api.createExternalOrder(externalorderrequest, X_REQUEST_ID);
+        OpenOrder response = api.createExternalOrder(externalorderrequest);
 
         // TODO: test validations
     }
@@ -116,9 +110,7 @@ public class OrdersApiTest {
         
         String offerId = null;
         
-        String X_REQUEST_ID = null;
-        
-        OpenOrder response = api.createOrder(offerId, X_REQUEST_ID);
+        OpenOrder response = api.createOrder(offerId);
 
         // TODO: test validations
     }
@@ -134,8 +126,6 @@ public class OrdersApiTest {
     @Test
     public void getHistoryTest() throws ApiException {
         
-        String X_REQUEST_ID = null;
-        
         String origin = null;
         
         String offerId = null;
@@ -146,7 +136,7 @@ public class OrdersApiTest {
         
         String after = null;
         
-        OrderList response = api.getHistory(X_REQUEST_ID, origin, offerId, limit, before, after);
+        OrderList response = api.getHistory(origin, offerId, limit, before, after);
 
         // TODO: test validations
     }
@@ -164,9 +154,7 @@ public class OrdersApiTest {
         
         String orderId = null;
         
-        String X_REQUEST_ID = null;
-        
-        Order response = api.getOrder(orderId, X_REQUEST_ID);
+        Order response = api.getOrder(orderId);
 
         // TODO: test validations
     }
@@ -184,11 +172,9 @@ public class OrdersApiTest {
         
         String orderId = null;
         
-        String X_REQUEST_ID = null;
-        
         EarnSubmission earnsubmission = null;
         
-        Order response = api.submitOrder(orderId, X_REQUEST_ID, earnsubmission);
+        Order response = api.submitOrder(orderId, earnsubmission);
 
         // TODO: test validations
     }

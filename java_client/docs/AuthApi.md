@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="activateAcount"></a>
 # **activateAcount**
-> AuthToken activateAcount(X_REQUEST_ID)
+> AuthToken activateAcount()
 
 Activate account
 
@@ -28,10 +28,8 @@ Activate account by accepting TOS
 
 AuthApi apiInstance = new AuthApi();
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 try {
-    AuthToken result = apiInstance.activateAcount(X_REQUEST_ID);
+    AuthToken result = apiInstance.activateAcount();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AuthApi#activateAcount");
@@ -40,10 +38,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
+This endpoint does not need any parameter.
 
 
 ### Return type
@@ -62,7 +57,7 @@ Name | Type | Description  | Notes
 
 <a name="signIn"></a>
 # **signIn**
-> AuthToken signIn(signindata, X_REQUEST_ID)
+> AuthToken signIn(signindata)
 
 Sign in/ Log in
 
@@ -80,10 +75,8 @@ AuthApi apiInstance = new AuthApi();
 
 SignInData signindata = ; // SignInData | 
 
-String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-
 try {
-    AuthToken result = apiInstance.signIn(signindata, X_REQUEST_ID);
+    AuthToken result = apiInstance.signIn(signindata);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AuthApi#signIn");
@@ -96,7 +89,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **signindata** | [**SignInData**](.md)|  |
- **X_REQUEST_ID** | **String**| A unique id for the request. A retransmitted request will have the same id  |
 
 
 ### Return type

@@ -30,8 +30,7 @@ import java.io.IOException;
 
 
 
-import io.swagger.client.model.Error;
-import io.swagger.client.model.OfferList;
+import io.swagger.client.model.Config;
 
 
 import java.lang.reflect.Type;
@@ -43,14 +42,14 @@ import java.util.Map;
 
 
 
-public class OffersApi {
+public class ConfigurationApi {
     private ApiClient apiClient;
 
-    public OffersApi() {
+    public ConfigurationApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public OffersApi(ApiClient apiClient) {
+    public ConfigurationApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -64,37 +63,28 @@ public class OffersApi {
 
     
     /**
-     * Build call for getOffers
-     * @param limit maximum number of items in a list (optional)
-     * @param after cursor that points to the end of the page of data that has been returned (optional)
-     * @param before cursor that points to the start of the page of data that has been returned (optional)
+     * Build call for configGet
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call getOffersCall(Integer limit, String after, String before, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call configGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/offers";
+        String localVarPath = "/config";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (limit != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
-        if (after != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("after", after));
-        if (before != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("before", before));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json""application/json"
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
@@ -117,16 +107,16 @@ public class OffersApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOffersValidateBeforeCall(Integer limit, String after, String before, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call configGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         
-        com.squareup.okhttp.Call call = getOffersCall(limit, after, before, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = configGetCall(progressListener, progressRequestListener);
         return call;
 
         
@@ -138,48 +128,39 @@ public class OffersApi {
     }
 
     /**
-     * Return a list of offers
-     * Return a **list** of offers
-     * @param limit maximum number of items in a list (optional)
-     * @param after cursor that points to the end of the page of data that has been returned (optional)
-     * @param before cursor that points to the start of the page of data that has been returned (optional)
-     * @return OfferList
+     * 
+     * 
+     * @return Config
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public OfferList getOffers(Integer limit, String after, String before) throws ApiException {
-        ApiResponse<OfferList> resp = getOffersWithHttpInfo(limit, after, before);
+    public Config configGet() throws ApiException {
+        ApiResponse<Config> resp = configGetWithHttpInfo();
         return resp.getData();
     }
 
     /**
-     * Return a list of offers
-     * Return a **list** of offers
-     * @param limit maximum number of items in a list (optional)
-     * @param after cursor that points to the end of the page of data that has been returned (optional)
-     * @param before cursor that points to the start of the page of data that has been returned (optional)
-     * @return ApiResponse&lt;OfferList&gt;
+     * 
+     * 
+     * @return ApiResponse&lt;Config&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<OfferList> getOffersWithHttpInfo(Integer limit, String after, String before) throws ApiException {
-        com.squareup.okhttp.Call call = getOffersValidateBeforeCall(limit, after, before, null, null);
-        Type localVarReturnType = new TypeToken<OfferList>(){}.getType();
+    public ApiResponse<Config> configGetWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = configGetValidateBeforeCall(null, null);
+        Type localVarReturnType = new TypeToken<Config>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Return a list of offers (asynchronously)
-     * Return a **list** of offers
-     * @param limit maximum number of items in a list (optional)
-     * @param after cursor that points to the end of the page of data that has been returned (optional)
-     * @param before cursor that points to the start of the page of data that has been returned (optional)
+     *  (asynchronously)
+     * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call getOffersAsync(Integer limit, String after, String before, final ApiCallback<OfferList> callback) throws ApiException {
+    public com.squareup.okhttp.Call configGetAsync(final ApiCallback<Config> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -200,8 +181,8 @@ public class OffersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getOffersValidateBeforeCall(limit, after, before, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<OfferList>(){}.getType();
+        com.squareup.okhttp.Call call = configGetValidateBeforeCall(progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Config>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

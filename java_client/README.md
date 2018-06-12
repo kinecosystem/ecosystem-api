@@ -80,10 +80,8 @@ public class AuthApiExample {
 
         AuthApi apiInstance = new AuthApi();
         
-        String X_REQUEST_ID = Arrays.asList("X_REQUEST_ID_example"); // String | A unique id for the request. A retransmitted request will have the same id 
-        
         try {
-            AuthToken result = apiInstance.activateAcount(X_REQUEST_ID);
+            AuthToken result = apiInstance.activateAcount();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AuthApi#activateAcount");
@@ -102,6 +100,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthApi* | [**activateAcount**](docs/AuthApi.md#activateAcount) | **POST** /users/me/activate | Activate account
 *AuthApi* | [**signIn**](docs/AuthApi.md#signIn) | **POST** /users | Sign in/ Log in
+*ConfigurationApi* | [**configGet**](docs/ConfigurationApi.md#configGet) | **GET** /config | 
 *OffersApi* | [**getOffers**](docs/OffersApi.md#getOffers) | **GET** /offers | Return a list of offers
 *OrdersApi* | [**cancelOrder**](docs/OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
 *OrdersApi* | [**changeOrder**](docs/OrdersApi.md#changeOrder) | **PATCH** /orders/{order_id} | change an order
@@ -119,6 +118,9 @@ Class | Method | HTTP request | Description
  - [BlockchainData](docs/BlockchainData.md)
  - [Body](docs/Body.md)
  - [CommonSignInData](docs/CommonSignInData.md)
+ - [Config](docs/Config.md)
+ - [ConfigBlockchain](docs/ConfigBlockchain.md)
+ - [ConfigKeys](docs/ConfigKeys.md)
  - [CouponCodeResult](docs/CouponCodeResult.md)
  - [EarnSubmission](docs/EarnSubmission.md)
  - [Error](docs/Error.md)

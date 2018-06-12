@@ -48,9 +48,7 @@ public class AuthApiTest {
     @Test
     public void activateAcountTest() throws ApiException {
         
-        String X_REQUEST_ID = null;
-        
-        AuthToken response = api.activateAcount(X_REQUEST_ID);
+        AuthToken response = api.activateAcount();
 
         // TODO: test validations
     }
@@ -68,9 +66,7 @@ public class AuthApiTest {
         
         SignInData signindata = null;
         
-        String X_REQUEST_ID = null;
-        
-        AuthToken response = api.signIn(signindata, X_REQUEST_ID);
+        AuthToken response = api.signIn(signindata);
 
         // TODO: test validations
     }

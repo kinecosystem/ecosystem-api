@@ -71,14 +71,13 @@ public class OrdersApi {
     /**
      * Build call for cancelOrder
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call cancelOrderCall(String orderId, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call cancelOrderCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -89,8 +88,6 @@ public class OrdersApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -123,7 +120,7 @@ public class OrdersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call cancelOrderValidateBeforeCall(String orderId, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call cancelOrderValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         // verify the required parameter 'orderId' is set
@@ -131,13 +128,8 @@ public class OrdersApi {
             throw new ApiException("Missing the required parameter 'orderId' when calling cancelOrder(Async)");
         }
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling cancelOrder(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = cancelOrderCall(orderId, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = cancelOrderCall(orderId, progressListener, progressRequestListener);
         return call;
 
         
@@ -152,25 +144,23 @@ public class OrdersApi {
      * cancel an order
      * cancel an order - this can be called only before an order is submitted
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public void cancelOrder(String orderId, String X_REQUEST_ID) throws ApiException {
-        cancelOrderWithHttpInfo(orderId, X_REQUEST_ID);
+    public void cancelOrder(String orderId) throws ApiException {
+        cancelOrderWithHttpInfo(orderId);
     }
 
     /**
      * cancel an order
      * cancel an order - this can be called only before an order is submitted
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<Void> cancelOrderWithHttpInfo(String orderId, String X_REQUEST_ID) throws ApiException {
-        com.squareup.okhttp.Call call = cancelOrderValidateBeforeCall(orderId, X_REQUEST_ID, null, null);
+    public ApiResponse<Void> cancelOrderWithHttpInfo(String orderId) throws ApiException {
+        com.squareup.okhttp.Call call = cancelOrderValidateBeforeCall(orderId, null, null);
         return apiClient.execute(call);
     }
 
@@ -178,13 +168,12 @@ public class OrdersApi {
      * cancel an order (asynchronously)
      * cancel an order - this can be called only before an order is submitted
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call cancelOrderAsync(String orderId, String X_REQUEST_ID, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call cancelOrderAsync(String orderId, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -205,7 +194,7 @@ public class OrdersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = cancelOrderValidateBeforeCall(orderId, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = cancelOrderValidateBeforeCall(orderId, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -213,7 +202,6 @@ public class OrdersApi {
     /**
      * Build call for changeOrder
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param body  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -221,7 +209,7 @@ public class OrdersApi {
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call changeOrderCall(String orderId, String X_REQUEST_ID, Body body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call changeOrderCall(String orderId, Body body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -232,8 +220,6 @@ public class OrdersApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -266,7 +252,7 @@ public class OrdersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call changeOrderValidateBeforeCall(String orderId, String X_REQUEST_ID, Body body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call changeOrderValidateBeforeCall(String orderId, Body body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         // verify the required parameter 'orderId' is set
@@ -274,13 +260,8 @@ public class OrdersApi {
             throw new ApiException("Missing the required parameter 'orderId' when calling changeOrder(Async)");
         }
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling changeOrder(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = changeOrderCall(orderId, X_REQUEST_ID, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = changeOrderCall(orderId, body, progressListener, progressRequestListener);
         return call;
 
         
@@ -295,14 +276,13 @@ public class OrdersApi {
      * change an order
      * change an order, currently the error can be changed (set) this in turn will convert this submitted order to a failed order. this gives the client an endpoint to report an internal error. you can only change an order that is in pending state. a failed order can always turn completed in case the order_id successfully appears in the blockchain. 
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param body  (optional)
      * @return Order
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public Order changeOrder(String orderId, String X_REQUEST_ID, Body body) throws ApiException {
-        ApiResponse<Order> resp = changeOrderWithHttpInfo(orderId, X_REQUEST_ID, body);
+    public Order changeOrder(String orderId, Body body) throws ApiException {
+        ApiResponse<Order> resp = changeOrderWithHttpInfo(orderId, body);
         return resp.getData();
     }
 
@@ -310,14 +290,13 @@ public class OrdersApi {
      * change an order
      * change an order, currently the error can be changed (set) this in turn will convert this submitted order to a failed order. this gives the client an endpoint to report an internal error. you can only change an order that is in pending state. a failed order can always turn completed in case the order_id successfully appears in the blockchain. 
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param body  (optional)
      * @return ApiResponse&lt;Order&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<Order> changeOrderWithHttpInfo(String orderId, String X_REQUEST_ID, Body body) throws ApiException {
-        com.squareup.okhttp.Call call = changeOrderValidateBeforeCall(orderId, X_REQUEST_ID, body, null, null);
+    public ApiResponse<Order> changeOrderWithHttpInfo(String orderId, Body body) throws ApiException {
+        com.squareup.okhttp.Call call = changeOrderValidateBeforeCall(orderId, body, null, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -326,14 +305,13 @@ public class OrdersApi {
      * change an order (asynchronously)
      * change an order, currently the error can be changed (set) this in turn will convert this submitted order to a failed order. this gives the client an endpoint to report an internal error. you can only change an order that is in pending state. a failed order can always turn completed in case the order_id successfully appears in the blockchain. 
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param body  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call changeOrderAsync(String orderId, String X_REQUEST_ID, Body body, final ApiCallback<Order> callback) throws ApiException {
+    public com.squareup.okhttp.Call changeOrderAsync(String orderId, Body body, final ApiCallback<Order> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -354,7 +332,7 @@ public class OrdersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = changeOrderValidateBeforeCall(orderId, X_REQUEST_ID, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = changeOrderValidateBeforeCall(orderId, body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -363,14 +341,13 @@ public class OrdersApi {
     /**
      * Build call for createExternalOrder
      * @param externalorderrequest  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call createExternalOrderCall(ExternalOrderRequest externalorderrequest, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call createExternalOrderCall(ExternalOrderRequest externalorderrequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = externalorderrequest;
         
         // create path and map variables
@@ -380,13 +357,11 @@ public class OrdersApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json""application/json"
+            "application/json""application/json""application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
@@ -414,7 +389,7 @@ public class OrdersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createExternalOrderValidateBeforeCall(ExternalOrderRequest externalorderrequest, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call createExternalOrderValidateBeforeCall(ExternalOrderRequest externalorderrequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         // verify the required parameter 'externalorderrequest' is set
@@ -422,13 +397,8 @@ public class OrdersApi {
             throw new ApiException("Missing the required parameter 'externalorderrequest' when calling createExternalOrder(Async)");
         }
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling createExternalOrder(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = createExternalOrderCall(externalorderrequest, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createExternalOrderCall(externalorderrequest, progressListener, progressRequestListener);
         return call;
 
         
@@ -443,13 +413,12 @@ public class OrdersApi {
      * create an external order for a native offer
      * create an external order for a native offer
      * @param externalorderrequest  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return OpenOrder
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public OpenOrder createExternalOrder(ExternalOrderRequest externalorderrequest, String X_REQUEST_ID) throws ApiException {
-        ApiResponse<OpenOrder> resp = createExternalOrderWithHttpInfo(externalorderrequest, X_REQUEST_ID);
+    public OpenOrder createExternalOrder(ExternalOrderRequest externalorderrequest) throws ApiException {
+        ApiResponse<OpenOrder> resp = createExternalOrderWithHttpInfo(externalorderrequest);
         return resp.getData();
     }
 
@@ -457,13 +426,12 @@ public class OrdersApi {
      * create an external order for a native offer
      * create an external order for a native offer
      * @param externalorderrequest  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return ApiResponse&lt;OpenOrder&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<OpenOrder> createExternalOrderWithHttpInfo(ExternalOrderRequest externalorderrequest, String X_REQUEST_ID) throws ApiException {
-        com.squareup.okhttp.Call call = createExternalOrderValidateBeforeCall(externalorderrequest, X_REQUEST_ID, null, null);
+    public ApiResponse<OpenOrder> createExternalOrderWithHttpInfo(ExternalOrderRequest externalorderrequest) throws ApiException {
+        com.squareup.okhttp.Call call = createExternalOrderValidateBeforeCall(externalorderrequest, null, null);
         Type localVarReturnType = new TypeToken<OpenOrder>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -472,13 +440,12 @@ public class OrdersApi {
      * create an external order for a native offer (asynchronously)
      * create an external order for a native offer
      * @param externalorderrequest  (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call createExternalOrderAsync(ExternalOrderRequest externalorderrequest, String X_REQUEST_ID, final ApiCallback<OpenOrder> callback) throws ApiException {
+    public com.squareup.okhttp.Call createExternalOrderAsync(ExternalOrderRequest externalorderrequest, final ApiCallback<OpenOrder> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -499,7 +466,7 @@ public class OrdersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createExternalOrderValidateBeforeCall(externalorderrequest, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createExternalOrderValidateBeforeCall(externalorderrequest, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OpenOrder>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -508,14 +475,13 @@ public class OrdersApi {
     /**
      * Build call for createOrder
      * @param offerId The offer id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call createOrderCall(String offerId, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call createOrderCall(String offerId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -526,8 +492,6 @@ public class OrdersApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -560,7 +524,7 @@ public class OrdersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createOrderValidateBeforeCall(String offerId, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call createOrderValidateBeforeCall(String offerId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         // verify the required parameter 'offerId' is set
@@ -568,13 +532,8 @@ public class OrdersApi {
             throw new ApiException("Missing the required parameter 'offerId' when calling createOrder(Async)");
         }
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling createOrder(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = createOrderCall(offerId, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createOrderCall(offerId, progressListener, progressRequestListener);
         return call;
 
         
@@ -589,13 +548,12 @@ public class OrdersApi {
      * create an order for an offer
      * create an order for an offer
      * @param offerId The offer id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return OpenOrder
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public OpenOrder createOrder(String offerId, String X_REQUEST_ID) throws ApiException {
-        ApiResponse<OpenOrder> resp = createOrderWithHttpInfo(offerId, X_REQUEST_ID);
+    public OpenOrder createOrder(String offerId) throws ApiException {
+        ApiResponse<OpenOrder> resp = createOrderWithHttpInfo(offerId);
         return resp.getData();
     }
 
@@ -603,13 +561,12 @@ public class OrdersApi {
      * create an order for an offer
      * create an order for an offer
      * @param offerId The offer id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return ApiResponse&lt;OpenOrder&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<OpenOrder> createOrderWithHttpInfo(String offerId, String X_REQUEST_ID) throws ApiException {
-        com.squareup.okhttp.Call call = createOrderValidateBeforeCall(offerId, X_REQUEST_ID, null, null);
+    public ApiResponse<OpenOrder> createOrderWithHttpInfo(String offerId) throws ApiException {
+        com.squareup.okhttp.Call call = createOrderValidateBeforeCall(offerId, null, null);
         Type localVarReturnType = new TypeToken<OpenOrder>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -618,13 +575,12 @@ public class OrdersApi {
      * create an order for an offer (asynchronously)
      * create an order for an offer
      * @param offerId The offer id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call createOrderAsync(String offerId, String X_REQUEST_ID, final ApiCallback<OpenOrder> callback) throws ApiException {
+    public com.squareup.okhttp.Call createOrderAsync(String offerId, final ApiCallback<OpenOrder> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -645,7 +601,7 @@ public class OrdersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createOrderValidateBeforeCall(offerId, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createOrderValidateBeforeCall(offerId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OpenOrder>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -653,7 +609,6 @@ public class OrdersApi {
     
     /**
      * Build call for getHistory
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param origin filter by origin (optional)
      * @param offerId filter by offer_id (optional)
      * @param limit maximum number of items in a list (optional)
@@ -665,7 +620,7 @@ public class OrdersApi {
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call getHistoryCall(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getHistoryCall(String origin, String offerId, Integer limit, String before, String after, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -685,8 +640,6 @@ public class OrdersApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("after", after));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -719,16 +672,11 @@ public class OrdersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getHistoryValidateBeforeCall(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getHistoryValidateBeforeCall(String origin, String offerId, Integer limit, String before, String after, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling getHistory(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = getHistoryCall(X_REQUEST_ID, origin, offerId, limit, before, after, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getHistoryCall(origin, offerId, limit, before, after, progressListener, progressRequestListener);
         return call;
 
         
@@ -742,7 +690,6 @@ public class OrdersApi {
     /**
      * get user order history
      * get user order history
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param origin filter by origin (optional)
      * @param offerId filter by offer_id (optional)
      * @param limit maximum number of items in a list (optional)
@@ -752,15 +699,14 @@ public class OrdersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public OrderList getHistory(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after) throws ApiException {
-        ApiResponse<OrderList> resp = getHistoryWithHttpInfo(X_REQUEST_ID, origin, offerId, limit, before, after);
+    public OrderList getHistory(String origin, String offerId, Integer limit, String before, String after) throws ApiException {
+        ApiResponse<OrderList> resp = getHistoryWithHttpInfo(origin, offerId, limit, before, after);
         return resp.getData();
     }
 
     /**
      * get user order history
      * get user order history
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param origin filter by origin (optional)
      * @param offerId filter by offer_id (optional)
      * @param limit maximum number of items in a list (optional)
@@ -770,8 +716,8 @@ public class OrdersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<OrderList> getHistoryWithHttpInfo(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after) throws ApiException {
-        com.squareup.okhttp.Call call = getHistoryValidateBeforeCall(X_REQUEST_ID, origin, offerId, limit, before, after, null, null);
+    public ApiResponse<OrderList> getHistoryWithHttpInfo(String origin, String offerId, Integer limit, String before, String after) throws ApiException {
+        com.squareup.okhttp.Call call = getHistoryValidateBeforeCall(origin, offerId, limit, before, after, null, null);
         Type localVarReturnType = new TypeToken<OrderList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -779,7 +725,6 @@ public class OrdersApi {
     /**
      * get user order history (asynchronously)
      * get user order history
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param origin filter by origin (optional)
      * @param offerId filter by offer_id (optional)
      * @param limit maximum number of items in a list (optional)
@@ -790,7 +735,7 @@ public class OrdersApi {
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call getHistoryAsync(String X_REQUEST_ID, String origin, String offerId, Integer limit, String before, String after, final ApiCallback<OrderList> callback) throws ApiException {
+    public com.squareup.okhttp.Call getHistoryAsync(String origin, String offerId, Integer limit, String before, String after, final ApiCallback<OrderList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -811,7 +756,7 @@ public class OrdersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getHistoryValidateBeforeCall(X_REQUEST_ID, origin, offerId, limit, before, after, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getHistoryValidateBeforeCall(origin, offerId, limit, before, after, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OrderList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -820,14 +765,13 @@ public class OrdersApi {
     /**
      * Build call for getOrder
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call getOrderCall(String orderId, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getOrderCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -838,8 +782,6 @@ public class OrdersApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -872,7 +814,7 @@ public class OrdersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderValidateBeforeCall(String orderId, String X_REQUEST_ID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getOrderValidateBeforeCall(String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         // verify the required parameter 'orderId' is set
@@ -880,13 +822,8 @@ public class OrdersApi {
             throw new ApiException("Missing the required parameter 'orderId' when calling getOrder(Async)");
         }
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling getOrder(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = getOrderCall(orderId, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getOrderCall(orderId, progressListener, progressRequestListener);
         return call;
 
         
@@ -901,13 +838,12 @@ public class OrdersApi {
      * get an order
      * get an order
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return Order
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public Order getOrder(String orderId, String X_REQUEST_ID) throws ApiException {
-        ApiResponse<Order> resp = getOrderWithHttpInfo(orderId, X_REQUEST_ID);
+    public Order getOrder(String orderId) throws ApiException {
+        ApiResponse<Order> resp = getOrderWithHttpInfo(orderId);
         return resp.getData();
     }
 
@@ -915,13 +851,12 @@ public class OrdersApi {
      * get an order
      * get an order
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @return ApiResponse&lt;Order&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<Order> getOrderWithHttpInfo(String orderId, String X_REQUEST_ID) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderValidateBeforeCall(orderId, X_REQUEST_ID, null, null);
+    public ApiResponse<Order> getOrderWithHttpInfo(String orderId) throws ApiException {
+        com.squareup.okhttp.Call call = getOrderValidateBeforeCall(orderId, null, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -930,13 +865,12 @@ public class OrdersApi {
      * get an order (asynchronously)
      * get an order
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call getOrderAsync(String orderId, String X_REQUEST_ID, final ApiCallback<Order> callback) throws ApiException {
+    public com.squareup.okhttp.Call getOrderAsync(String orderId, final ApiCallback<Order> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -957,7 +891,7 @@ public class OrdersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderValidateBeforeCall(orderId, X_REQUEST_ID, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getOrderValidateBeforeCall(orderId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -966,7 +900,6 @@ public class OrdersApi {
     /**
      * Build call for submitOrder
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param earnsubmission  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -974,7 +907,7 @@ public class OrdersApi {
      * @throws ApiException If fail to serialize the request body object
         
      */
-    public com.squareup.okhttp.Call submitOrderCall(String orderId, String X_REQUEST_ID, EarnSubmission earnsubmission, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call submitOrderCall(String orderId, EarnSubmission earnsubmission, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = earnsubmission;
         
         // create path and map variables
@@ -985,8 +918,6 @@ public class OrdersApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (X_REQUEST_ID != null)
-        localVarHeaderParams.put("X-REQUEST-ID", apiClient.parameterToString(X_REQUEST_ID));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -1019,7 +950,7 @@ public class OrdersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call submitOrderValidateBeforeCall(String orderId, String X_REQUEST_ID, EarnSubmission earnsubmission, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call submitOrderValidateBeforeCall(String orderId, EarnSubmission earnsubmission, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         // verify the required parameter 'orderId' is set
@@ -1027,13 +958,8 @@ public class OrdersApi {
             throw new ApiException("Missing the required parameter 'orderId' when calling submitOrder(Async)");
         }
         
-        // verify the required parameter 'X_REQUEST_ID' is set
-        if (X_REQUEST_ID == null) {
-            throw new ApiException("Missing the required parameter 'X_REQUEST_ID' when calling submitOrder(Async)");
-        }
         
-        
-        com.squareup.okhttp.Call call = submitOrderCall(orderId, X_REQUEST_ID, earnsubmission, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = submitOrderCall(orderId, earnsubmission, progressListener, progressRequestListener);
         return call;
 
         
@@ -1048,14 +974,13 @@ public class OrdersApi {
      * submit an order
      * submit an order
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param earnsubmission  (optional)
      * @return Order
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public Order submitOrder(String orderId, String X_REQUEST_ID, EarnSubmission earnsubmission) throws ApiException {
-        ApiResponse<Order> resp = submitOrderWithHttpInfo(orderId, X_REQUEST_ID, earnsubmission);
+    public Order submitOrder(String orderId, EarnSubmission earnsubmission) throws ApiException {
+        ApiResponse<Order> resp = submitOrderWithHttpInfo(orderId, earnsubmission);
         return resp.getData();
     }
 
@@ -1063,14 +988,13 @@ public class OrdersApi {
      * submit an order
      * submit an order
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param earnsubmission  (optional)
      * @return ApiResponse&lt;Order&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
         
      */
-    public ApiResponse<Order> submitOrderWithHttpInfo(String orderId, String X_REQUEST_ID, EarnSubmission earnsubmission) throws ApiException {
-        com.squareup.okhttp.Call call = submitOrderValidateBeforeCall(orderId, X_REQUEST_ID, earnsubmission, null, null);
+    public ApiResponse<Order> submitOrderWithHttpInfo(String orderId, EarnSubmission earnsubmission) throws ApiException {
+        com.squareup.okhttp.Call call = submitOrderValidateBeforeCall(orderId, earnsubmission, null, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1079,14 +1003,13 @@ public class OrdersApi {
      * submit an order (asynchronously)
      * submit an order
      * @param orderId The order id (required)
-     * @param X_REQUEST_ID A unique id for the request. A retransmitted request will have the same id  (required)
      * @param earnsubmission  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
         
      */
-    public com.squareup.okhttp.Call submitOrderAsync(String orderId, String X_REQUEST_ID, EarnSubmission earnsubmission, final ApiCallback<Order> callback) throws ApiException {
+    public com.squareup.okhttp.Call submitOrderAsync(String orderId, EarnSubmission earnsubmission, final ApiCallback<Order> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1107,7 +1030,7 @@ public class OrdersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = submitOrderValidateBeforeCall(orderId, X_REQUEST_ID, earnsubmission, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = submitOrderValidateBeforeCall(orderId, earnsubmission, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

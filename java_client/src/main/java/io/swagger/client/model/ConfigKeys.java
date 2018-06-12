@@ -21,61 +21,52 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Order;
-import io.swagger.client.model.Paging;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * a list of submitted orders
- */@ApiModel(description = "a list of submitted orders")
+ * ConfigKeys
+ */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-06-12T15:56:08.924+03:00")
-public class OrderList {
-@SerializedName("orders")
-  private List<Order> orders = new ArrayList<Order>();
-  @SerializedName("paging")
-  private Paging paging = null;
+public class ConfigKeys {
+@SerializedName("algorithm")
+  private String algorithm = null;
+  @SerializedName("key")
+  private String key = null;
   
-  public OrderList orders(List<Order> orders) {
-    this.orders = orders;
-    return this;
-  }
-
-  public OrderList addOrdersItem(Order ordersItem) {
-    
-    this.orders.add(ordersItem);
-    return this;
-  }
-  
-  /**
-  * Get orders
-  * @return orders
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public List<Order> getOrders() {
-    return orders;
-  }
-  public void setOrders(List<Order> orders) {
-    this.orders = orders;
-  }
-  
-  public OrderList paging(Paging paging) {
-    this.paging = paging;
+  public ConfigKeys algorithm(String algorithm) {
+    this.algorithm = algorithm;
     return this;
   }
 
   
   /**
-  * Get paging
-  * @return paging
+  * Get algorithm
+  * @return algorithm
   **/
   @ApiModelProperty(value = "")
-  public Paging getPaging() {
-    return paging;
+  public String getAlgorithm() {
+    return algorithm;
   }
-  public void setPaging(Paging paging) {
-    this.paging = paging;
+  public void setAlgorithm(String algorithm) {
+    this.algorithm = algorithm;
+  }
+  
+  public ConfigKeys key(String key) {
+    this.key = key;
+    return this;
+  }
+
+  
+  /**
+  * Get key
+  * @return key
+  **/
+  @ApiModelProperty(value = "")
+  public String getKey() {
+    return key;
+  }
+  public void setKey(String key) {
+    this.key = key;
   }
   
   @Override
@@ -86,23 +77,23 @@ public class OrderList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrderList orderList = (OrderList) o;
-    return Objects.equals(this.orders, orderList.orders) &&
-        Objects.equals(this.paging, orderList.paging);
+    ConfigKeys configKeys = (ConfigKeys) o;
+    return Objects.equals(this.algorithm, configKeys.algorithm) &&
+        Objects.equals(this.key, configKeys.key);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orders, paging);
+    return Objects.hash(algorithm, key);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrderList {\n");
+    sb.append("class ConfigKeys {\n");
     
-    sb.append("    orders: ").append(toIndentedString(orders)).append("\n");
-    sb.append("    paging: ").append(toIndentedString(paging)).append("\n");
+    sb.append("    algorithm: ").append(toIndentedString(algorithm)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("}");
     return sb.toString();
   }
