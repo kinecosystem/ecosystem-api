@@ -317,6 +317,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /config:
+    get:
+      security: []
+      tags:
+        - Configuration
+      responses:
+        '200':
+          description: Server Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Config'
+
 security:
   - BearerAuth: []
 
@@ -867,3 +880,33 @@ components:
                 transaction_id:
                   type: string
                   description: stellar identifier of the blockchain transaction
+    Config:
+      type: object
+      required:
+        - blockchain
+        - keys
+        - bi_service
+      properties:
+        bi_server:
+          type: string
+        blockchain:
+          type: object
+          properties:
+            horizon_url:
+              type: string
+            network_passphrase:
+              type: string
+            kin_issuer:
+              type: string
+            kin_token:
+              type: string
+        keys:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              algorithm:
+                type: string
+              key:
+                type: string
+            example: {algorithm: "es256", key: "sdfsdfsd"}

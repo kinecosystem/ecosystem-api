@@ -206,6 +206,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /config:
+    get:
+      tags:
+        - Configuration
+      responses:
+        '200':
+          description: Server Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Config'
 
 components:
   parameters:
@@ -341,3 +352,15 @@ components:
         code:
           type: integer
           example: 4041
+
+    Config:
+      type: object
+      properties:
+        horizon_url:
+          type: string
+        network_passphrase:
+          type: string
+        kin_issuer:
+          type: string
+        kin_token:
+          type: string
