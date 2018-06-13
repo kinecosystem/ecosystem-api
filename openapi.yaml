@@ -967,10 +967,11 @@ components:
               type: string
             network_passphrase:
               type: string
-            kin_issuer:
+            asset_issuer:
               type: string
-            kin_token:
+            asset_code:
               type: string
+              example: KIN
         jwt_keys:
           type: object
           additionalProperties:
