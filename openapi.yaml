@@ -946,10 +946,19 @@ components:
       type: object
       required:
         - blockchain
-        - keys
+        - jwt_keys
         - bi_service
+        - webview
+        - ecosystem_service
+        - environment_name
       properties:
-        bi_server:
+        environment_name:
+          type: string
+        ecosystem_service:
+          type: string
+        webview:
+          type: string
+        bi_service:
           type: string
         blockchain:
           type: object
@@ -962,7 +971,7 @@ components:
               type: string
             kin_token:
               type: string
-        keys:
+        jwt_keys:
           type: object
           additionalProperties:
             type: object
