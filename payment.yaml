@@ -243,9 +243,13 @@ components:
       type: object
       required:
         - wallet_address
+        - id
       properties:
         wallet_address:
           type: string
+        id:
+          type: string
+          description: some identifier of the wallet to be transmitted back via callback
 
     WalletRequest:
       allOf:
@@ -253,10 +257,15 @@ components:
         - type: object
           required:
             - app_id
+            - callback
           properties:
             app_id:
               type: string
               description: for book keeping
+            callback:
+              type: string
+              format: url
+              description: a url to post back the payment once complete
 
     Wallet:
       allOf:
@@ -269,6 +278,14 @@ components:
               type: number
             native_balance:
               type: number
+
+    WalletCreationFailed:
+      type: object
+      properties:
+        id:
+          type: string
+        reason:
+          type: string
 
     PaymentBase:
       type: object
@@ -320,6 +337,16 @@ components:
               description: identifier of the sender on the blockchain
             timestamp:
               type: string
+
+    PaymentFailed:
+      description: a failed payment transmitted to a callback
+      type: object
+      properties:
+        id:
+          type: string
+        reason:
+          type: string
+
     Watcher:
       type: object
       required:
@@ -365,3 +392,22 @@ components:
         asset_code:
           type: string
           example: KIN
+
+    CallbackPayload:
+      type: object
+      properties:
+        object:
+          type: string
+          enum: [payment, wallet]
+        action:
+          type: string
+          enum:
+            - send
+            - receive
+            - create # for wallet
+        state:
+          type: string
+          enum: [success, fail]
+        value:
+          type: object
+          enum: [Payment, Wallet, PaymentFailed, WalletCreationFailed]
