@@ -463,6 +463,11 @@ components:
           type: string
         recipient_address:
           type: string
+          
+    Origin:
+      description: "the origin of the order"
+      type: string
+      enum: [marketplace, external]
 
     BaseOrder:
       type: object
@@ -474,7 +479,7 @@ components:
         - description
         - amount
         - blockchain_data
-        - external
+        - origin
       properties:
         id:
           type: string
@@ -500,8 +505,10 @@ components:
           description: kin amount
         blockchain_data:
           $ref: "#/components/schemas/BlockchainData"
-        external:
-          type: boolean # is this order external or part of marketplace
+        origin:
+          description: "the origin of the order"
+          type: string
+          enum: [marketplace, external]
 
     Order:
       description: "a submitted order. it can be pending/completed/failed"
