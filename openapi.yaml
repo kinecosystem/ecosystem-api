@@ -474,6 +474,7 @@ components:
         - description
         - amount
         - blockchain_data
+        - external
       properties:
         id:
           type: string
@@ -499,6 +500,8 @@ components:
           description: kin amount
         blockchain_data:
           $ref: "#/components/schemas/BlockchainData"
+        external:
+          type: boolean # is this order external or part of marketplace
 
     Order:
       description: "a submitted order. it can be pending/completed/failed"
