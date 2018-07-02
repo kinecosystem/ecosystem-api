@@ -463,11 +463,6 @@ components:
           type: string
         recipient_address:
           type: string
-          
-    Origin:
-      description: "the origin of the order"
-      type: string
-      enum: [marketplace, external]
 
     BaseOrder:
       type: object
