@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | 
 **amount** | **Integer** | kin amount | 
 **blockchainData** | [**BlockchainData**](BlockchainData.md) |  | 
+**origin** | [**OriginEnum**](#OriginEnum) | the origin of the order | 
 **result** | **Object** | * empty when no result (pending status, completed earn) * coupon code or confirm payment JWT when completed spend  |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) |  | 
 **completionDate** | **String** | UTC ISO | 
@@ -26,6 +27,14 @@ Name | Value
 ---- | -----
 EARN | &quot;earn&quot;
 SPEND | &quot;spend&quot;
+
+
+<a name="OriginEnum"></a>
+## Enum: OriginEnum
+Name | Value
+---- | -----
+MARKETPLACE | &quot;marketplace&quot;
+EXTERNAL | &quot;external&quot;
 
 
 <a name="StatusEnum"></a>

@@ -22,7 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.ConfigBlockchain;
-import io.swagger.client.model.ConfigKeys;
+import io.swagger.client.model.ConfigJwtKeys;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -31,31 +31,91 @@ import java.util.Map;
 /**
  * Config
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-06-12T15:56:08.924+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-07-02T14:15:24.728+03:00")
 public class Config {
-@SerializedName("bi_server")
-  private String biServer = null;
+@SerializedName("environment_name")
+  private String environmentName = null;
+  @SerializedName("ecosystem_service")
+  private String ecosystemService = null;
+  @SerializedName("webview")
+  private String webview = null;
+  @SerializedName("bi_service")
+  private String biService = null;
   @SerializedName("blockchain")
   private ConfigBlockchain blockchain = null;
-  @SerializedName("keys")
-  private Map<String, ConfigKeys> keys = null;
+  @SerializedName("jwt_keys")
+  private Map<String, ConfigJwtKeys> jwtKeys = null;
   
-  public Config biServer(String biServer) {
-    this.biServer = biServer;
+  public Config environmentName(String environmentName) {
+    this.environmentName = environmentName;
     return this;
   }
 
   
   /**
-  * Get biServer
-  * @return biServer
+  * Get environmentName
+  * @return environmentName
   **/
-  @ApiModelProperty(value = "")
-  public String getBiServer() {
-    return biServer;
+  @ApiModelProperty(required = true, value = "")
+  public String getEnvironmentName() {
+    return environmentName;
   }
-  public void setBiServer(String biServer) {
-    this.biServer = biServer;
+  public void setEnvironmentName(String environmentName) {
+    this.environmentName = environmentName;
+  }
+  
+  public Config ecosystemService(String ecosystemService) {
+    this.ecosystemService = ecosystemService;
+    return this;
+  }
+
+  
+  /**
+  * Get ecosystemService
+  * @return ecosystemService
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getEcosystemService() {
+    return ecosystemService;
+  }
+  public void setEcosystemService(String ecosystemService) {
+    this.ecosystemService = ecosystemService;
+  }
+  
+  public Config webview(String webview) {
+    this.webview = webview;
+    return this;
+  }
+
+  
+  /**
+  * Get webview
+  * @return webview
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getWebview() {
+    return webview;
+  }
+  public void setWebview(String webview) {
+    this.webview = webview;
+  }
+  
+  public Config biService(String biService) {
+    this.biService = biService;
+    return this;
+  }
+
+  
+  /**
+  * Get biService
+  * @return biService
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getBiService() {
+    return biService;
+  }
+  public void setBiService(String biService) {
+    this.biService = biService;
   }
   
   public Config blockchain(ConfigBlockchain blockchain) {
@@ -76,26 +136,26 @@ public class Config {
     this.blockchain = blockchain;
   }
   
-  public Config keys(Map<String, ConfigKeys> keys) {
-    this.keys = keys;
+  public Config jwtKeys(Map<String, ConfigJwtKeys> jwtKeys) {
+    this.jwtKeys = jwtKeys;
     return this;
   }
 
-  public Config putKeysItem(String key, ConfigKeys keysItem) {
+  public Config putJwtKeysItem(String key, ConfigJwtKeys jwtKeysItem) {
     
-    this.keys.put(key, keysItem);
+    this.jwtKeys.put(key, jwtKeysItem);
     return this;
   }
   /**
-  * Get keys
-  * @return keys
+  * Get jwtKeys
+  * @return jwtKeys
   **/
   @ApiModelProperty(required = true, value = "")
-  public Map<String, ConfigKeys> getKeys() {
-    return keys;
+  public Map<String, ConfigJwtKeys> getJwtKeys() {
+    return jwtKeys;
   }
-  public void setKeys(Map<String, ConfigKeys> keys) {
-    this.keys = keys;
+  public void setJwtKeys(Map<String, ConfigJwtKeys> jwtKeys) {
+    this.jwtKeys = jwtKeys;
   }
   
   @Override
@@ -107,14 +167,17 @@ public class Config {
       return false;
     }
     Config config = (Config) o;
-    return Objects.equals(this.biServer, config.biServer) &&
+    return Objects.equals(this.environmentName, config.environmentName) &&
+        Objects.equals(this.ecosystemService, config.ecosystemService) &&
+        Objects.equals(this.webview, config.webview) &&
+        Objects.equals(this.biService, config.biService) &&
         Objects.equals(this.blockchain, config.blockchain) &&
-        Objects.equals(this.keys, config.keys);
+        Objects.equals(this.jwtKeys, config.jwtKeys);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(biServer, blockchain, keys);
+    return Objects.hash(environmentName, ecosystemService, webview, biService, blockchain, jwtKeys);
   }
   
   @Override
@@ -122,9 +185,12 @@ public class Config {
     StringBuilder sb = new StringBuilder();
     sb.append("class Config {\n");
     
-    sb.append("    biServer: ").append(toIndentedString(biServer)).append("\n");
+    sb.append("    environmentName: ").append(toIndentedString(environmentName)).append("\n");
+    sb.append("    ecosystemService: ").append(toIndentedString(ecosystemService)).append("\n");
+    sb.append("    webview: ").append(toIndentedString(webview)).append("\n");
+    sb.append("    biService: ").append(toIndentedString(biService)).append("\n");
     sb.append("    blockchain: ").append(toIndentedString(blockchain)).append("\n");
-    sb.append("    keys: ").append(toIndentedString(keys)).append("\n");
+    sb.append("    jwtKeys: ").append(toIndentedString(jwtKeys)).append("\n");
     sb.append("}");
     return sb.toString();
   }

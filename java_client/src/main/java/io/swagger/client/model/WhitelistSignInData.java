@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * Sign in data for whitelist sign in type
  */@ApiModel(description = "Sign in data for whitelist sign in type")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-06-12T15:56:08.924+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-07-02T14:15:24.728+03:00")
 public class WhitelistSignInData {
 @SerializedName("device_id")
   private String deviceId = null;

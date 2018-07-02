@@ -4,9 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**biServer** | **String** |  |  [optional]
+**environmentName** | **String** |  | 
+**ecosystemService** | **String** |  | 
+**webview** | **String** |  | 
+**biService** | **String** |  | 
 **blockchain** | [**ConfigBlockchain**](ConfigBlockchain.md) |  | 
-**keys** | [**Map&lt;String, ConfigKeys&gt;**](ConfigKeys.md) |  | 
+**jwtKeys** | [**Map&lt;String, ConfigJwtKeys&gt;**](ConfigJwtKeys.md) |  | 
 
 
 

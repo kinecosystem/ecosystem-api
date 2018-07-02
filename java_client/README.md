@@ -120,7 +120,7 @@ Class | Method | HTTP request | Description
  - [CommonSignInData](docs/CommonSignInData.md)
  - [Config](docs/Config.md)
  - [ConfigBlockchain](docs/ConfigBlockchain.md)
- - [ConfigKeys](docs/ConfigKeys.md)
+ - [ConfigJwtKeys](docs/ConfigJwtKeys.md)
  - [CouponCodeResult](docs/CouponCodeResult.md)
  - [EarnSubmission](docs/EarnSubmission.md)
  - [Error](docs/Error.md)

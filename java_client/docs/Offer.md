@@ -28,6 +28,8 @@ SPEND | &quot;spend&quot;
 ## Enum: ContentTypeEnum
 Name | Value
 ---- | -----
+QUIZ | &quot;quiz&quot;
+TUTORIAL | &quot;tutorial&quot;
 POLL | &quot;poll&quot;
 COUPON | &quot;coupon&quot;
 

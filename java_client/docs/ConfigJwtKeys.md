@@ -1,5 +1,5 @@
 
-# ConfigKeys
+# ConfigJwtKeys
 
 ## Properties
 Name | Type | Description | Notes

@@ -26,16 +26,16 @@ import java.io.IOException;
 /**
  * ConfigBlockchain
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-06-12T15:56:08.924+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-07-02T14:15:24.728+03:00")
 public class ConfigBlockchain {
 @SerializedName("horizon_url")
   private String horizonUrl = null;
   @SerializedName("network_passphrase")
   private String networkPassphrase = null;
-  @SerializedName("kin_issuer")
-  private String kinIssuer = null;
-  @SerializedName("kin_token")
-  private String kinToken = null;
+  @SerializedName("asset_issuer")
+  private String assetIssuer = null;
+  @SerializedName("asset_code")
+  private String assetCode = null;
   
   public ConfigBlockchain horizonUrl(String horizonUrl) {
     this.horizonUrl = horizonUrl;
@@ -73,40 +73,40 @@ public class ConfigBlockchain {
     this.networkPassphrase = networkPassphrase;
   }
   
-  public ConfigBlockchain kinIssuer(String kinIssuer) {
-    this.kinIssuer = kinIssuer;
+  public ConfigBlockchain assetIssuer(String assetIssuer) {
+    this.assetIssuer = assetIssuer;
     return this;
   }
 
   
   /**
-  * Get kinIssuer
-  * @return kinIssuer
+  * Get assetIssuer
+  * @return assetIssuer
   **/
   @ApiModelProperty(value = "")
-  public String getKinIssuer() {
-    return kinIssuer;
+  public String getAssetIssuer() {
+    return assetIssuer;
   }
-  public void setKinIssuer(String kinIssuer) {
-    this.kinIssuer = kinIssuer;
+  public void setAssetIssuer(String assetIssuer) {
+    this.assetIssuer = assetIssuer;
   }
   
-  public ConfigBlockchain kinToken(String kinToken) {
-    this.kinToken = kinToken;
+  public ConfigBlockchain assetCode(String assetCode) {
+    this.assetCode = assetCode;
     return this;
   }
 
   
   /**
-  * Get kinToken
-  * @return kinToken
+  * Get assetCode
+  * @return assetCode
   **/
-  @ApiModelProperty(value = "")
-  public String getKinToken() {
-    return kinToken;
+  @ApiModelProperty(example = "KIN", value = "")
+  public String getAssetCode() {
+    return assetCode;
   }
-  public void setKinToken(String kinToken) {
-    this.kinToken = kinToken;
+  public void setAssetCode(String assetCode) {
+    this.assetCode = assetCode;
   }
   
   @Override
@@ -120,13 +120,13 @@ public class ConfigBlockchain {
     ConfigBlockchain configBlockchain = (ConfigBlockchain) o;
     return Objects.equals(this.horizonUrl, configBlockchain.horizonUrl) &&
         Objects.equals(this.networkPassphrase, configBlockchain.networkPassphrase) &&
-        Objects.equals(this.kinIssuer, configBlockchain.kinIssuer) &&
-        Objects.equals(this.kinToken, configBlockchain.kinToken);
+        Objects.equals(this.assetIssuer, configBlockchain.assetIssuer) &&
+        Objects.equals(this.assetCode, configBlockchain.assetCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizonUrl, networkPassphrase, kinIssuer, kinToken);
+    return Objects.hash(horizonUrl, networkPassphrase, assetIssuer, assetCode);
   }
   
   @Override
@@ -136,8 +136,8 @@ public class ConfigBlockchain {
     
     sb.append("    horizonUrl: ").append(toIndentedString(horizonUrl)).append("\n");
     sb.append("    networkPassphrase: ").append(toIndentedString(networkPassphrase)).append("\n");
-    sb.append("    kinIssuer: ").append(toIndentedString(kinIssuer)).append("\n");
-    sb.append("    kinToken: ").append(toIndentedString(kinToken)).append("\n");
+    sb.append("    assetIssuer: ").append(toIndentedString(assetIssuer)).append("\n");
+    sb.append("    assetCode: ").append(toIndentedString(assetCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

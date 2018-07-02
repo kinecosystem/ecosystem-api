@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * an open order that hasn&#x27;t been submitted yet
  */@ApiModel(description = "an open order that hasn't been submitted yet")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-06-12T15:56:08.924+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-07-02T14:15:24.728+03:00")
 public class OpenOrder {
 @SerializedName("id")
   private String id = null;
@@ -91,6 +91,56 @@ public class OpenOrder {
   private Integer amount = null;
   @SerializedName("blockchain_data")
   private BlockchainData blockchainData = null;
+  
+    /**
+   * the origin of the order
+   */
+  @JsonAdapter(OriginEnum.Adapter.class)
+  public enum OriginEnum {
+    
+    MARKETPLACE("marketplace"),
+    EXTERNAL("external");
+
+    private String value;
+
+    OriginEnum(String value) {
+      this.value = value;
+    }
+    
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    
+    public static OriginEnum fromValue(String text) {
+      for (OriginEnum b : OriginEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    
+    public static class Adapter extends TypeAdapter<OriginEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OriginEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OriginEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OriginEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+  
+  @SerializedName("origin")
+  private OriginEnum origin = null;
   @SerializedName("expiration_date")
   private String expirationDate = null;
   
@@ -220,6 +270,24 @@ public class OpenOrder {
     this.blockchainData = blockchainData;
   }
   
+  public OpenOrder origin(OriginEnum origin) {
+    this.origin = origin;
+    return this;
+  }
+
+  
+  /**
+  * the origin of the order
+  * @return origin
+  **/
+  @ApiModelProperty(required = true, value = "the origin of the order")
+  public OriginEnum getOrigin() {
+    return origin;
+  }
+  public void setOrigin(OriginEnum origin) {
+    this.origin = origin;
+  }
+  
   public OpenOrder expirationDate(String expirationDate) {
     this.expirationDate = expirationDate;
     return this;
@@ -254,12 +322,13 @@ public class OpenOrder {
         Objects.equals(this.description, openOrder.description) &&
         Objects.equals(this.amount, openOrder.amount) &&
         Objects.equals(this.blockchainData, openOrder.blockchainData) &&
+        Objects.equals(this.origin, openOrder.origin) &&
         Objects.equals(this.expirationDate, openOrder.expirationDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, offerId, offerType, title, description, amount, blockchainData, expirationDate);
+    return Objects.hash(id, offerId, offerType, title, description, amount, blockchainData, origin, expirationDate);
   }
   
   @Override
@@ -274,6 +343,7 @@ public class OpenOrder {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    blockchainData: ").append(toIndentedString(blockchainData)).append("\n");
+    sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("}");
     return sb.toString();
