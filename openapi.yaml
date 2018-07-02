@@ -474,6 +474,7 @@ components:
         - description
         - amount
         - blockchain_data
+        - origin
       properties:
         id:
           type: string
@@ -499,6 +500,10 @@ components:
           description: kin amount
         blockchain_data:
           $ref: "#/components/schemas/BlockchainData"
+        origin:
+          description: "the origin of the order"
+          type: string
+          enum: [marketplace, external]
 
     Order:
       description: "a submitted order. it can be pending/completed/failed"
