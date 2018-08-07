@@ -98,7 +98,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 		user_id: string; // optional: user_id who will perform the order
 		title: string; // offer title - appears in order history
 		description: string; // offer description - appears in order history
-	}
+	},
 	recipient: {
 		user_id: string; // user_id who will receive the order
 		title: string; // offer title - appears in order history
