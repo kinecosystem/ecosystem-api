@@ -12,9 +12,9 @@ To edit the file you can use the [online editor](http://editor.swagger.io/?url=h
 For all 3 JWTs we will use the following template:
 ```
 {
-	alg: string, // ES256 but can be discussed
-	typ: string, // JWT
-	kid: string  // identifier of the keypair that was used to sign the JWT. identifiers and public keys will be provided by signer authority. This enables using multiple private/public key pairs (a list of public keys and their ids need to be provided by signer authority to verifier in advanced)
+	alg: string; // ES256 but can be discussed
+	typ: string; // JWT
+	kid: string; // identifier of the keypair that was used to sign the JWT. identifiers and public keys will be provided by signer authority. This enables using multiple private/public key pairs (a list of public keys and their ids need to be provided by signer authority to verifier in advanced)
 }
 ```
 
@@ -47,12 +47,12 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	offer: {
 		id: string; // offer id - id is decided by kik
 		amount: number; // amount of kin for this offer - price
-	},
+	};
 	sender: {
 		user_id: string; // optional: user_id who will perform the 
 		title: string; // order title - appears in order history
 		description: string; // order description - appears in order history
-	}
+	};
 }
 ```
 ##### [Example (viewable on jwt.io)](https://jwt.io/?token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InNwZW5kIiwib2ZmZXIiOnsiaWQiOiJPMTIzMTIzMTIzIiwiYW1vdW50Ijo1MDAwfSwic2VuZGVyIjp7InRpdGxlIjoiQmx1ZSBUaGVtZSIsImRlc2NyaXB0aW9uIjoiT2NlYW4gQmx1ZSIsInVzZXJfaWQiOiJzb21lX3VzZXIifX0.BRacJ37zbbaKivWD_uhC2JXozzrHDN5B9VeG7d1BXjkpPYEfpaEy_kKF6xqp7oUMjEG2ltrOQPJ-UkFcFl6H-g)
@@ -70,12 +70,12 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	offer: {
 		id: string; // offer id - id is decided by kik
 		amount: number; // amount of kin for this offer - price
-	},
+	};
 	recipient: {
 		user_id: string; // user_id who will perform the order
 		title: string; // order title - appears in order history
 		description: string; // order description - appears in order history
-	}
+	};
 }
 ```
 ##### [Example (viewable on jwt.io)](https://jwt.io/?token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6ImVhcm4iLCJvZmZlciI6eyJpZCI6Ik8xMjMxMjMxMjMiLCJhbW91bnQiOjUwMDB9LCJyZWNpcGllbnQiOnsidGl0bGUiOiJCbHVlIFRoZW1lIiwiZGVzY3JpcHRpb24iOiJPY2VhbiBCbHVlIiwidXNlcl9pZCI6InNvbWVfdXNlciJ9fQ.R7OpvaZQIAzjQ0MSi5nC1c39oC9oN08NVKwricMyWnuMbK5FD9Qn6ecmol4JnMGE5IZA7j_LR-EEbVhhEYi57g)
@@ -93,17 +93,17 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	offer: {
 		id: string; // offer id - id is decided by kik
 		amount: number; // amount of kin for this offer - price
-	},
+	};
 	sender: {
 		user_id: string; // optional: user_id who will perform the order
 		title: string; // offer title - appears in order history
 		description: string; // offer description - appears in order history
-	},
+	};
 	recipient: {
 		user_id: string; // user_id who will receive the order
 		title: string; // offer title - appears in order history
 		description: string; // offer description - appears in order history
-	}
+	};
 }
 ```
 ##### [Example (viewable on jwt.io)](https://jwt.io/?tokeneyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InBheV90b191c2VyIiwib2ZmZXIiOnsiaWQiOiJPMTIzMTIzMTIzIiwiYW1vdW50Ijo1MDAwfSwic2VuZGVyIjp7InRpdGxlIjoiVGlwIEZyb20gRG9vZHkiLCJkZXNjcmlwdGlvbiI6IkRvb2R5IHRpcHBlZCB5b3UiLCJ1c2VyX2lkIjoidXNlcjpuaXR6YW4ifSwicmVjaXBpZW50Ijp7InRpdGxlIjoiVGlwIFRvIE5pdHphbiIsImRlc2NyaXB0aW9uIjoiWW91IHRpcHBlZCBOaXR6YW4iLCJ1c2VyX2lkIjoidXNlcjpkb29keSJ9fQ.GVufyAI2UkpzzLlSL7a_kb5JcdSkgBb1PnzdL7wUkIGx-IUUu_pgTecElwTbZvWrCSr_GkJ4leD1MnXHSUb_QQ)
@@ -124,7 +124,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	payment: {
 		blockchain: string; // identifier of the blockchain network the transaction was made on
 		transaction_id: string; // stellar identifier of the blockchain transaction
-	}
+	};
 }
 ```
 ##### [Example (viewable on jwt.io)](https://jwt.io/?token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayIsImV4cCI6MTUyNjIzOTAyMiwic3ViIjoicGF5bWVudF9jb25maXJtYXRpb24iLCJvZmZlcl9pZCI6Ik8xMjMxMjMxMjMiLCJzZW5kZXJfdXNlcl9pZCI6InVzZXI6ZG9vZHkiLCJyZWNpcGllbnRfdXNlcl9pZCI6InVzZXI6bml0emFuIiwicGF5bWVudCI6eyJibG9ja2NoYWluIjoic3RlbGxhci1tYWlubmV0IiwidHJhbnNhY3Rpb25faWQiOiJ0cmFuc2FjdGlvbjoxMjM0NSJ9fQ.-AbZOfC69eY1It43RccOXluY-sjWSi4JFvQkVKO9D2UgYU3jNPbEcBERLrqBHPSpS6f26LVpIsg5A81UQNoukw)
