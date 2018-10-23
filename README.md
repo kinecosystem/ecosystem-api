@@ -45,7 +45,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	sub: string; // subject - "spend"
 
 	offer: {
-		id: string; // offer id - id is decided by kik
+		id: string; // offer id - id is decided by digital service
 		amount: number; // amount of kin for this offer - price
 	};
 	sender: {
@@ -68,7 +68,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	sub: string; // subject - "earn"
 
 	offer: {
-		id: string; // offer id - id is decided by kik
+		id: string; // offer id - id is decided by digital service
 		amount: number; // amount of kin for this offer - price
 	};
 	recipient: {
@@ -91,7 +91,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	sub: string; // subject - "pay_to_user"
 
 	offer: {
-		id: string; // offer id - id is decided by kik
+		id: string; // offer id - id is decided by digital service
 		amount: number; // amount of kin for this offer - price
 	};
 	sender: {
