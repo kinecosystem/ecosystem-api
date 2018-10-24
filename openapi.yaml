@@ -46,10 +46,47 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  '/users/{user_id}':
+    parameters:
+      *GLOB_PARAMS
+    get:
+      tags:
+        - Auth
+      summary: Get user profile
+      description: Get user profile
+      operationId: getUserProfile
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: string
+          description: The user id or the string "me"
+      responses:
+        '200':
+          description: User exists and data returned according to requesting user. If user requests data on itself, the entire payload returns, otherwise a minimal subset is returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '404':
+          description: User doesn't exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
   /users/me/activate:
     parameters:
       *GLOB_PARAMS
     post:
+      deprecated: true
       tags:
         - Auth
       summary: Activate account
@@ -68,6 +105,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
   /offers:
     parameters:
       *GLOB_PARAMS
@@ -607,7 +645,7 @@ components:
           description: "determines the type of data that appears in the content"
           type: string
           enum:
-            - quiz 
+            - quiz
             - tutorial
             - poll
             - coupon
@@ -742,6 +780,26 @@ components:
           type: string
           example: Usdefsdlfjksldjf
           description: the internal server user_id - it's unique across all the digital services
+
+    UserProfile:
+      description: data on a user
+      type: object
+      properties:
+        stats:
+          type: object
+          properties:
+            earn_count:
+              type: number
+            spend_count:
+              type: number
+            last_earn_date:
+              type: string
+              example: "2018-09-13T14:33:33Z"
+              description: UTC ISO
+            last_spend_date:
+              type: string
+              example: "2018-09-13T14:33:33Z"
+              description: UTC ISO
 
     Paging:
       description: "object accompanying lists - used to fetch next/previous section"
