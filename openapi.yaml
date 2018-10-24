@@ -787,6 +787,9 @@ components:
       properties:
         stats:
           type: object
+          required:
+            - earn_count
+            - spend_count
           properties:
             earn_count:
               type: number
