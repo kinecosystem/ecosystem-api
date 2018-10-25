@@ -17,6 +17,7 @@ import io.swagger.client.ApiException;
 import io.swagger.client.model.AuthToken;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.SignInData;
+import io.swagger.client.model.UserProfile;
 
 import org.junit.Test;
 import org.junit.Ignore;
@@ -49,6 +50,24 @@ public class AuthApiTest {
     public void activateAcountTest() throws ApiException {
         
         AuthToken response = api.activateAcount();
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get user profile
+     *
+     * Get user profile
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getUserProfileTest() throws ApiException {
+        
+        String userId = null;
+        
+        UserProfile response = api.getUserProfile(userId);
 
         // TODO: test validations
     }

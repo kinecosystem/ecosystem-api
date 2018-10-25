@@ -5,6 +5,7 @@ All URIs are relative to *https://api.kinmarketplace.com/v1/*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**activateAcount**](AuthApi.md#activateAcount) | **POST** /users/me/activate | Activate account
+[**getUserProfile**](AuthApi.md#getUserProfile) | **GET** /users/{user_id} | Get user profile
 [**signIn**](AuthApi.md#signIn) | **POST** /users | Sign in/ Log in
 
 
@@ -53,6 +54,56 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/jsonapplication/json
+
+
+<a name="getUserProfile"></a>
+# **getUserProfile**
+> UserProfile getUserProfile(userId)
+
+Get user profile
+
+Get user profile
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.AuthApi;
+
+
+
+AuthApi apiInstance = new AuthApi();
+
+String userId = Arrays.asList("userId_example"); // String | The user id or the string \"me\"
+
+try {
+    UserProfile result = apiInstance.getUserProfile(userId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling AuthApi#getUserProfile");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**| The user id or the string \&quot;me\&quot; |
+
+
+### Return type
+
+[**UserProfile**](UserProfile.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/jsonapplication/jsonapplication/json
 
 
 <a name="signIn"></a>

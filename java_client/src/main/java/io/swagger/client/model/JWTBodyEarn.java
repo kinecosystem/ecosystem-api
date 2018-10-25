@@ -29,7 +29,7 @@ import java.math.BigDecimal;
 /**
  * JWTBodyEarn
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-07-02T14:15:24.728+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-10-25T17:08:07.569+03:00")
 public class JWTBodyEarn {
 @SerializedName("iat")
   private BigDecimal iat = null;

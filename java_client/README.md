@@ -99,6 +99,7 @@ All URIs are relative to *https://api.kinmarketplace.com/v1/*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthApi* | [**activateAcount**](docs/AuthApi.md#activateAcount) | **POST** /users/me/activate | Activate account
+*AuthApi* | [**getUserProfile**](docs/AuthApi.md#getUserProfile) | **GET** /users/{user_id} | Get user profile
 *AuthApi* | [**signIn**](docs/AuthApi.md#signIn) | **POST** /users | Sign in/ Log in
 *ConfigurationApi* | [**configGet**](docs/ConfigurationApi.md#configGet) | **GET** /config | 
 *OffersApi* | [**getOffers**](docs/OffersApi.md#getOffers) | **GET** /offers | Return a list of offers
@@ -148,6 +149,8 @@ Class | Method | HTTP request | Description
  - [Paging](docs/Paging.md)
  - [PagingCursors](docs/PagingCursors.md)
  - [SignInData](docs/SignInData.md)
+ - [UserProfile](docs/UserProfile.md)
+ - [UserStats](docs/UserStats.md)
  - [WhitelistSignInData](docs/WhitelistSignInData.md)
 
 

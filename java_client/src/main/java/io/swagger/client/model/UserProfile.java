@@ -21,61 +21,33 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Offer;
-import io.swagger.client.model.Paging;
+import io.swagger.client.model.UserStats;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * a list of offers
- */@ApiModel(description = "a list of offers")
+ * data on a user
+ */@ApiModel(description = "data on a user")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.java.JavaClientCodegen", date = "2018-10-25T17:08:07.569+03:00")
-public class OfferList {
-@SerializedName("offers")
-  private List<Offer> offers = new ArrayList<Offer>();
-  @SerializedName("paging")
-  private Paging paging = null;
+public class UserProfile {
+@SerializedName("stats")
+  private UserStats stats = null;
   
-  public OfferList offers(List<Offer> offers) {
-    this.offers = offers;
-    return this;
-  }
-
-  public OfferList addOffersItem(Offer offersItem) {
-    
-    this.offers.add(offersItem);
-    return this;
-  }
-  
-  /**
-  * Get offers
-  * @return offers
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public List<Offer> getOffers() {
-    return offers;
-  }
-  public void setOffers(List<Offer> offers) {
-    this.offers = offers;
-  }
-  
-  public OfferList paging(Paging paging) {
-    this.paging = paging;
+  public UserProfile stats(UserStats stats) {
+    this.stats = stats;
     return this;
   }
 
   
   /**
-  * Get paging
-  * @return paging
+  * Get stats
+  * @return stats
   **/
   @ApiModelProperty(value = "")
-  public Paging getPaging() {
-    return paging;
+  public UserStats getStats() {
+    return stats;
   }
-  public void setPaging(Paging paging) {
-    this.paging = paging;
+  public void setStats(UserStats stats) {
+    this.stats = stats;
   }
   
   @Override
@@ -86,23 +58,21 @@ public class OfferList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OfferList offerList = (OfferList) o;
-    return Objects.equals(this.offers, offerList.offers) &&
-        Objects.equals(this.paging, offerList.paging);
+    UserProfile userProfile = (UserProfile) o;
+    return Objects.equals(this.stats, userProfile.stats);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offers, paging);
+    return Objects.hash(stats);
   }
   
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OfferList {\n");
+    sb.append("class UserProfile {\n");
     
-    sb.append("    offers: ").append(toIndentedString(offers)).append("\n");
-    sb.append("    paging: ").append(toIndentedString(paging)).append("\n");
+    sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("}");
     return sb.toString();
   }
