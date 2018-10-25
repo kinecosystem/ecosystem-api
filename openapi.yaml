@@ -786,23 +786,26 @@ components:
       type: object
       properties:
         stats:
-          type: object
-          required:
-            - earn_count
-            - spend_count
-          properties:
-            earn_count:
-              type: number
-            spend_count:
-              type: number
-            last_earn_date:
-              type: string
-              example: "2018-09-13T14:33:33Z"
-              description: UTC ISO
-            last_spend_date:
-              type: string
-              example: "2018-09-13T14:33:33Z"
-              description: UTC ISO
+          $ref: '#/components/schemas/UserStats'
+          
+    UserStats:
+      type: object
+      required:
+        - earn_count
+        - spend_count
+      properties:
+        earn_count:
+          type: number
+        spend_count:
+          type: number
+        last_earn_date:
+          type: string
+          example: "2018-09-13T14:33:33Z"
+          description: UTC ISO
+        last_spend_date:
+          type: string
+          example: "2018-09-13T14:33:33Z"
+          description: UTC ISO
 
     Paging:
       description: "object accompanying lists - used to fetch next/previous section"
