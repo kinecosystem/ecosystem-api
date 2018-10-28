@@ -45,6 +45,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Auth
+      summary: Update user
+      description: Update user - wallet address
+      operationId: updateUser
+      requestBody:
+        description: fields to update on an order
+        required: false # in case of spend the content is not required
+        content:
+          application/merge-patch+json:
+            schema:
+              type: object
+              properties:
+                wallet_address:
+                  type: string
+      responses:
+        '204':
+          description: Successfully updated a user wallet address
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   '/users/{user_id}':
     parameters:
