@@ -57,10 +57,8 @@ paths:
         content:
           application/merge-patch+json:
             schema:
-              type: object
-              properties:
-                wallet_address:
-                  type: string
+              $ref: '#/components/schemas/UserPrpoerties'
+
       responses:
         '204':
           description: Successfully updated a user wallet address
@@ -70,6 +68,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
 
   '/users/{user_id}':
     parameters:
@@ -812,6 +811,14 @@ components:
       properties:
         stats:
           $ref: '#/components/schemas/UserStats'
+    
+    UserPrpoerties:
+      description: user properties
+      type: object
+      properties:
+        wallet_address:
+          type: string
+          description: user public address
           
     UserStats:
       type: object
