@@ -52,8 +52,8 @@ paths:
       description: Update user - wallet address
       operationId: updateUser
       requestBody:
-        description: fields to update on an order
-        required: false # in case of spend the content is not required
+        description: Update user's propeties such as wallet_address
+        required: true # must include updated info
         content:
           application/merge-patch+json:
             schema:
