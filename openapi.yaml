@@ -57,7 +57,7 @@ paths:
         content:
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/UserPrpoerties'
+              $ref: '#/components/schemas/UserProperties'
 
       responses:
         '204':
@@ -812,7 +812,7 @@ components:
         stats:
           $ref: '#/components/schemas/UserStats'
     
-    UserPrpoerties:
+    UserProperties:
       description: user properties
       type: object
       properties:
