@@ -55,7 +55,7 @@ paths:
         description: fields to update on an order
         required: false # in case of spend the content is not required
         content:
-          application/merge-patch+json:
+          application/json:
             schema:
               type: object
               properties:
@@ -326,7 +326,7 @@ paths:
         description: fields to update on an order
         required: false # in case of spend the content is not required
         content:
-          application/merge-patch+json:
+          application/json:
             schema:
               type: object
               properties:
