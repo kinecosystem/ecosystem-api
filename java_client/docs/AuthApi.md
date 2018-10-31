@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**activateAcount**](AuthApi.md#activateAcount) | **POST** /users/me/activate | Activate account
 [**getUserProfile**](AuthApi.md#getUserProfile) | **GET** /users/{user_id} | Get user profile
 [**signIn**](AuthApi.md#signIn) | **POST** /users | Sign in/ Log in
+[**updateUser**](AuthApi.md#updateUser) | **PATCH** /users | Update user
 
 
 
@@ -154,6 +155,55 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/jsonapplication/json
+
+
+<a name="updateUser"></a>
+# **updateUser**
+> updateUser(userproperties)
+
+Update user
+
+Update user - wallet address
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.AuthApi;
+
+
+
+AuthApi apiInstance = new AuthApi();
+
+UserProperties userproperties = ; // UserProperties | 
+
+try {
+    apiInstance.updateUser(userproperties);
+} catch (ApiException e) {
+    System.err.println("Exception when calling AuthApi#updateUser");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userproperties** | [**UserProperties**](.md)|  |
+
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/merge-patch+json
+ - **Accept**: application/json
 
 
 

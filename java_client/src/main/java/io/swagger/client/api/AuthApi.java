@@ -34,6 +34,7 @@ import io.swagger.client.model.AuthToken;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.SignInData;
 import io.swagger.client.model.UserProfile;
+import io.swagger.client.model.UserProperties;
 
 
 import java.lang.reflect.Type;
@@ -456,6 +457,136 @@ public class AuthApi {
         com.squareup.okhttp.Call call = signInValidateBeforeCall(signindata, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<AuthToken>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    
+    /**
+     * Build call for updateUser
+     * @param userproperties  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+        
+     */
+    public com.squareup.okhttp.Call updateUserCall(UserProperties userproperties, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = userproperties;
+        
+        // create path and map variables
+        String localVarPath = "/users";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/merge-patch+json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call updateUserValidateBeforeCall(UserProperties userproperties, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        
+        // verify the required parameter 'userproperties' is set
+        if (userproperties == null) {
+            throw new ApiException("Missing the required parameter 'userproperties' when calling updateUser(Async)");
+        }
+        
+        
+        com.squareup.okhttp.Call call = updateUserCall(userproperties, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+        
+        
+    }
+
+    /**
+     * Update user
+     * Update user - wallet address
+     * @param userproperties  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+        
+     */
+    public void updateUser(UserProperties userproperties) throws ApiException {
+        updateUserWithHttpInfo(userproperties);
+    }
+
+    /**
+     * Update user
+     * Update user - wallet address
+     * @param userproperties  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+        
+     */
+    public ApiResponse<Void> updateUserWithHttpInfo(UserProperties userproperties) throws ApiException {
+        com.squareup.okhttp.Call call = updateUserValidateBeforeCall(userproperties, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Update user (asynchronously)
+     * Update user - wallet address
+     * @param userproperties  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+        
+     */
+    public com.squareup.okhttp.Call updateUserAsync(UserProperties userproperties, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateUserValidateBeforeCall(userproperties, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     

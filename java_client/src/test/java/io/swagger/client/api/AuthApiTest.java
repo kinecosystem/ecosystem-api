@@ -18,6 +18,7 @@ import io.swagger.client.model.AuthToken;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.SignInData;
 import io.swagger.client.model.UserProfile;
+import io.swagger.client.model.UserProperties;
 
 import org.junit.Test;
 import org.junit.Ignore;
@@ -86,6 +87,24 @@ public class AuthApiTest {
         SignInData signindata = null;
         
         AuthToken response = api.signIn(signindata);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update user
+     *
+     * Update user - wallet address
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateUserTest() throws ApiException {
+        
+        UserProperties userproperties = null;
+        
+        api.updateUser(userproperties);
 
         // TODO: test validations
     }

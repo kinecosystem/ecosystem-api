@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**activateAcount**](docs/AuthApi.md#activateAcount) | **POST** /users/me/activate | Activate account
 *AuthApi* | [**getUserProfile**](docs/AuthApi.md#getUserProfile) | **GET** /users/{user_id} | Get user profile
 *AuthApi* | [**signIn**](docs/AuthApi.md#signIn) | **POST** /users | Sign in/ Log in
+*AuthApi* | [**updateUser**](docs/AuthApi.md#updateUser) | **PATCH** /users | Update user
 *ConfigurationApi* | [**configGet**](docs/ConfigurationApi.md#configGet) | **GET** /config | 
 *OffersApi* | [**getOffers**](docs/OffersApi.md#getOffers) | **GET** /offers | Return a list of offers
 *OrdersApi* | [**cancelOrder**](docs/OrdersApi.md#cancelOrder) | **DELETE** /orders/{order_id} | cancel an order
@@ -150,6 +151,7 @@ Class | Method | HTTP request | Description
  - [PagingCursors](docs/PagingCursors.md)
  - [SignInData](docs/SignInData.md)
  - [UserProfile](docs/UserProfile.md)
+ - [UserProperties](docs/UserProperties.md)
  - [UserStats](docs/UserStats.md)
  - [WhitelistSignInData](docs/WhitelistSignInData.md)
 
