@@ -44,12 +44,13 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	exp: number; // expiration
 	sub: string; // subject - "spend"
 
+	nonce: string; // optional, to create a unique pair for offer id per user
 	offer: {
 		id: string; // offer id - id is decided by digital service
 		amount: number; // amount of kin for this offer - price
 	};
 	sender: {
-		user_id: string; // optional: user_id who will perform the 
+		user_id: string; // optional: user_id who will perform the
 		title: string; // order title - appears in order history
 		description: string; // order description - appears in order history
 	};
@@ -67,6 +68,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	exp: number; // expiration
 	sub: string; // subject - "earn"
 
+	nonce: string; // optional, to create a unique pair for offer id per user
 	offer: {
 		id: string; // offer id - id is decided by digital service
 		amount: number; // amount of kin for this offer - price
@@ -90,6 +92,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	exp: number; // expiration
 	sub: string; // subject - "pay_to_user"
 
+	nonce: string; // optional, to create a unique pair for offer id per user
 	offer: {
 		id: string; // offer id - id is decided by digital service
 		amount: number; // amount of kin for this offer - price
@@ -121,6 +124,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 	sender_user_id: string; // user identifier - same value as given by register
 	recipient_user_id: string; // user identifier - same value as given by register
 	offer_id: string; // offer id - id is decided by digital service
+	nonce: string; // the same as was send in the order JWT, or a default value in case none was used
 	payment: {
 		blockchain: string; // identifier of the blockchain network the transaction was made on
 		transaction_id: string; // stellar identifier of the blockchain transaction
