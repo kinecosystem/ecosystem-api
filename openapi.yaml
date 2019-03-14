@@ -304,7 +304,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EarnSubmission'
+              oneOf: 
+                - $ref: '#/components/schemas/EarnSubmission'
+                - $ref: '#/components/schemas/SpendSubmission'
       responses:
         '201':
           description: >
@@ -695,6 +697,15 @@ components:
         content:
           type: string
           description: json encoded payload related to the earn offer
+    SpendSubmission:
+      description: Submit a signed transaction to the server to whitelist and send to the blockchain
+      type: object
+      required:
+        - transaction
+      properties:
+        transaction:
+          type: string
+          description: XDR formatted transaction
     Offer:
       description: offer details for the offer list
       type: object
