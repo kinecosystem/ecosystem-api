@@ -476,7 +476,7 @@ paths:
                   version:
                     type: string
                 
-  '/account/kin2/{account_address}/status':
+  '/accounts/kin2/{account_address}/status':
     summary: Get account status
     get:
       parameters: 
@@ -493,7 +493,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - status
+                  - migration
                 properties:
                   migration:
                     description: >
