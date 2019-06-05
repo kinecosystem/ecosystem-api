@@ -5,8 +5,8 @@ info:
   description: Apis for client to server interaction
 servers:
   - url: 'https://api.kinmarketplace.com/v1/'
-  - url: 'https://api-stage.kinmarketplace.com/v1/'
-  - url: 'https://api-test.kinmarketplace.com/v1/'
+  - url: 'https://api.kinecosystembeta.com/'
+  - url: 'https://api.kinecosystemtest.com/'
 x-globalParameters:
   - $ref: '#/components/parameters/RequestId'
   - $ref: '#/components/parameters/SDKVersion'
