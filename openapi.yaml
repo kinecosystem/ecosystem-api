@@ -4,9 +4,9 @@ info:
   title: Kin Ecosystem
   description: Apis for client to server interaction
 servers:
-  - url: 'https://api.kinmarketplace.com/v1/'
-  - url: 'https://api.kinecosystembeta.com/'
-  - url: 'https://api.kinecosystemtest.com/'
+  - url: 'https://api.kinmarketplace.com/v2/'
+  - url: 'https://api.kinecosystembeta.com/v2/'
+  - url: 'https://api.kinecosystemtest.com/v2/'
 x-globalParameters:
   - $ref: '#/components/parameters/RequestId'
   - $ref: '#/components/parameters/SDKVersion'
