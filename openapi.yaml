@@ -304,7 +304,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: 
+              oneOf:
                 - $ref: '#/components/schemas/EarnSubmission'
                 - $ref: '#/components/schemas/SpendSubmission'
       responses:
@@ -457,20 +457,53 @@ paths:
   '/applications/{app_id}/blockchain_version':
     summary: Get blockchain version of provided app_id
     get:
-      parameters: 
+      tags:
+        - Migration
+      parameters:
         - in: path
           name: app_id
           required: true
           schema:
-            type: string           
+            type: string
       responses:
         '200':
           description: OK
-          content: 
+          content:
             text/plain:
               schema:
                 type: string
-                example: pong
+                description: the version of blockchain the current app is working with
+                enum:
+                  - 2
+                  - 3
+  '/applications/{app_id}/migration-list':
+    summary: Add users to the migration list. Users in this list will migrate to new the blockchain
+    post:
+      tags:
+        - Migration
+      parameters:
+        - in: path
+          name: app_id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: migration list payload
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - jwt
+              properties:
+                jwt:
+                  description: JWT defined by JWTBodyMigrationList
+                  type: string
+      responses:
+        '204':
+          description: Successfully received and added list
+
 security:
   - BearerAuth: []
 components:
@@ -979,12 +1012,7 @@ components:
         sub:
           type: string
           description: subject
-          enum:
-            - register
-            - spend
-            - earn
-            - pay_to_user
-            - payment_confirmation
+
     JWTBodyRegister:
       allOf:
         - $ref: '#/components/schemas/JWTBodyCommon'
@@ -992,6 +1020,10 @@ components:
           required:
             - user_id
           properties:
+            sub:
+              type: string
+              enum:
+                - register
             user_id:
               type: string
     JWTBodySpend:
@@ -1002,6 +1034,10 @@ components:
             - offer
             - sender
           properties:
+            sub:
+              type: string
+              enum:
+                - spend
             offer:
               $ref: '#/components/schemas/JWTBodyPartOffer'
             sender:
@@ -1014,6 +1050,10 @@ components:
             - offer
             - recipient
           properties:
+            sub:
+              type: string
+              enum:
+                - earn
             recipient:
               $ref: '#/components/schemas/JWTBodyPartRecipient'
             offer:
@@ -1060,6 +1100,10 @@ components:
             - sender
             - recipient
           properties:
+            sub:
+              type: string
+              enum:
+                - pay_to_user
             sender:
               $ref: '#/components/schemas/JWTBodyPartSender'
             recipient:
@@ -1084,6 +1128,10 @@ components:
             - payment
             - offer_id
           properties:
+            sub:
+              type: string
+              enum:
+                - payment_confirmation
             offer_id:
               type: string
               description: offer id - id is decided by digital service
@@ -1107,6 +1155,26 @@ components:
                 transaction_id:
                   type: string
                   description: stellar identifier of the blockchain transaction
+    JWTBodyMigrationList:
+      description: "Add users to the gradual blockchain migration"
+      allOf:
+        - $ref: '#/components/schemas/JWTBodyCommon'
+        - type: object
+          required:
+            - user_ids
+          properties:
+            sub:
+              type: string
+              enum:
+                - migrate_users
+            user_ids:
+              type: array
+              items:
+                type: string
+                description: a user_id to be migrated
+              minItems: 1
+              maxItems: 10000
+              description: array of user ids, same as used in the register
     Config:
       type: object
       required:
