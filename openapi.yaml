@@ -454,7 +454,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Config'
-  '/applications/{app_id}/blockchain_version':
+  '/applications/{app_id}/blockchain':
     summary: Get blockchain version of provided app_id
     get:
       parameters: 
@@ -467,10 +467,44 @@ paths:
         '200':
           description: OK
           content: 
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: pong
+                type: object
+                required:
+                  - version
+                properties:
+                  version:
+                    type: string
+                
+  '/accounts/kin2/{account_address}/status':
+    summary: Get account status
+    get:
+      parameters: 
+        - in: path
+          name: account_address
+          required: true
+          schema:
+            type: string           
+      responses:
+        '200':
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                required:
+                  - migration
+                properties:
+                  migration:
+                    description: >
+                      * `pending` - Not ready for migration yet
+                      
+                      * `migrate` - Ready and should be migrated
+                      
+                      * `migrated` - Account was migrated and burned
+                    type: string
+                    enum: [pending, migrate, migrated]
+
 security:
   - BearerAuth: []
 components:
