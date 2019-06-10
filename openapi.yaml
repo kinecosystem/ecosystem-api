@@ -476,7 +476,7 @@ paths:
                 enum:
                   - 2
                   - 3
-  '/applications/{app_id}/migration-list':
+  '/applications/{app_id}/migration/users':
     summary: Add users to the migration list. Users in this list will migrate to new the blockchain
     post:
       tags:
@@ -498,7 +498,7 @@ paths:
                 - jwt
               properties:
                 jwt:
-                  description: JWT defined by JWTBodyMigrationList
+                  description: JWT defined by JWTBodyMigrateUsers
                   type: string
       responses:
         '204':
@@ -1155,7 +1155,7 @@ components:
                 transaction_id:
                   type: string
                   description: stellar identifier of the blockchain transaction
-    JWTBodyMigrationList:
+    JWTBodyMigrateUsers:
       description: "Add users to the gradual blockchain migration"
       allOf:
         - $ref: '#/components/schemas/JWTBodyCommon'
