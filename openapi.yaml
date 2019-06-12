@@ -457,6 +457,8 @@ paths:
   '/applications/{app_id}/blockchain_version':
     summary: Get blockchain version of provided app_id
     get:
+      summary: get app blockchain version
+      description: get app blockchain version
       tags:
         - Migration
       parameters:
@@ -479,6 +481,8 @@ paths:
   '/applications/{app_id}/migration/users':
     summary: Add users to the migration list. Users in this list will migrate to new the blockchain
     post:
+      summary: add users to gradual migration list
+      description: add users to gradual migration list
       tags:
         - Migration
       parameters:
@@ -488,7 +492,7 @@ paths:
           schema:
             type: string
       requestBody:
-        description: migration list payload
+        description: migration list payload - JWT defined by JWTBodyMigrateUsers
         required: true
         content:
           application/json:
