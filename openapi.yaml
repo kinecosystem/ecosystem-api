@@ -176,6 +176,89 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /offers/cross-app/orders:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - $ref: '#/components/parameters/SDKVersion'
+      - $ref: '#/components/parameters/DeviceModel'
+      - $ref: '#/components/parameters/DeviceManufacturer'
+      - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/OS'
+    put:
+      tags:
+        - Orders
+      summary: add cross-app order to history
+      description: add order to history
+      operationId: addToHistory
+      requestBody:
+        description: submission of an order
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseOrder' # TODO add original appId?, remove origin
+      responses:
+        '201':
+          description: >
+            Order has successfully been submitted
+
+            * For earn - poll form is valid, client should wait for payment on
+            blockchain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: |
+            Bad Request
+            * For earn - payload is invalid/ order expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Orders
+      summary: create an cross app order
+      description: create an cross app order
+      operationId: createCrossAppOrder
+      requestBody:
+        description: submission of an order - currently spend only
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrossAppOrderRequest'
+      responses:
+        '201':
+          description: Successfully created order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenOrder'
+        '409':
+          description: Conflict
+          headers:
+            Location:
+              schema:
+                type: string
+              description: location of the order that conflicts with this one
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /offers/external/orders:
     parameters:
       - $ref: '#/components/parameters/RequestId'
@@ -808,6 +891,24 @@ components:
         jwt:
           type: string
           description: string serialized JWTBodySpend/ JWTBodyEarn/ JWTBodyPayToUser
+    CrossAppOrderRequest:
+      type: object
+      required:
+        - wallet_address
+        - app_id
+      properties:
+        wallet_address:
+          type: string
+          description: the target wallet_address
+        app_id:
+          type: string
+          description: the target app_id
+        title:
+          type: string
+          description: will appear in transaction history
+        description:
+          type: string
+          description: will appear in transaction history
     OpenOrder:
       description: an open order that hasn't been submitted yet
       allOf:
