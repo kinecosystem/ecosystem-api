@@ -196,7 +196,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BaseOrder' # TODO add original appId?, remove origin
+              $ref: '#/components/schemas/CrossAppOrder'
       responses:
         '201':
           description: >
@@ -896,6 +896,7 @@ components:
       required:
         - wallet_address
         - app_id
+        - amount
       properties:
         wallet_address:
           type: string
@@ -909,6 +910,10 @@ components:
         description:
           type: string
           description: will appear in transaction history
+        amount:
+          type: integer
+          example: 4000
+          description: kin amount
     OpenOrder:
       description: an open order that hasn't been submitted yet
       allOf:
@@ -920,6 +925,32 @@ components:
             expiration_date:
               type: string
               example: '2018-08-09T11:25:33Z'
+    CrossAppOrder:
+      type: object
+      required:
+        - title
+        - description
+        - amount
+        - blockchain_data
+        - app_id
+      properties:
+        title:
+          type: string
+          example: Got Kin From Kinit
+        description:
+          type: string
+          example: Transferred 4000 Kin
+        amount:
+          type: integer
+          example: 4000
+          description: kin amount
+        blockchain_data:
+          $ref: '#/components/schemas/BlockchainData'
+        app_id:
+          description: the app id of the sender
+          type: string
+          example: kit
+
     CommonSignInData:
       description: Base data for all sign in types
       type: object
