@@ -176,7 +176,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /offers/cross-app/orders:
+  /transfers/incoming/orders:
     parameters:
       - $ref: '#/components/parameters/RequestId'
       - $ref: '#/components/parameters/SDKVersion'
@@ -184,34 +184,28 @@ paths:
       - $ref: '#/components/parameters/DeviceManufacturer'
       - $ref: '#/components/parameters/DeviceId'
       - $ref: '#/components/parameters/OS'
-    put:
+    post:
       tags:
         - Orders
-      summary: add cross-app order to history
-      description: add order to history
-      operationId: addToHistory
+      summary: create a pending incoming order
+      description: create pending incoming order
+      operationId: receivePayment
       requestBody:
-        description: submission of an order
+        description: details of incoming payment
         required: false
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CrossAppOrder'
+              $ref: '#/components/schemas/IncomingTransferRequest'
       responses:
         '201':
-          description: >
-            Order has successfully been submitted
-
-            * For earn - poll form is valid, client should wait for payment on
-            blockchain
+          description: pending order created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
         '400':
-          description: |
-            Bad Request
-            * For earn - payload is invalid/ order expired
+          description: Bad Request
           content:
             application/json:
               schema:
@@ -222,19 +216,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /transfers/outgoing/orders:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - $ref: '#/components/parameters/SDKVersion'
+      - $ref: '#/components/parameters/DeviceModel'
+      - $ref: '#/components/parameters/DeviceManufacturer'
+      - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/OS'
     post:
       tags:
         - Orders
-      summary: create an cross app order
-      description: create an cross app order
-      operationId: createCrossAppOrder
+      summary: create an outgoing transfer order
+      description: create an outgoing transfer order
+      operationId: createOutgoingTransfer
       requestBody:
-        description: submission of an order - currently spend only
+        description: Outgoing transfer payload
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CrossAppOrderRequest'
+              $ref: '#/components/schemas/OutgoingTransferRequest'
       responses:
         '201':
           description: Successfully created order
@@ -891,12 +893,15 @@ components:
         jwt:
           type: string
           description: string serialized JWTBodySpend/ JWTBodyEarn/ JWTBodyPayToUser
-    CrossAppOrderRequest:
+    OutgoingTransferRequest:
       type: object
       required:
         - wallet_address
         - app_id
         - amount
+        - title
+        - description
+        - memo
       properties:
         wallet_address:
           type: string
@@ -910,6 +915,9 @@ components:
         description:
           type: string
           description: will appear in transaction history
+        memo:
+          type: string
+          description: 1-kit-xapp_swel_1234567890ab
         amount:
           type: integer
           example: 4000
@@ -925,27 +933,29 @@ components:
             expiration_date:
               type: string
               example: '2018-08-09T11:25:33Z'
-    CrossAppOrder:
+    IncomingTransferRequest:
       type: object
       required:
         - title
         - description
-        - amount
-        - blockchain_data
+        - wallet_address
         - app_id
+        - memo
       properties:
         title:
           type: string
           example: Got Kin From Kinit
         description:
           type: string
-          example: Transferred 4000 Kin
-        amount:
-          type: integer
-          example: 4000
-          description: kin amount
-        blockchain_data:
-          $ref: '#/components/schemas/BlockchainData'
+          example: Transferred Kin
+        memo:
+          type: string
+          example: 1-kit-xapp_swel_1234567890ab
+          description: blockchain transaction memo - goes into the blockchain_data
+        wallet_address:
+          description: address which payment will arrive from
+          type: string
+          example: G123213123
         app_id:
           description: the app id of the sender
           type: string
