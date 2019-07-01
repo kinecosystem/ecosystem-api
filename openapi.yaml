@@ -176,6 +176,91 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /transfers/incoming/orders:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - $ref: '#/components/parameters/SDKVersion'
+      - $ref: '#/components/parameters/DeviceModel'
+      - $ref: '#/components/parameters/DeviceManufacturer'
+      - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/OS'
+    post:
+      tags:
+        - Orders
+      summary: create a pending incoming order
+      description: create pending incoming order
+      operationId: receivePayment
+      requestBody:
+        description: details of incoming payment
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomingTransferRequest'
+      responses:
+        '201':
+          description: pending order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /transfers/outgoing/orders:
+    parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - $ref: '#/components/parameters/SDKVersion'
+      - $ref: '#/components/parameters/DeviceModel'
+      - $ref: '#/components/parameters/DeviceManufacturer'
+      - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/OS'
+    post:
+      tags:
+        - Orders
+      summary: create an outgoing transfer order
+      description: create an outgoing transfer order
+      operationId: createOutgoingTransfer
+      requestBody:
+        description: Outgoing transfer payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutgoingTransferRequest'
+      responses:
+        '201':
+          description: Successfully created order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenOrder'
+        '409':
+          description: Conflict
+          headers:
+            Location:
+              schema:
+                type: string
+              description: location of the order that conflicts with this one
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Generic Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /offers/external/orders:
     parameters:
       - $ref: '#/components/parameters/RequestId'
@@ -808,6 +893,35 @@ components:
         jwt:
           type: string
           description: string serialized JWTBodySpend/ JWTBodyEarn/ JWTBodyPayToUser
+    OutgoingTransferRequest:
+      type: object
+      required:
+        - wallet_address
+        - app_id
+        - amount
+        - title
+        - description
+        - memo
+      properties:
+        wallet_address:
+          type: string
+          description: the target wallet_address
+        app_id:
+          type: string
+          description: the target app_id
+        title:
+          type: string
+          description: will appear in transaction history
+        description:
+          type: string
+          description: will appear in transaction history
+        memo:
+          type: string
+          description: 1-kit-xapp_swel_1234567890ab
+        amount:
+          type: integer
+          example: 4000
+          description: kin amount
     OpenOrder:
       description: an open order that hasn't been submitted yet
       allOf:
@@ -819,6 +933,34 @@ components:
             expiration_date:
               type: string
               example: '2018-08-09T11:25:33Z'
+    IncomingTransferRequest:
+      type: object
+      required:
+        - title
+        - description
+        - wallet_address
+        - app_id
+        - memo
+      properties:
+        title:
+          type: string
+          example: Got Kin From Kinit
+        description:
+          type: string
+          example: Transferred Kin
+        memo:
+          type: string
+          example: 1-kit-xapp_swel_1234567890ab
+          description: blockchain transaction memo - goes into the blockchain_data
+        wallet_address:
+          description: address which payment will arrive from
+          type: string
+          example: G123213123
+        app_id:
+          description: the app id of the sender
+          type: string
+          example: kit
+
     CommonSignInData:
       description: Base data for all sign in types
       type: object
